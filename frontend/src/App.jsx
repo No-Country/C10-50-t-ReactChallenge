@@ -1,10 +1,9 @@
 import { Button } from 'antd'
 
-function App () {
+function App() {
   return (
     <div>
-      <Button type='primary'>Hola</Button>
-
+      <Button type="primary">Hola</Button>
     </div>
   )
 }
