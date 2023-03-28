@@ -4,7 +4,7 @@ mongoose
   .catch((err) => console.log(err));
 
 mongoose.connection.on("open", (_) => {
-  console.log("Database is conected to", uri);
+  console.log("Database is conected to 27017");
 });
 
 mongoose.connection.on("error", (err) => {
