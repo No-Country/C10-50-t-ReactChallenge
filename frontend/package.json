@@ -24,7 +24,6 @@
     "eslint-plugin-react": "^7.32.2",
     "vite": "^4.2.0"
   },
-  "main": "index.js",
   "repository": "https://github.com/No-Country/C10-50-t-ReactChallenge.git",
   "author": "",
   "license": "MIT"
