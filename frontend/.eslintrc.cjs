@@ -32,6 +32,7 @@ module.exports = {
         beforeClosing: 'never',
       },
     ],
+    'no-unused-vars': 'warn',
 
     // '@typescript-eslint/semi': 'off'    --- ; al final
   },
