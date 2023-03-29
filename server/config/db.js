@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://127.0.0.1:27017/FoodTicket")
+  .connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.log(err));
 
 mongoose.connection.on("open", (_) => {
-  console.log("Database is conected to", uri);
+  console.log("Database is conected to MongoDB Cloud");
 });
 
 mongoose.connection.on("error", (err) => {
