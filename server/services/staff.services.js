@@ -17,7 +17,7 @@ class StaffService {
       return { error: true, data: error };
     }
   }
-  static async createUser(userBody) {
+  static async createStaff(userBody) {
     try {
       const staff = new Staff(userBody);
       const resp = await staff.save();
