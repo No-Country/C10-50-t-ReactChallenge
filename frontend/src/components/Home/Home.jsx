@@ -1,6 +1,14 @@
 import { Button, Space } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 export const Home = () => {
+  const navigate = useNavigate()
+  const handleOpenStaff = () => {
+    navigate('/login')
+  }
+  const handleOpenClient = () => {
+    navigate('/client')
+  }
   return (
     <Space
       direction="vertical"
@@ -11,11 +19,12 @@ export const Home = () => {
         justifyContent: 'center',
       }}
     >
-      <Button type="primary" style={{ width: '150px' }}>
+      <h1>FOODTICKET</h1>
+      <Button type="primary" onClick={handleOpenStaff} style={{ width: '150px' }}>
         Staff
       </Button>
 
-      <Button type="primary" style={{ width: '150px' }}>
+      <Button type="primary" onClick={handleOpenClient} style={{ width: '150px' }}>
         Client
       </Button>
     </Space>

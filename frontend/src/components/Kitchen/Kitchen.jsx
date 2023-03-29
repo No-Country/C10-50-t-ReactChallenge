@@ -1,4 +1,3 @@
-
 const Kitchen = () => {
   return <div>Kitchen</div>
 }
