@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Waiter = () => {
   return <div>Waiter</div>
