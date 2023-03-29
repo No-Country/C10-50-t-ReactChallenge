@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const TicketsController = require("../controllers/tickets.controller");
+const TicketController = require("../controllers/ticket.controller");
 
-router.get("/", TicketsController);
+router.get("/", TicketController.getAllTickets);
 
 module.exports = router;

@@ -22,6 +22,7 @@ const staffSchema = new Schema({
   },
   available: {
     type: Boolean,
+    default: true,
   },
   creationDate: {
     type: Date,

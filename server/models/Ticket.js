@@ -25,6 +25,7 @@ const ticketSchema = new Schema({
   },
   status: {
     type: String,
+    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"]
   },
   date: {
     type: Date,
