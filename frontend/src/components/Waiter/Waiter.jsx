@@ -1,6 +1,9 @@
+import { Button } from 'antd'
 
-const Waiter = () => {
-  return <div>Waiter</div>
+export const Waiter = () => {
+  return (
+    <Button type="primary" style={{ width: '150px' }}>
+      Agregar pedido
+    </Button>
+  )
 }
-
-export default Waiter
