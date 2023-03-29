@@ -1,26 +1,34 @@
 const { Schema, model } = require("mongoose");
 
 const ticketSchema = new Schema({
-  name: {
+  clientName: {
     type: String,
+    default: "Client",
   },
-  image: {
-    type: String,
+  staff: {
+  type: String,
+    default: 'Waiter'
   },
-  category: {
-    type: String,
-  },
-  price: {
+  table: {
     type: Number,
   },
-  time: {
+  TotalPrice: {
     type: Number,
   },
-  description: {
+  paymentMethod: {
+    type: String,
+    enum: ["cash", "card"],
+  },
+  order: {
+    type: Array,
+    default: [{}]
+  },
+  status: {
     type: String,
   },
-  available: {
-    type: Boolean,
+  Date: {
+    type: Date,
+    default: new Date(),
   },
 });
 
