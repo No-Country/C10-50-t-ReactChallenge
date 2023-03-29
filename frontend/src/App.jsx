@@ -1,11 +1,12 @@
-import { Home } from './components/Home/Home'
+import { RouterProvider } from 'react-router'
+import { router } from './routes'
 import { GlobalStyles } from './styles/global'
 
 function App() {
   return (
     <div>
       <GlobalStyles />
-      <Home />
+      <RouterProvider router={router} />
     </div>
   )
 }
