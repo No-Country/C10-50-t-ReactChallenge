@@ -1,9 +1,12 @@
-import { Button } from 'antd'
+import { RouterProvider } from 'react-router'
+import { router } from './routes'
+import { GlobalStyles } from './styles/global'
 
 function App() {
   return (
     <div>
-      <Button type="primary">Hola</Button>
+      <GlobalStyles />
+      <RouterProvider router={router} />
     </div>
   )
 }
