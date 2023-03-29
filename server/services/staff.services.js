@@ -17,6 +17,22 @@ class StaffService {
       return { error: true, data: error };
     }
   }
+  static async createUser(userBody) {
+    try {
+      const staff = new Staff(userBody);
+      const resp = await staff.save();
+      return {
+        error: false,
+        data: resp,
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        error: true,
+        data: error
+      };
+    }
+  }
 }
 
 module.exports = StaffService;

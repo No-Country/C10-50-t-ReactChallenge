@@ -12,7 +12,7 @@ const ticketSchema = new Schema({
   table: {
     type: Number,
   },
-  TotalPrice: {
+  totalPrice: {
     type: Number,
   },
   paymentMethod: {
@@ -26,7 +26,7 @@ const ticketSchema = new Schema({
   status: {
     type: String,
   },
-  Date: {
+  date: {
     type: Date,
     default: new Date(),
   },
