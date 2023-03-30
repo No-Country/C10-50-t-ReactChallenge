@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const bulkController = require("../controllers/product.controller");
+const BulkService = require("../services/bulk.services");
 
-router.post("/", bulkController.bulk);
+router.get("/", BulkService.getAllBulk);
 
 module.exports = router;

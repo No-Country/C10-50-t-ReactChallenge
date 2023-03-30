@@ -17,7 +17,9 @@ app.use(
   })
 );
 
-app.use("./api", routes);
+app.use("/api", routes);
+
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listen on ${process.env.PORT}`);
