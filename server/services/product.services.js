@@ -17,6 +17,13 @@ class ProductService {
       return { error: true, data: error };
     }
   }
+
+  static async bulkProduct() {
+    try {
+      const products = [];
+      const bulk = await Product.bulkWrite(products);
+    } catch (error) {}
+  }
 }
 
 module.exports = ProductService;
