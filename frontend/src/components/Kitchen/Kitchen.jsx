@@ -68,6 +68,22 @@ const Kitchen = () => {
     })
   }
 
+  const confirmRejection = (order) => {
+    Swal.fire({
+      title: '¿Quiere rechazar el pedido?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: 'Cancelar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        deleteOrder(order)
+        Swal.fire('Eliminado!', '', 'success')
+      }
+    })
+  }
+
   const addToCooking = (order) => {
     const newCooking = [...cooking, order]
     setCooking(newCooking)
@@ -91,7 +107,7 @@ const Kitchen = () => {
               <p className="card-paragraph"><b>Mesa:</b> #{order.tableId}</p>
               <div className="buttons">
                 <button className='card-btn' onClick={() => confirmOrder(order)}>Aceptar</button>
-                <button className='card-btn card-btn--decline' onClick={() => deleteOrder(order)}>Rechazar</button>
+                <button className='card-btn card-btn--decline' onClick={() => confirmRejection(order)}>Rechazar</button>
               </div>
             </div>
           ))}
