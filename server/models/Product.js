@@ -9,7 +9,7 @@ const productSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ["Appetizers", "Main Dishes", "Drinks", "Desserts"],
+    enum: ["Appetizers", "MainDishes", "Drinks", "Desserts"],
   },
   price: {
     type: Number,
@@ -28,5 +28,22 @@ const productSchema = new Schema({
     default: new Date(),
   },
 });
+
+// const Product = new model("Product", productSchema)
+
+// const createProducts = async () => {
+//   try {
+//     const createProduct = new Product({
+
+//     })
+
+//     const productData = await createProduct.save()
+//     console.log(productData)
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+
+// }
+// createProducts()
 
 module.exports = model("Product", productSchema);

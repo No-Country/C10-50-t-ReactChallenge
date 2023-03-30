@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main.login{
+    min-height:  100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+.profile{
+    display: flex;
+    text-align: center;
+    gap: 150px;
+}
+
+.card-login{
+    cursor: pointer;
+}
+
+.card_img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid rgba(128, 128, 128, 0.722);
+    border-radius: 20px;
+    padding: 1rem;
+    transition:  .3s;
+}
+
+.card_img:hover{
+    transform: translateY(-10px)
+}
+
+.card-title{
+    font-weight: 400;
+    margin-top: 1rem;
+}
