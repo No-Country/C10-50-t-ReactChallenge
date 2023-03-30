@@ -1,4 +1,4 @@
 hola somos todos juntos
-puto el que lee
-Hola mundo !
 
+Hola mundo !
+luis fernando
