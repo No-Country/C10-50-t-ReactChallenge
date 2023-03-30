@@ -31,7 +31,7 @@ const Login = () => {
       <div className="profile">
         {users.map(user => (
           <div className="card-login" key={user.id} onClick={() => navigate(`/${user.nav}`)}>
-            <img src={user.img} alt="" className="card_img" />
+            <img src={user.img} alt="" className="card-img-login" />
             <h2 className='card-title'>{user.rol}</h2>
           </div>
         ))}

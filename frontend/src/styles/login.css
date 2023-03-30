@@ -28,7 +28,7 @@ body{
     cursor: pointer;
 }
 
-.card_img{
+.card-img-login{
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -38,7 +38,7 @@ body{
     transition:  .3s;
 }
 
-.card_img:hover{
+.card-img-login:hover{
     transform: translateY(-10px)
 }
 
