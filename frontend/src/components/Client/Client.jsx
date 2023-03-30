@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMenu from './CardMenu'
 import { getProductsThunk } from '../../store/slices/products.slice'
@@ -24,6 +24,7 @@ const Client = () => {
           <li className="nav_li">Postres</li>
         </ul>
       </nav>
+      <div>{products}</div>
       <CardMenu />
       <CardMenu />
       <CardMenu />
