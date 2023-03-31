@@ -1,28 +1,19 @@
 import { useState } from 'react'
 
-const CardMenu = () => {
+export default function CardMenu(props) {
   const [count, setCount] = useState(0)
-
   return (
     <article className="card">
       <div className="card_head">
-        <img
-          className="card_img"
-          src="https://www.expodrinksdelifood.com/wp-content/uploads/2020/09/puerto_mancora_restaurante_maki_acevichado.jpg"
-          alt="foto makis"
-        />
+        <img className="card_img" src={props.product.image} alt="foto makis" />
         <div className="card_conten">
-          <h2 className="card_tittle">Makis</h2>
-          <p className="card_parra">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat neque esse id quibusdam nihil accusantium
-            doloremque reprehenderit reiciendis at deserunt cupiditate nam mollitia, distinctio beatae consequuntur
-            dolores maiores enim aliquam quis eum nisi aspernatur impedit cumque! Reiciendis iusto delectus magni!
-          </p>
+          <h2 className="card_tittle">{props.product.name}</h2>
+          <p className="card_parra">{props.product.description}</p>
         </div>
       </div>
       <hr className="card_line" />
       <div className="card_foot">
-        <p className="card_price">S/. 50.00</p>
+        <p className="card_price">{props.product.price}</p>
         <div>
           <button className="card_btn" onClick={() => setCount(count => count - 1)}>
             -
@@ -36,8 +27,6 @@ const CardMenu = () => {
     </article>
   )
 }
-
-export default CardMenu
 
 /* import React from "react";
 

@@ -18,7 +18,7 @@ export const productsSlice = createSlice({
 export const getProductsThunk = () => dispatch => {
   dispatch(setIsLoading(true))
   axios
-    .get('http://localhost:3001/api/menu')
+    .get('/menu')
     .then(res => dispatch(setProducts(res.data)))
     .finally(() => dispatch(setIsLoading(false)))
 }

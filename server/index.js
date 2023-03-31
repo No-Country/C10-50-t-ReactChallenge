@@ -11,15 +11,13 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:5173",
     methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
 
 app.use("/api", routes);
-
-
 
 app.listen(process.env.PORT, () => {
   console.log(`Server listen on ${process.env.PORT}`);

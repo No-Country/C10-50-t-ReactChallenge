@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CardMenu from './CardMenu'
+import CardMenu from './CardMenu.jsx'
 import { getProductsThunk } from '../../store/slices/products.slice'
 import './style.css'
 
@@ -24,11 +24,9 @@ const Client = () => {
           <li className="nav_li">Postres</li>
         </ul>
       </nav>
-      <div>{products}</div>
-      <CardMenu />
-      <CardMenu />
-      <CardMenu />
-      <CardMenu />
+      {products?.map(product => {
+        return <CardMenu key={product.id} product={product}></CardMenu>
+      })}
       <button className="hacer_pedido">Realizar Pedido</button>
     </div>
   )
