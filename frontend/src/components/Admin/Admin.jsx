@@ -7,7 +7,6 @@ const Admin = () => {
       <br />
       <CrudAdm />
       <br />
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
     </div>
   )
 }
