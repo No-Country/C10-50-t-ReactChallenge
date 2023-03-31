@@ -58,7 +58,7 @@ export const MultipleContainers = () => {
         const isBelowLastItem =
           over &&
           overIndex === overItems.length - 1 &&
-          draggingRect.offsetTop > over.rect.offsetTop + over.rect.height
+          draggingRect?.offsetTop > over.rect.offsetTop + over.rect.height
         const modifier = isBelowLastItem ? 1 : 0
         newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1
       }
