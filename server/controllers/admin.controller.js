@@ -15,7 +15,15 @@ class AdminController {
       return res.status(404).send(error._message);
     }
     res.status(200).send(data);
-  }
+    }
+    
+    static async deleteStaff(req, res) {
+        const { data, error } = await AdminService.deleteUser(req.params.id)
+        if (error) {
+            return res.status(404).send(error._message)
+        }
+        res.send(data)
+    }
 }
 
 module.exports = AdminController;
