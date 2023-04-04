@@ -30,17 +30,29 @@ const Admin = () => {
       <div className={style.navbar}>
         <h1>Admin</h1>
         <div>
-          <button onClick={setStatus} value="products">
+          <button
+            className={dashboardStatus === 'products' ? style.btnn : style.btn}
+            onClick={setStatus}
+            value="products"
+          >
             Products
           </button>
         </div>
         <div>
-          <button onClick={setStatus} value="staff">
+          <button
+            className={dashboardStatus === 'staff' ? style.btnn : style.btn}
+            onClick={setStatus}
+            value="staff"
+          >
             Staff
           </button>
         </div>
         <div>
-          <button onClick={setStatus} value="tickets">
+          <button
+            className={dashboardStatus === 'tickets' ? style.btnn : style.btn}
+            onClick={setStatus}
+            value="tickets"
+          >
             Tickets
           </button>
         </div>
@@ -67,10 +79,10 @@ const Admin = () => {
           <h1>Staff</h1>
           {staff?.map(s => (
             <div className={style.container} key={s.id}>
-              <img src={s.image} alt="" height="70px" width="70px" />
+              <img src={s.image} alt="" height="70px" width="100px" />
               <p>{s.name}</p>
-              <p>${s.price}</p>
-              <p>{s.description}</p>
+              <p>{s.password}</p>
+              <p>{s.role}</p>
               <button>editar</button>
               <button>eliminar</button>
             </div>
@@ -82,11 +94,12 @@ const Admin = () => {
         <div>
           <h1>Tickets</h1>
           {tickets?.map(t => (
-            <div className={style.container} key={t.id}>
-              <img src={t.image} alt="" height="70px" width="70px" />
-              <p>{t.name}</p>
-              <p>${t.price}</p>
-              <p>{t.description}</p>
+            <div className={style.containerTickets} key={t.id}>
+              <p>{t.clientName}</p>
+              <p>Mesa: {t.table}</p>
+              <p>staff: {t.staff}</p>
+              <p>{t.status}</p>
+              <p>${t.totalPrice}</p>
               <button value={t.id}>editar</button>
               <button value={t.id}>eliminar</button>
             </div>
