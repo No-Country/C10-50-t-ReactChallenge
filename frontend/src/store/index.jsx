@@ -4,7 +4,8 @@ import ticketSlice from './slices/tickets.slice'
 
 export default configureStore({
   reducer: {
-    getProducts: productsSlice,
+    products: productsSlice,
     tickets: ticketSlice,
+
   },
 })
