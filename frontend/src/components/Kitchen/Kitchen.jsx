@@ -1,113 +1,87 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import '../../styles/kitchen.css'
 import CookingList from './CookingList'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTicketsThunk } from '../../store/slices/tickets.slice'
 
 const Kitchen = () => {
-  const ordersDefault = [
-    {
-      id: 1,
-      title: 'Nachos',
-      quantity: 2,
-      tableId: 5,
-      description: 'Sin cebolla'
-    },
-    {
-      id: 2,
-      title: 'Lasaña',
-      quantity: 5,
-      tableId: 3,
-      description: 'Con salsa picante'
-    },
-    {
-      id: 3,
-      title: 'Sushi',
-      quantity: 1,
-      tableId: 1,
-      description: '-'
-    },
-    {
-      id: 4,
-      title: 'Pizza',
-      quantity: 4,
-      tableId: 6,
-      description: 'Pizza gigantes'
-    },
-    {
-      id: 5,
-      title: 'Hotdog',
-      quantity: 4,
-      tableId: 4,
-      description: 'Sin salsa picante'
-    },
-    {
-      id: 6,
-      title: 'Hamburgesa',
-      quantity: 5,
-      tableId: 2,
-      description: 'Sin tomate'
-    }
-  ]
-  const [orders, setOrders] = useState(ordersDefault)
   const [cooking, setCooking] = useState([])
+  const dispatch = useDispatch()
+  const tickets = useSelector(state => state.tickets)
 
-  const confirmOrder = (order) => {
+  useEffect(() => {
+    dispatch(getTicketsThunk())
+  }, [])
+
+  const confirmOrder = order => {
     Swal.fire({
       title: '¿Quiere comenzar a cocinar el pedido?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',
       denyButtonText: 'Cancelar',
-    }).then((result) => {
+    }).then(result => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         addToCooking(order)
-        deleteOrder(order)
+        // deleteOrder(order)
         Swal.fire('Cocinando!', '', 'success')
       }
     })
   }
 
-  const confirmRejection = (order) => {
+  const confirmRejection = order => {
     Swal.fire({
       title: '¿Quiere rechazar el pedido?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Aceptar',
       denyButtonText: 'Cancelar',
-    }).then((result) => {
+    }).then(result => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        deleteOrder(order)
+        // deleteOrder(order)
         Swal.fire('Eliminado!', '', 'success')
       }
     })
   }
 
-  const addToCooking = (order) => {
+  const addToCooking = order => {
     const newCooking = [...cooking, order]
     setCooking(newCooking)
   }
 
-  const deleteOrder = (orderData) => {
-    const newOrder = orders.filter(order => order.id !== orderData.id)
-    setOrders(newOrder)
-  }
-
   return (
     <main className="kitchen">
-      <section className='orders'>
+      <section className="orders">
         <h2>Ordenes</h2>
         <div className="card-container-kitchen">
-          {orders.map(order => (
-            <div className="card-kitchen" key={order.id}>
-              <p className='card-paragraph'>#{order.id}</p>
-              <p className='card-paragraph'> {order.quantity} x {order.title}</p>
-              <p className="card-paragraph"><b>Nota: </b>{order.description}</p>
-              <p className="card-paragraph"><b>Mesa:</b> #{order.tableId}</p>
-              <div className="buttons">
-                <button className='card-btn' onClick={() => confirmOrder(order)}>Aceptar</button>
-                <button className='card-btn card-btn--decline' onClick={() => confirmRejection(order)}>Rechazar</button>
+          {tickets.map(ticket => (
+            <div className="card-kitchen" key={ticket._id}>
+              {ticket.order.map(order => (
+                <div className="order-list" key={order.description}>
+                  <p>- {order.name}</p>
+                </div>
+              ))}
+              <hr />
+              <p>
+                <b>Table: </b> #{ticket.table}
+              </p>
+              <p>
+                <b>Seller: </b> {ticket.staff}
+              </p>
+
+              <div className="kitchen-buttons">
+                <button className="card-btn" onClick={() => confirmOrder(ticket)}>
+                  Aceptar
+                </button>
+                <button
+                  className="card-btn card-btn--decline"
+                  onClick={() => confirmRejection(ticket)}
+                >
+                  Rechazar
+                </button>
               </div>
             </div>
           ))}
