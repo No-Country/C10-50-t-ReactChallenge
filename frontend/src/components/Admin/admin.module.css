@@ -1,0 +1,24 @@
+.body {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+.navbar {
+  background-color: #594622;
+  color: white;
+  padding: 15px;
+  height: 100vh;
+}
+
+.navbar p {
+  margin-top: 30px;
+}
+
+.container {
+  display: grid;
+  margin: 10px;
+  padding-right: 10px;
+  border: solid 1px black;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 100px 100px 80px 600px 70px 70px;
+}
