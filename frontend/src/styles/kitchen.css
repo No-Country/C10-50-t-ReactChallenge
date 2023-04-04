@@ -35,7 +35,7 @@
   gap: 10px;
 }
 
-.buttons {
+.kitchen-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -74,40 +74,40 @@
   border-radius: 5px;
 }
 
-.cooking{
-    grid-column: 2 / 6;
-    text-align: center;
-    padding: 1.5rem 0;
+.cooking {
+  grid-column: 2 / 6;
+  text-align: center;
+  padding: 1.5rem 0;
 }
 
-.card-container-cooking{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);;
-    padding: 0 1rem;
-    gap: 35px 15px;
-    margin: 1.5rem 0;
+.card-container-cooking {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 1rem;
+  gap: 35px 15px;
+  margin: 1.5rem 0;
 }
 
-.card-cooking{
-    background-color: #FFFF99;
-    border: 1px solid rgba(0, 0, 0, 0.35);
-    border-radius: 8px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
+.card-cooking {
+  background-color: #ffff99;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 
-.card-check{
-    background-color: #2ecc71;
-    position: absolute;
-    color: white;
-    padding: .2rem;
-    border-radius: 4px;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
+.card-check {
+  background-color: #2ecc71;
+  position: absolute;
+  color: white;
+  padding: 0.2rem;
+  border-radius: 4px;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
 }
