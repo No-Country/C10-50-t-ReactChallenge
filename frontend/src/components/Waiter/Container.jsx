@@ -5,9 +5,7 @@ import PropTypes from 'prop-types'
 import { useDroppable } from '@dnd-kit/core'
 
 export const Container = ({ items, title, id }) => {
-  const { setNodeRef } = useDroppable({
-    id,
-  })
+  const { setNodeRef } = useDroppable({ id })
 
   return (
     <Card style={{ width: '22%' }}>

@@ -2,9 +2,10 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { Card } from 'antd'
 import { CSS } from '@dnd-kit/utilities'
+import PropTypes from 'prop-types'
 
-export function SortableItem(props) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id })
+export function SortableItem({ id }) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id })
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -12,7 +13,11 @@ export function SortableItem(props) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Card body>{props.id}</Card>
+      <Card>{id}</Card>
     </div>
   )
+}
+
+SortableItem.propTypes = {
+  id: PropTypes.string.isRequired,
 }
