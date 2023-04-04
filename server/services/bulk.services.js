@@ -57,7 +57,7 @@ class BulkService {
       }
     };
     createBulk();
-  }
+  } 
 }
 
 module.exports = BulkService;
