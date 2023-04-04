@@ -8,20 +8,31 @@ class StaffController {
     }
     res.status(200).send(data);
   }
-  //   static async getOneProduct(req, res) {
-  //     const { data, error } = await service.getOneProduct();
-  //     if (error) {
-  //       res.status(404).send(error._message);
-  //     }
-  //     res.status(200).send(data);
-  //   }
 
   static async createStaff(req, res) {
-    const { data, error } = await StaffService.createStaff()
+    const { data, error } = await StaffService.createStaff(req.body);
     if (error) {
-      res.status(404).send(error._message);
+      return res.status(404).send(error._message);
     }
     res.status(200).send(data);
+  }
+
+  static async editStaff(req, res) {
+    const { data, error } = await StaffService.editStaff(req.body);
+    if (error) {
+      return res.status(404).send(error._message);
+    }
+    res.status(200).send(data);
+  }
+
+  static async deleteStaff(req, res) {
+    const { id } = req.params;
+    console.log(id);
+    const { data, error } = await StaffService.deleteUser(id);
+    if (error) {
+      return res.status(404).send(error._message);
+    }
+    res.send(data);
   }
 }
 
