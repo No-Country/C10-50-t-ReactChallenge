@@ -10,7 +10,7 @@ const CookingList = ({ cooking, setCooking }) => {
       <h1>Cocinando</h1>
       <div className="card-container-cooking">
         {cooking.map(order => (
-          <div className="card-cooking" key={order.id}>
+          <div className="card-cooking" key={order._id}>
             <p className='card-paragraph'>#{order.id}</p>
             <p className='card-paragraph'> {order.quantity} x {order.title}</p>
             <p className="card-paragraph"><b>Nota: </b>{order.description}</p>

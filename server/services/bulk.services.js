@@ -1,3 +1,4 @@
+
 const { productSchema } = require("../models/Product");
 const { staffSchema } = require("../models/Staff");
 const { ticketSchema } = require("../models/Ticket");
@@ -57,7 +58,8 @@ class BulkService {
       }
     };
     createBulk();
-  }
+  } 
 }
 
 module.exports = BulkService;
+
