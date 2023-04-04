@@ -5,10 +5,13 @@ import { CSS } from '@dnd-kit/utilities'
 import PropTypes from 'prop-types'
 
 export function SortableItem({ id }) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id })
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id,
+  })
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    opacity: isDragging,
   }
 
   return (
