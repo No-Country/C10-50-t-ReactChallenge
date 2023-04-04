@@ -4,6 +4,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './admin.module.css'
 import { getProductsThunk } from '../../store/slices/products.slice'
+import { getStaffThunk } from '../../store/slices/staff.slice'
+import { getTicketsThunk } from '../../store/slices/tickets.slice'
 
 const Admin = () => {
   const [dashboardStatus, setDashboardStatus] = React.useState('products')
@@ -11,9 +13,13 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getProductsThunk())
+    dispatch(getStaffThunk())
+    dispatch(getTicketsThunk())
   }, [])
 
   const products = useSelector(state => state.products)
+  const staff = useSelector(state => state.staff)
+  const tickets = useSelector(state => state.tickets)
 
   const setStatus = element => {
     setDashboardStatus(element.target.value)
@@ -49,8 +55,8 @@ const Admin = () => {
               <p>{p.name}</p>
               <p>${p.price}</p>
               <p>{p.description}</p>
-              <button>editar</button>
-              <button>eliminar</button>
+              <button value={p.id}>editar</button>
+              <button value={p.id}>eliminar</button>
             </div>
           ))}
         </div>
@@ -58,8 +64,8 @@ const Admin = () => {
 
       {dashboardStatus === 'staff' ? (
         <div>
-          <h1>soy el staff</h1>
-          {/* {staff?.map(s => (
+          <h1>Staff</h1>
+          {staff?.map(s => (
             <div className={style.container} key={s.id}>
               <img src={s.image} alt="" height="70px" width="70px" />
               <p>{s.name}</p>
@@ -68,13 +74,23 @@ const Admin = () => {
               <button>editar</button>
               <button>eliminar</button>
             </div>
-          ))} */}
+          ))}
         </div>
       ) : null}
 
       {dashboardStatus === 'tickets' ? (
         <div>
-          <h1>soy los tickets</h1>
+          <h1>Tickets</h1>
+          {tickets?.map(t => (
+            <div className={style.container} key={t.id}>
+              <img src={t.image} alt="" height="70px" width="70px" />
+              <p>{t.name}</p>
+              <p>${t.price}</p>
+              <p>{t.description}</p>
+              <button value={t.id}>editar</button>
+              <button value={t.id}>eliminar</button>
+            </div>
+          ))}
         </div>
       ) : null}
     </div>
