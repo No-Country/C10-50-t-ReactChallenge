@@ -17,7 +17,11 @@ export default function CardMenu({ product }) {
       <div className="card_foot">
         <p className="card_price">${product.price}</p>
         <div>
-          <button className="card_btn" onClick={() => setCount(count => count - 1)}>
+          <button
+            className="card_btn"
+            disabled={count === 0}
+            onClick={() => setCount(count => count - 1)}
+          >
             -
           </button>
           <button className="card_btncount">{count}</button>
