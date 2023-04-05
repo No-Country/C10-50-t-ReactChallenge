@@ -12,19 +12,25 @@ import {
 } from '@dnd-kit/sortable'
 import OrderList from './OrderList'
 import ReadingList from './ReadingList'
+import orderIcon from '../../assets/icons/order.svg'
 
 const Kitchen = () => {
   const [cooking, setCooking] = useState([])
   const dispatch = useDispatch()
   const tickets = useSelector(state => state.tickets)
-  const [showMore, setShowMore] = useState(false)
+  const [showMore, setShowMore] = useState(null)
 
   useEffect(() => {
     dispatch(getTicketsThunk())
   }, [])
 
   const handleDragEnd = event => {
-    setShowMore(!showMore)
+    if (showMore === event.active.id) {
+      setShowMore(null)
+    } else {
+      setShowMore(event.active.id)
+    }
+
     console.log('Drag end called')
   }
 
@@ -33,6 +39,7 @@ const Kitchen = () => {
       <main className="kitchen">
         <section className="orders">
           <div className="kitchen-title">
+            <img src={orderIcon} alt="" />
             <h2>Orders</h2>
           </div>
 
