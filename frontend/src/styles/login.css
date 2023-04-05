@@ -1,48 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-main.login{
-    min-height:  100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+main.login {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-body{
-    font-family: 'Inter', sans-serif;
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
-.profile{
-    display: flex;
-    text-align: center;
-    gap: 150px;
+.profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.card-login{
-    cursor: pointer;
+.card-login {
+  cursor: pointer;
+  margin: 20px;
 }
 
-.card-img-login{
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border: 2px solid rgba(128, 128, 128, 0.722);
-    border-radius: 20px;
-    padding: 1rem;
-    transition:  .3s;
+.card-img-login {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid rgba(128, 128, 128, 0.722);
+  border-radius: 20px;
+  padding: 1rem;
+  transition: 0.3s;
 }
 
-.card-img-login:hover{
-    transform: translateY(-10px)
+.card-img-login:hover {
+  transform: translateY(-10px);
 }
 
-.card-title{
-    font-weight: 400;
-    margin-top: 1rem;
+.card-title {
+  font-weight: 400;
+  margin-top: 1rem;
 }

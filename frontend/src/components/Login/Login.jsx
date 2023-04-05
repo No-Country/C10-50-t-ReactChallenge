@@ -1,40 +1,39 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { getStaffThunk } from '../../store/slices/staff.slice'
 import '../../styles/login.css'
 
 const Login = () => {
-  const users = [
-    {
-      id: 1,
-      rol: 'Mozo',
-      img: 'https://th.bing.com/th/id/R.4b616000cc8bfe483fe2115b4bc21a9d?rik=SUVqhSCu9ZPfgg&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fcustom-icon-design%2fsilky-line-user%2f512%2fuser-icon.png&ehk=Ue1qjuR1Kuiom0%2bO%2boKMCMGmaqdMrAkam7%2fGoqx13Cs%3d&risl=&pid=ImgRaw&r=0',
-      nav: 'waiter'
-    },
-    {
-      id: 2,
-      rol: 'Admin',
-      img: 'https://th.bing.com/th/id/R.4b616000cc8bfe483fe2115b4bc21a9d?rik=SUVqhSCu9ZPfgg&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fcustom-icon-design%2fsilky-line-user%2f512%2fuser-icon.png&ehk=Ue1qjuR1Kuiom0%2bO%2boKMCMGmaqdMrAkam7%2fGoqx13Cs%3d&risl=&pid=ImgRaw&r=0',
-      nav: 'admin'
-    },
-    {
-      id: 3,
-      rol: 'Cocina',
-      img: 'https://th.bing.com/th/id/R.4b616000cc8bfe483fe2115b4bc21a9d?rik=SUVqhSCu9ZPfgg&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fcustom-icon-design%2fsilky-line-user%2f512%2fuser-icon.png&ehk=Ue1qjuR1Kuiom0%2bO%2boKMCMGmaqdMrAkam7%2fGoqx13Cs%3d&risl=&pid=ImgRaw&r=0',
-      nav: 'kitchen'
-    }
+  const dispatch = useDispatch()
 
-  ]
+  useEffect(() => {
+    dispatch(getStaffThunk())
+  }, [])
+
+  const staff = useSelector(state => state.staff)
+
+  console.log(staff)
 
   const navigate = useNavigate()
 
   return (
-    <main className='login'>
+    <main className="login">
       <div className="profile">
-        {users.map(user => (
-          <div className="card-login" key={user.id} onClick={() => navigate(`/${user.nav}`)}>
-            <img src={user.img} alt="" className="card-img-login" />
-            <h2 className='card-title'>{user.rol}</h2>
-          </div>
-        ))}
+        {staff.length &&
+          staff.map(staff => (
+            <div className="card-login" key={staff.id} onClick={() => navigate(`/${staff.role}`)}>
+              <img src={staff.image} alt="" className="card-img-login" />
+              <h2>{staff.name}</h2>
+              <h2 className="card-title">{staff.role}</h2>
+            </div>
+          ))}
+      </div>
+
+      <div>
+        <button onClick={() => navigate('/kitchen')}>cocina</button>
+        <button onClick={() => navigate('/waiter')}>camarero</button>
+        <button onClick={() => navigate('/admin')}>admin</button>
       </div>
     </main>
   )

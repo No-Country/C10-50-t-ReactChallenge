@@ -1,11 +1,14 @@
+const productsToBulk = require("./products")
+
 const ticketsToBulk = [
+
     {
        "clientName": "Michael",
        "staff": "John",
        "table": 2,
        "totalPrice": 13.52,
        "paymentMethod": "cash",
-       "order": ["Pizza", "Coca Cola"],
+       "order": ["Pizza", "Coca-cola"],
        "status": "Delivered",
        "date": "2022-04-30T18:01:22.785Z",
     },

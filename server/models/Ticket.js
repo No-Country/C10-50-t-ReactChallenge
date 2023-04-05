@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Product = require("./Product")
 
 const ticketSchema = new Schema({
   clientName: {
@@ -6,8 +7,12 @@ const ticketSchema = new Schema({
     default: "Client",
   },
   staff: {
-  type: String,
-    default: 'Waiter'
+    type: String,
+<<<<<<< HEAD
+    default: "Waiter"
+=======
+    default: "Waiter",
+>>>>>>> 83f2b168b6e797af216ded470c1217a3f6df5308
   },
   table: {
     type: Number,
@@ -18,14 +23,20 @@ const ticketSchema = new Schema({
   paymentMethod: {
     type: String,
     enum: ["cash", "card"],
+    default: "cash"
   },
   order: {
     type: Array,
-    default: [{}]
+<<<<<<< HEAD
+    default: [{}],
+    ref: "Product"
+=======
+    default: [],
+>>>>>>> 83f2b168b6e797af216ded470c1217a3f6df5308
   },
   status: {
     type: String,
-    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"]
+    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"],
   },
   date: {
     type: Date,
