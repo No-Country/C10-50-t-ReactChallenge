@@ -13,17 +13,27 @@ const Login = () => {
 
   const staff = useSelector(state => state.staff)
 
+  console.log(staff)
+
   const navigate = useNavigate()
 
   return (
     <main className="login">
       <div className="profile">
-        {staff.map(user => (
-          <div className="card-login" key={staff.id} onClick={() => navigate(`/${staff.role}`)}>
-            <img src={staff.image} alt="" className="card-img-login" />
-            <h2 className="card-title">{staff.role}</h2>
-          </div>
-        ))}
+        {staff.length &&
+          staff.map(staff => (
+            <div className="card-login" key={staff.id} onClick={() => navigate(`/${staff.role}`)}>
+              <img src={staff.image} alt="" className="card-img-login" />
+              <h2>{staff.name}</h2>
+              <h2 className="card-title">{staff.role}</h2>
+            </div>
+          ))}
+      </div>
+
+      <div>
+        <button onClick={() => navigate('/kitchen')}>cocina</button>
+        <button onClick={() => navigate('/waiter')}>camarero</button>
+        <button onClick={() => navigate('/admin')}>admin</button>
       </div>
     </main>
   )
