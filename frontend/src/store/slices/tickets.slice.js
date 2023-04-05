@@ -13,7 +13,10 @@ export const ticketSlice = createSlice({
 })
 
 export const getTicketsThunk = () => dispatch => {
-  axios.get('http://localhost:3001/api/ticket/').then(res => dispatch(setTicket(res.data)))
+  axios
+    .get('http://localhost:3001/api/ticket/')
+    .then(res => dispatch(setTicket(res.data)))
+    .catch(error => console.log(error))
 }
 
 export const { setTicket } = ticketSlice.actions
