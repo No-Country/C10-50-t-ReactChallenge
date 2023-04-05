@@ -81,7 +81,7 @@ const productsToBulk = [
       },
       {
         "name": "Burrito",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/ZN1rkW1.jpg",
         "category": "Appetizers",
         "price": 9.99,
         "time": 15,
@@ -91,7 +91,7 @@ const productsToBulk = [
       },
       {
         "name": "Fried Rice",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/TEapU8u.jpg",
         "category": "MainDishes",
         "price": 11.99,
         "time": 20,
@@ -101,7 +101,7 @@ const productsToBulk = [
       },
       {
         "name": "Pho",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/QKfv5TT.jpg",
         "category": "MainDishes",
         "price": 14.99,
         "time": 30,
@@ -111,7 +111,7 @@ const productsToBulk = [
       },
       {
         "name": "Margarita",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/PKBBeQL.jpg",
         "category": "Drinks",
         "price": 7.99,
         "time": 5,
@@ -121,7 +121,7 @@ const productsToBulk = [
       },
       {
         "name": "Fish and Chips",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/XX60O7K.jpg",
         "category": "MainDishes",
         "price": 15.99,
         "time": 25,
@@ -131,7 +131,7 @@ const productsToBulk = [
       },
       {
         "name": "Pad Thai",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/2wJHox1.jpg",
         "category": "MainDishes",
         "price": 13.99,
         "time": 25,
@@ -141,7 +141,7 @@ const productsToBulk = [
       },
       {
         "name": "Hot Dog",
-        "image": "http://placehold.it/32x32",
+        "image": "https://i.imgur.com/b93p0Tb.jpg",
         "category": "Appetizers",
         "price": 5.99,
         "time": 10,

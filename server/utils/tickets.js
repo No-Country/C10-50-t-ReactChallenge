@@ -1,3 +1,5 @@
+const productsToBulk = require("./products")
+
 const ticketsToBulk = [
   {
     clientName: "Michael",
@@ -20,5 +22,6 @@ const ticketsToBulk = [
     date: "2023-03-30T18:01:22.785Z",
   },
 ];
+   
+module.exports = ticketsToBulk
 
-module.exports = ticketsToBulk;

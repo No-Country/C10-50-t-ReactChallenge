@@ -1,18 +1,30 @@
 /* eslint-disable react/prop-types */
 import { useSortable } from '@dnd-kit/sortable'
-import { Card } from 'antd'
 import { CSS } from '@dnd-kit/utilities'
+import PropTypes from 'prop-types'
+import { OrderCard } from './OrderCard'
 
-export function SortableItem(props) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id })
+export function SortableItem({ id, table, products, client, total }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id,
+  })
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    opacity: isDragging,
   }
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Card body>{props.id}</Card>
+      <OrderCard table={table} products={products} client={client} total={total} />
     </div>
   )
+}
+
+SortableItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  table: PropTypes.string.isRequired,
+  products: PropTypes.array.isRequired,
+  client: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
 }

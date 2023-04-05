@@ -1,6 +1,7 @@
 const StaffService = require("../services/staff.services");
 
 class StaffController {
+
   static async getStaff(req, res) {
     const { data, error } = await StaffService.getAllStaff();
     if (error) {
@@ -27,8 +28,7 @@ class StaffController {
 
   static async deleteStaff(req, res) {
     const { id } = req.params;
-    console.log(id);
-    const { data, error } = await StaffService.deleteUser(id);
+    const { data, error } = await StaffService.deleteStaff(id);
     if (error) {
       return res.status(404).send(error._message);
     }

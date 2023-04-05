@@ -2,7 +2,7 @@ const staffsToBulk = [
   {
     name: "John",
     password: 2319,
-    image: "https://i.stack.imgur.com/l60Hf.png",
+    image: "https://i.imgur.com/zKTHmHEs.jpg",
     role: "Waiter",
     adminRole: false,
     available: true,
@@ -12,7 +12,7 @@ const staffsToBulk = [
   {
     name: "Emily",
     password: 9093,
-    image: "https://i.stack.imgur.com/l60Hf.png",
+    image: "https://i.imgur.com/HscJmVMs.jpg",
     role: "Waiter",
     available: true,
     tables: ["06", "07", "08", "09", "10"],
@@ -21,7 +21,7 @@ const staffsToBulk = [
   {
     name: "William",
     password: 1423,
-    image: "https://i.stack.imgur.com/l60Hf.png",
+    image: "https://i.imgur.com/glrXSs5s.jpg",
     role: "Kitchen",
     available: true,
     date: "2022-04-30T18:01:22.785Z",
@@ -29,7 +29,7 @@ const staffsToBulk = [
   {
     name: "Sophia",
     password: 6712,
-    image: "https://i.stack.imgur.com/l60Hf.png",
+    image: "https://i.imgur.com/Njugh0Fs.jpg",
     role: "Kitchen",
     available: true,
     date: "2022-04-30T18:01:22.785Z",
@@ -37,7 +37,7 @@ const staffsToBulk = [
   {
     name: "Admin",
     password: 3854,
-    image: "https://i.stack.imgur.com/l60Hf.png",
+    image: "https://i.imgur.com/KdXQh48s.jpg",
     role: "Admin",
     available: true,
     date: "2022-04-30T18:01:22.785Z",
