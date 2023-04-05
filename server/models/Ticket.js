@@ -10,7 +10,8 @@ const ticketSchema = new Schema({
     default: "Waiter",
   },
   table: {
-    type: Number,
+    type: String,
+    require: true,
   },
   totalPrice: {
     type: Number,

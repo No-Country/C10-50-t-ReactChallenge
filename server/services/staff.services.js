@@ -30,6 +30,7 @@ class StaffService {
       const name = body.name !== "" ? body.name : staff.name;
       const password = body.password !== "" ? body.password : staff.password;
       const image = body.image !== "" ? body.image : staff.image;
+      const tables = body.tables !== "" ? body.tables : staff.tables;
       const role = body.role !== "" ? body.role : staff.role;
       const available =
         body.available !== "" ? body.available : staff.available;
@@ -37,7 +38,7 @@ class StaffService {
       const resp = await Staff.findByIdAndUpdate(
         body._id,
         {
-          $set: { name, password, image, role, available },
+          $set: { name, password, image, role, tables, available },
         },
         { new: true }
       );

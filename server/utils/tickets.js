@@ -2,7 +2,7 @@ const ticketsToBulk = [
   {
     clientName: "Michael",
     staff: "John",
-    table: 02,
+    table: "02",
     totalPrice: 13.52,
     paymentMethod: "cash",
     order: ["Pizza", "Coca Cola"],
@@ -12,7 +12,7 @@ const ticketsToBulk = [
   {
     clientName: "Robert",
     staff: "Emily",
-    table: 05,
+    table: "05",
     totalPrice: 19.97,
     paymentMethod: "cash",
     order: ["Hamburger", "Beer", "Ice Cream"],

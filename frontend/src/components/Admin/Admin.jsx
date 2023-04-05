@@ -78,11 +78,12 @@ const Admin = () => {
         <div>
           <h1>Staff</h1>
           {staff?.map(s => (
-            <div className={style.container} key={s.id}>
+            <div className={style.containerStaff} key={s.id}>
               <img src={s.image} alt="" height="70px" width="100px" />
               <p>{s.name}</p>
               <p>{s.password}</p>
               <p>{s.role}</p>
+              <p>Tables: {s.tables?.map(t => t).join(' - ')}</p>
               <button>editar</button>
               <button>eliminar</button>
             </div>

@@ -20,6 +20,10 @@ const staffSchema = new Schema({
     enum: ["Waiter", "Kitchen", "Admin"],
     require: true,
   },
+  tables: {
+    type: Array,
+    default:[]
+  },
   available: {
     type: Boolean,
     default: true,
