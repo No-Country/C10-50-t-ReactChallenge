@@ -32,25 +32,11 @@ class BulkService {
         const createTicket2 = new Ticket(ticketsToBulk[1]);
 
         const productData = await Product.insertMany([
-          createProduct1,
-          createProduct2,
-          createProduct3,
-          createProduct4,
-          createProduct5
-        ])
+          createProduct1, createProduct2, createProduct3, createProduct4, createProduct5 ])
 
-        const staffData = await Staff.insertMany([
-          createStaff1,
-          createStaff2,
-          createStaff3,
-          createStaff4,
-          createStaff5
-        ])
+        const staffData = await Staff.insertMany([ createStaff1, createStaff2, createStaff3, createStaff4,      createStaff5 ])
 
-        const ticketData = await Ticket.insertMany([
-          createTicket1,
-          createTicket2,
-        ]);
+        const ticketData = await Ticket.insertMany([ createTicket1, createTicket2, ]);
         
         console.log(productData, staffData, ticketData);
       } catch (error) {
