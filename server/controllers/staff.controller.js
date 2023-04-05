@@ -34,7 +34,6 @@ class StaffController {
     }
     res.send(data);
   }
-  
 }
 
 module.exports = StaffController;
