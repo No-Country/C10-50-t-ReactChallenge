@@ -8,21 +8,9 @@ class StaffController {
     }
     res.status(200).send(data);
   }
-  //   static async getOneProduct(req, res) {
-  //     const { data, error } = await service.getOneProduct();
-  //     if (error) {
-  //       res.status(404).send(error._message);
-  //     }
-  //     res.status(200).send(data);
-  //   }
-
-  static async createStaff(req, res) {
-    const { data, error } = await StaffService.createStaff()
-    if (error) {
-      res.status(404).send(error._message);
-    }
-    res.status(200).send(data);
-  }
+  
+  
+ 
 }
 
 module.exports = StaffController;

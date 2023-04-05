@@ -2,6 +2,7 @@ const Staff = require("../models/Staff");
 
 class AdminService {
   static async createStaff(userBody) {
+    console.log("ES ADMIN SERVICE", userbody)
     try {
       const staff = new Staff(userBody);
       const resp = await staff.save();

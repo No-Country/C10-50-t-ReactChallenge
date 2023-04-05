@@ -23,6 +23,10 @@ const productSchema = new Schema({
   available: {
     type: Boolean,
   },
+  ticket: {
+    type: Number,
+    ref: "Ticket"
+  },
   creationDate: {
     type: Date,
     default: new Date(),

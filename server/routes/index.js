@@ -6,6 +6,7 @@ const ticket = require("./ticket");
 const bulk = require("./bulk");
 const auth = require("./auth");
 const admin = require("./admin");
+const prueba = require("./prueba")
 
 router.use("/menu", menu);
 router.use("/staff", staff);
@@ -13,5 +14,6 @@ router.use("/ticket", ticket);
 router.use("/bulk", bulk);
 router.use("/auth", auth);
 router.use("/admin", admin);
+router.use("/prueba", prueba)
 
 module.exports = router;
