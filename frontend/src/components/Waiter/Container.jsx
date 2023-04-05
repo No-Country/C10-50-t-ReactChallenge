@@ -3,13 +3,23 @@ import { Card } from 'antd'
 import { SortableItem } from './sortableItem'
 import PropTypes from 'prop-types'
 import { useDroppable } from '@dnd-kit/core'
-
-export const Container = ({ items, title, id }) => {
+export const Container = ({ items, title, icon, id }) => {
   const { setNodeRef } = useDroppable({ id })
 
   return (
     <Card style={{ width: '19%' }} bodyStyle={{ padding: '8px' }}>
-      <h3>{title}</h3>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: '#ffcd33',
+          padding: '5px',
+          borderRadius: '5px',
+        }}
+      >
+        <img src={icon}></img>
+        <h3>{title}</h3>
+      </div>
       <SortableContext strategy={verticalListSortingStrategy} items={items} id={id}>
         <div ref={setNodeRef}>
           {items.map((item, index) => {
@@ -36,5 +46,6 @@ export const Container = ({ items, title, id }) => {
 Container.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 }
