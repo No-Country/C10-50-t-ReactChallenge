@@ -9,6 +9,12 @@ import {
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import { Container } from './Container'
+import add from '../../assets/icons/add.svg'
+import order from '../../assets/icons/order.svg'
+import cooking from '../../assets/icons/cooking-pot.svg'
+import ready from '../../assets/icons/fi_check-circle.svg'
+import intable from '../../assets/icons/bowl.svg'
+import wallet from '../../assets/icons/wallet.svg'
 
 export const MultipleContainers = () => {
   const [items, setItems] = useState({
@@ -162,11 +168,11 @@ export const MultipleContainers = () => {
         onDragOver={handleDragOver}
       >
         <div style={{ display: 'flex', flexFlow: 'wrap', justifyContent: 'space-between' }}>
-          <Container id="orders" title="Orders" items={items.orders} />
-          <Container id="kitchens" title="Cooking" items={items.kitchens} />
-          <Container id="readys" title="Ready" items={items.readys} />
-          <Container id="inTable" title="In Table" items={items.inTable} />
-          <Container id="payables" title="Payables" items={items.payables} />
+          <Container id="orders" title="Orders" icon={order} items={items.orders} />
+          <Container id="kitchens" title="Cooking" icon={cooking} items={items.kitchens} />
+          <Container id="readys" title="Ready" icon={ready} items={items.readys} />
+          <Container id="inTable" title="In Table" icon={intable} items={items.inTable} />
+          <Container id="payables" title="Payables" icon={wallet} items={items.payables} />
         </div>
       </DndContext>
     </div>
