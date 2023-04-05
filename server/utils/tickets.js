@@ -18,6 +18,26 @@ const ticketsToBulk = [
        "order": ["Hamburger", "Beer","Ice Cream"],
        "status": "Delivered",
        "date": "2023-03-30T18:01:22.785Z",
+    },
+    {
+       "clientName": "Stefany",
+       "staff": "John",
+       "table": 1,
+       "totalPrice": 3.97,
+       "paymentMethod": "cash",
+       "order": ["Ice Cream"],
+       "status": "Delivered",
+       "date": "2023-03-30T18:01:22.785Z",
+    },
+    {
+       "clientName": "Sofia",
+       "staff": "Emily",
+       "table": 6,
+       "totalPrice": 13.50,
+       "paymentMethod": "cash",
+       "order": ["Hamburger", "Coca-cola"],
+       "status": "Delivered",
+       "date": "2023-03-30T18:01:22.785Z",
     }
 ]
    
