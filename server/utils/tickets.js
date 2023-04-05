@@ -45,3 +45,4 @@ const ticketsToBulk = [
 ]
    
 module.exports = ticketsToBulk
+
