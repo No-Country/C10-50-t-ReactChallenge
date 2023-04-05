@@ -24,6 +24,16 @@
   grid-template-columns: 100px 100px 80px 600px 70px 70px;
 }
 
+.containerStaff {
+  display: grid;
+  margin: 10px;
+  padding-right: 10px;
+  border: solid 1px black;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 50px 100px 80px 80px 300px 50px 50px;
+}
+
 .containerTickets {
   display: grid;
   margin: 10px;
