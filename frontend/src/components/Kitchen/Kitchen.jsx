@@ -4,6 +4,7 @@ import '../../styles/kitchen.css'
 import CookingList from './CookingList'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTicketsThunk } from '../../store/slices/tickets.slice'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const Kitchen = () => {
   const [cooking, setCooking] = useState([])
@@ -59,30 +60,12 @@ const Kitchen = () => {
         <div className="card-container-kitchen">
           {tickets.map(ticket => (
             <div className="card-kitchen" key={ticket._id}>
+              <span className="kitchen-table">{ticket.table}</span>
               {ticket.order.map(order => (
                 <div className="order-list" key={order.description}>
                   <p>- {order.name}</p>
                 </div>
               ))}
-              <hr />
-              <p>
-                <b>Table: </b> #{ticket.table}
-              </p>
-              <p>
-                <b>Seller: </b> {ticket.staff}
-              </p>
-
-              <div className="kitchen-buttons">
-                <button className="card-btn" onClick={() => confirmOrder(ticket)}>
-                  Aceptar
-                </button>
-                <button
-                  className="card-btn card-btn--decline"
-                  onClick={() => confirmRejection(ticket)}
-                >
-                  Rechazar
-                </button>
-              </div>
             </div>
           ))}
         </div>

@@ -24,7 +24,7 @@
 }
 
 .card-kitchen {
-  background-color: white;
+  background-color: #f2d852;
   border: 1px solid rgba(0, 0, 0, 0.35);
   border-radius: 8px;
   width: 90%;
@@ -33,12 +33,27 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
 }
 
 .kitchen-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.kitchen-table {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 40px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-weight: 600;
+  background-color: white;
 }
 
 .card-btn {
@@ -78,6 +93,8 @@
   grid-column: 2 / 6;
   text-align: center;
   padding: 1.5rem 0;
+  border: 2px dashed rgba(0, 0, 0, 0.35);
+  margin: 0 1rem;
 }
 
 .card-container-cooking {
