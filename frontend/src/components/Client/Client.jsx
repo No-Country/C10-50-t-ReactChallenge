@@ -18,10 +18,18 @@ const Client = () => {
       <h1 className="header">Carta Digital</h1>
       <nav className="nav">
         <ul className="nav_ul">
-          <li className="nav_li">Entrada</li>
-          <li className="nav_li">Plato Fuerte</li>
-          <li className="nav_li">Bebidas</li>
-          <li className="nav_li">Postres</li>
+          <div>
+            <li className="nav_li">Entrada</li>
+          </div>
+          <div>
+            <li className="nav_li">Plato Fuerte</li>
+          </div>
+          <div>
+            <li className="nav_li">Bebidas</li>
+          </div>
+          <div>
+            <li className="nav_li">Postres</li>
+          </div>
         </ul>
       </nav>
       {products?.map(product => {

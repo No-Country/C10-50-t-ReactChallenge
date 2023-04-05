@@ -23,3 +23,35 @@
   justify-content: space-between;
   grid-template-columns: 100px 100px 80px 600px 70px 70px;
 }
+
+.containerTickets {
+  display: grid;
+  margin: 10px;
+  padding-right: 10px;
+  border: solid 1px black;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.btn {
+  background-color: #f2b749;
+  font-size: 15px;
+  border: none;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.btn:hover {
+  background-color: #111111;
+  color: #f2b749;
+}
+
+.btnn {
+  background-color: #f2b749;
+  font-size: 20px;
+  border: none;
+  margin-top: 30px;
+  padding: 10px;
+  text-decoration: underline;
+}
