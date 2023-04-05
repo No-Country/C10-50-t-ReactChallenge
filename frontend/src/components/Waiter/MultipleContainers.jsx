@@ -12,10 +12,41 @@ import { Container } from './Container'
 
 export const MultipleContainers = () => {
   const [items, setItems] = useState({
-    orders: ['1', '2'],
-    kitchens: ['3', '4', '5'],
-    readys: ['6', '7'],
-    payables: ['8', '9', '10'],
+    orders: [
+      {
+        id: '1a',
+        table: '04',
+        client: 'Pedro',
+        products: [{ id: '1', name: 'Gaseosa', quantity: 3 }],
+        total: 45,
+      },
+      {
+        id: '2a',
+        table: '05',
+        client: 'Ana',
+        products: [{ id: '2', name: 'pizza', quantity: 3 }],
+        total: 45,
+      },
+
+      {
+        id: '3a',
+        table: '05',
+        client: 'Juan',
+        products: [{ id: '3', name: 'pizza', quantity: 3 }],
+        total: 45,
+      },
+      {
+        id: '4',
+        table: '05',
+        client: 'Pablo',
+        products: [{ id: '4', name: 'pizza', quantity: 3 }],
+        total: 45,
+      },
+    ],
+    kitchens: [],
+    readys: [],
+    inTable: [],
+    payables: [],
   })
 
   const sensors = useSensors(
@@ -29,14 +60,22 @@ export const MultipleContainers = () => {
     if (id in items) {
       return id
     }
+    let containerId
+    Object.keys(items).forEach(key =>
+      // eslint-disable-next-line array-callback-return
+      items[key].map(item => {
+        if (item.id === id) {
+          containerId = key
+        }
+      })
+    )
 
-    return Object.keys(items).find(key => items[key].includes(id))
+    return containerId
   }
   function handleDragOver(event) {
     const { active, over, draggingRect } = event
-
     const { id } = active
-    const { id: overId } = over
+    const { id: overId } = over ?? undefined
     // Find the containers
     const activeContainer = findContainer(id)
     const overContainer = findContainer(overId)
@@ -47,8 +86,19 @@ export const MultipleContainers = () => {
       const activeItems = prev[activeContainer]
       const overItems = prev[overContainer]
       // Find the indexes for the items
-      const activeIndex = activeItems.indexOf(id)
-      const overIndex = overItems.indexOf(overId)
+      let activeIndex = -1
+      activeItems.forEach((activeItem, index) => {
+        if (activeItem?.id === id) {
+          activeIndex = index
+        }
+      })
+      let overIndex = -1
+      overItems.forEach((overItem, index) => {
+        if (overItem?.id === id) {
+          overIndex = index
+        }
+      })
+
       let newIndex
       if (overId in prev) {
         // We're at the root droppable of a container
@@ -63,7 +113,7 @@ export const MultipleContainers = () => {
       }
       return {
         ...prev,
-        [activeContainer]: [...prev[activeContainer].filter(item => item !== active.id)],
+        [activeContainer]: [...prev[activeContainer].filter(item => item.id !== active.id)],
         [overContainer]: [
           ...prev[overContainer].slice(0, newIndex),
           items[activeContainer][activeIndex],
@@ -83,10 +133,19 @@ export const MultipleContainers = () => {
     if (!activeContainer || !overContainer || activeContainer !== overContainer) {
       return
     }
-
-    const activeIndex = items[activeContainer].indexOf(active.id)
-    const overIndex = items[overContainer].indexOf(overId)
-
+    // Find the indexes for the items
+    let activeIndex = -1
+    items[activeContainer].forEach((activeItem, index) => {
+      if (activeItem.id === id) {
+        activeIndex = index
+      }
+    })
+    let overIndex = -1
+    items[overContainer].forEach((overItem, index) => {
+      if (overItem.id === overId) {
+        overIndex = index
+      }
+    })
     if (activeIndex !== overIndex) {
       setItems(items => ({
         ...items,
@@ -102,11 +161,12 @@ export const MultipleContainers = () => {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Container id="orders" title={'Pedidos'} items={items.orders} />
-          <Container id="kitchens" title={'Cocina'} items={items.kitchens} />
-          <Container id="readys" title={'Listos'} items={items.readys} />
-          <Container id="payables" title={'Por pagar'} items={items.payables} />
+        <div style={{ display: 'flex', flexFlow: 'wrap', justifyContent: 'space-between' }}>
+          <Container id="orders" title="Orders" items={items.orders} />
+          <Container id="kitchens" title="Cooking" items={items.kitchens} />
+          <Container id="readys" title="Ready" items={items.readys} />
+          <Container id="inTable" title="In Table" items={items.inTable} />
+          <Container id="payables" title="Payables" items={items.payables} />
         </div>
       </DndContext>
     </div>

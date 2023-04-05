@@ -7,7 +7,7 @@ export const AddProduct = ({ products }) => {
     <div style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '5px' }}>
       <Select options={options}> </Select>
       <Button type="primary" style={{ width: '150px', marginTop: '5px' }}>
-        Agregar pedido
+        Add Order
       </Button>
     </div>
   )
