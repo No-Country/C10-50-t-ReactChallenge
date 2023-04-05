@@ -8,11 +8,6 @@ class StaffController {
     }
     res.status(200).send(data);
   }
-<<<<<<< HEAD
-  
-  
- 
-=======
 
   static async createStaff(req, res) {
     const { data, error } = await StaffService.createStaff(req.body);
@@ -39,7 +34,6 @@ class StaffController {
     }
     res.send(data);
   }
->>>>>>> 83f2b168b6e797af216ded470c1217a3f6df5308
 }
 
 module.exports = StaffController;

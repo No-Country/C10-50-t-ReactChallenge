@@ -8,11 +8,7 @@ const ticketSchema = new Schema({
   },
   staff: {
     type: String,
-<<<<<<< HEAD
-    default: "Waiter"
-=======
     default: "Waiter",
->>>>>>> 83f2b168b6e797af216ded470c1217a3f6df5308
   },
   table: {
     type: Number,
@@ -27,12 +23,8 @@ const ticketSchema = new Schema({
   },
   order: {
     type: Array,
-<<<<<<< HEAD
     default: [{}],
     ref: "Product"
-=======
-    default: [],
->>>>>>> 83f2b168b6e797af216ded470c1217a3f6df5308
   },
   status: {
     type: String,
