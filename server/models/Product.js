@@ -33,21 +33,4 @@ const productSchema = new Schema({
   },
 });
 
-// const Product = new model("Product", productSchema)
-
-// const createProducts = async () => {
-//   try {
-//     const createProduct = new Product({
-
-//     })
-
-//     const productData = await createProduct.save()
-//     console.log(productData)
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-
-// }
-// createProducts()
-
 module.exports = model("Product", productSchema);
