@@ -1,9 +1,13 @@
 import '../../styles/ready.css'
+import checkIcon from '../../assets/icons/fi_check-circle.svg'
 
 const ReadingList = () => {
   return (
     <section className="ready">
-      <h2 className="kitchen-title">Ready</h2>
+      <div className="kitchen-title">
+        <img src={checkIcon} alt="" />
+        <h2>Ready</h2>
+      </div>
     </section>
   )
 }

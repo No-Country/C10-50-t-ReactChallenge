@@ -1,13 +1,18 @@
 /* eslint-disable react/prop-types */
+import cookingIcon from '../../assets/icons/cooking-pot.svg'
 
 const CookingList = ({ cooking, setCooking }) => {
   const orderReady = orderData => {
     const newCooking = cooking.filter(order => order.id !== orderData.id)
     setCooking(newCooking)
   }
+
   return (
     <section className="cooking">
-      <h2 className="kitchen-title">Cooking</h2>
+      <div className="kitchen-title">
+        <img src={cookingIcon} alt="" />
+        <h2>Cooking</h2>
+      </div>
       <div className="card-container-cooking">
         {cooking.map(order => (
           <div className="card-cooking" key={order._id}>

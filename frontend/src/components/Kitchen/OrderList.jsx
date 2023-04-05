@@ -20,16 +20,16 @@ const OrderList = ({ ticket, showMore }) => {
           <span className="kitchen-waiter">{ticket.staff}</span>
         </div>
         <div className="kitchen-more-btn">
-          <button>{!showMore ? '+' : '-'}</button>
+          <button>{showMore === ticket._id ? '-' : '+'}</button>
         </div>
       </div>
 
-      {showMore && (
+      {showMore === ticket._id && (
         <>
           <div className="order-list">
             {ticket.order.map(order => (
-              <div key={order.description} className="order-info">
-                <p>(x1) {order.name}</p>
+              <div key={order} className="order-info">
+                <p>(x1) {order}</p>
               </div>
             ))}
           </div>
