@@ -8,6 +8,15 @@ class TicketController {
     }
     res.status(200).send(data);
   }
+
+  static async postTicket(req, res) {
+    const newTicket = req.body;
+    const { data, error } = await TicketService.postTicket(newTicket);
+    if (error) {
+      res.status(404).send(error._message);
+    }
+    res.status(200).send(data);
+  }
 }
 
 module.exports = TicketController;

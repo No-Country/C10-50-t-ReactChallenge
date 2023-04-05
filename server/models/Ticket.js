@@ -6,8 +6,8 @@ const ticketSchema = new Schema({
     default: "Client",
   },
   staff: {
-  type: String,
-    default: 'Waiter'
+    type: String,
+    default: "Waiter",
   },
   table: {
     type: Number,
@@ -21,11 +21,11 @@ const ticketSchema = new Schema({
   },
   order: {
     type: Array,
-    default: [{}]
+    default: [],
   },
   status: {
     type: String,
-    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"]
+    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"],
   },
   date: {
     type: Date,
