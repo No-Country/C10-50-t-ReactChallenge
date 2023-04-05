@@ -19,6 +19,16 @@ class BulkService {
         const createProduct3 = new Product(productsToBulk[2]);
         const createProduct4 = new Product(productsToBulk[3]);
         const createProduct5 = new Product(productsToBulk[4]);
+        const createProduct6 = new Product(productsToBulk[5]);
+        const createProduct7 = new Product(productsToBulk[6]);
+        const createProduct8 = new Product(productsToBulk[7]);
+        const createProduct9 = new Product(productsToBulk[8]);
+        const createProduct10 = new Product(productsToBulk[9]);
+        const createProduct11 = new Product(productsToBulk[10]);
+        const createProduct12 = new Product(productsToBulk[11]);
+        const createProduct13 = new Product(productsToBulk[12]);
+        const createProduct14 = new Product(productsToBulk[13]);
+        const createProduct15 = new Product(productsToBulk[14]);
         const createStaff1 = new Staff(staffsToBulk[0]);
         const createStaff2 = new Staff(staffsToBulk[1]);
         const createStaff3 = new Staff(staffsToBulk[2]);
@@ -35,6 +45,16 @@ class BulkService {
           createProduct3,
           createProduct4,
           createProduct5,
+          createProduct6,
+          createProduct7,
+          createProduct8,
+          createProduct9,
+          createProduct10,
+          createProduct11,
+          createProduct12,
+          createProduct13,
+          createProduct14,
+          createProduct15,
         ]);
 
         const staffData = await Staff.insertMany([
