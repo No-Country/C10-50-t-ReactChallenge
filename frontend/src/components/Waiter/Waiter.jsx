@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getProductsThunk } from '../../store/slices/products.slice'
 import { AddProduct } from './AddProduct'
+import Navbar from '../Navbar/Navbar'
 
 export const Waiter = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ export const Waiter = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       <AddProduct products={products} />
       <MultipleContainers />
     </>

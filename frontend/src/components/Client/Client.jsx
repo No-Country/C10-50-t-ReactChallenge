@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMenu from './CardMenu.jsx'
 import { getProductsThunk } from '../../store/slices/products.slice'
+import Navbar from '../Navbar/Navbar.jsx'
 import './style.css'
 
 const Client = () => {
@@ -15,6 +16,7 @@ const Client = () => {
 
   return (
     <div className="menu">
+      <Navbar></Navbar>
       <h1 className="header">Carta Digital</h1>
       <nav className="nav">
         <ul className="nav_ul">

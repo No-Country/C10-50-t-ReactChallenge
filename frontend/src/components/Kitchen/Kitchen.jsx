@@ -10,6 +10,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
+import Navbar from '../Navbar/Navbar'
 import OrderList from './OrderList'
 import ReadingList from './ReadingList'
 import orderIcon from '../../assets/icons/order.svg'
@@ -35,30 +36,33 @@ const Kitchen = () => {
   }
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <main className="kitchen">
-        <section className="orders">
-          <div className="kitchen-title">
-            <img src={orderIcon} alt="" />
-            <h2>Orders</h2>
-          </div>
+    <div>
+      <Navbar></Navbar>
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <main className="kitchen">
+          <section className="orders">
+            <div className="kitchen-title">
+              <img src={orderIcon} alt="" />
+              <h2>Orders</h2>
+            </div>
 
-          <div className="card-container-kitchen">
-            <SortableContext
-              items={tickets.map(ticket => ticket._id)}
-              strategy={horizontalListSortingStrategy}
-            >
-              {tickets.map(ticket => (
-                <OrderList key={ticket._id} ticket={ticket} showMore={showMore} />
-              ))}
-            </SortableContext>
-          </div>
-        </section>
+            <div className="card-container-kitchen">
+              <SortableContext
+                items={tickets.map(ticket => ticket._id)}
+                strategy={horizontalListSortingStrategy}
+              >
+                {tickets.map(ticket => (
+                  <OrderList key={ticket._id} ticket={ticket} showMore={showMore} />
+                ))}
+              </SortableContext>
+            </div>
+          </section>
 
-        <CookingList cooking={cooking} setCooking={setCooking} />
-        <ReadingList />
-      </main>
-    </DndContext>
+          <CookingList cooking={cooking} setCooking={setCooking} />
+          <ReadingList />
+        </main>
+      </DndContext>
+    </div>
   )
 }
 

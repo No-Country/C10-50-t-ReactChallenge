@@ -1,5 +1,7 @@
 import { Button, Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../assets/img/Logo.png'
+import style from './home.module.css'
 
 export const Home = () => {
   const navigate = useNavigate()
@@ -10,23 +12,22 @@ export const Home = () => {
     navigate('/client')
   }
   return (
-    <Space
-      direction="vertical"
-      style={{
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <h1>FOODTICKET</h1>
-      <Button type="primary" onClick={handleOpenStaff} style={{ width: '150px' }}>
-        Staff
-      </Button>
-
-      <Button type="primary" onClick={handleOpenClient} style={{ width: '150px' }}>
-        Client
-      </Button>
-    </Space>
+    <div className={style.container}>
+      <div>
+        <img src={logo} alt="" />
+      </div>
+      <div className={style.botones}>
+        <div>
+          <Button type="primary" onClick={handleOpenStaff} style={{ width: '150px' }}>
+            Staff
+          </Button>
+        </div>
+        <div>
+          <Button type="primary" onClick={handleOpenClient} style={{ width: '150px' }}>
+            Client
+          </Button>
+        </div>
+      </div>
+    </div>
   )
 }
