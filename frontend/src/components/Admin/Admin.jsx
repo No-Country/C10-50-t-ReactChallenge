@@ -6,6 +6,7 @@ import style from './admin.module.css'
 import { getProductsThunk } from '../../store/slices/products.slice'
 import { getStaffThunk } from '../../store/slices/staff.slice'
 import { getTicketsThunk } from '../../store/slices/tickets.slice'
+import Navbar from '../Navbar/Navbar'
 
 const Admin = () => {
   const [dashboardStatus, setDashboardStatus] = React.useState('products')
@@ -26,86 +27,101 @@ const Admin = () => {
   }
 
   return (
-    <div className={style.body}>
-      <div className={style.navbar}>
-        <h1>Admin</h1>
-        <div>
-          <button
-            className={dashboardStatus === 'products' ? style.btnn : style.btn}
-            onClick={setStatus}
-            value="products"
-          >
-            Products
-          </button>
+    <div>
+      <Navbar></Navbar>
+      <div className={style.body}>
+        <div className={style.navbar}>
+          <h1>Admin</h1>
+          <div>
+            <button
+              className={dashboardStatus === 'products' ? style.btnn : style.btn}
+              onClick={setStatus}
+              value="products"
+            >
+              Products
+            </button>
+          </div>
+          <div>
+            <button
+              className={dashboardStatus === 'staff' ? style.btnn : style.btn}
+              onClick={setStatus}
+              value="staff"
+            >
+              Staff
+            </button>
+          </div>
+          <div>
+            <button
+              className={dashboardStatus === 'tickets' ? style.btnn : style.btn}
+              onClick={setStatus}
+              value="tickets"
+            >
+              Tickets
+            </button>
+          </div>
         </div>
-        <div>
-          <button
-            className={dashboardStatus === 'staff' ? style.btnn : style.btn}
-            onClick={setStatus}
-            value="staff"
-          >
-            Staff
-          </button>
-        </div>
-        <div>
-          <button
-            className={dashboardStatus === 'tickets' ? style.btnn : style.btn}
-            onClick={setStatus}
-            value="tickets"
-          >
-            Tickets
-          </button>
-        </div>
+
+        {dashboardStatus === 'products' ? (
+          <div>
+            <h1>Products</h1>
+
+            <div className={style.containerTitle}>
+              <h3></h3>
+              <h3>Name</h3>
+              <h3>Category</h3>
+              <h3>Price</h3>
+              <h3>Description</h3>
+              <h3></h3>
+              <h3></h3>
+            </div>
+            {products?.map(p => (
+              <div className={style.container} key={p.id}>
+                <img src={p.image} alt="" height="70px" width="70px" />
+                <p>{p.name}</p>
+                <p>{p.category}</p>
+                <p>${p.price}</p>
+                <p>{p.description}</p>
+                <button value={p.id}>edit</button>
+                <button value={p.id}>delete</button>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {dashboardStatus === 'staff' ? (
+          <div>
+            <h1>Staff</h1>
+            {staff?.map(s => (
+              <div className={style.containerStaff} key={s.id}>
+                <img src={s.image} alt="" height="70px" width="100px" />
+                <p>{s.name}</p>
+                <p>{s.password}</p>
+                <p>{s.role}</p>
+                <p>Tables: {s.tables?.map(t => t).join(' - ')}</p>
+                <button>edit</button>
+                <button>delete</button>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {dashboardStatus === 'tickets' ? (
+          <div>
+            <h1>Tickets</h1>
+            {tickets?.map(t => (
+              <div className={style.containerTickets} key={t.id}>
+                <p>{t.clientName}</p>
+                <p>Mesa: {t.table}</p>
+                <p>staff: {t.staff}</p>
+                <p>{t.status}</p>
+                <p>${t.totalPrice}</p>
+                <button value={t.id}>edit</button>
+                <button value={t.id}>delete</button>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
-
-      {dashboardStatus === 'products' ? (
-        <div>
-          <h1>Products</h1>
-          {products?.map(p => (
-            <div className={style.container} key={p.id}>
-              <img src={p.image} alt="" height="70px" width="70px" />
-              <p>{p.name}</p>
-              <p>${p.price}</p>
-              <p>{p.description}</p>
-              <button value={p.id}>editar</button>
-              <button value={p.id}>eliminar</button>
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      {dashboardStatus === 'staff' ? (
-        <div>
-          <h1>Staff</h1>
-          {staff?.map(s => (
-            <div className={style.container} key={s.id}>
-              <img src={s.image} alt="" height="70px" width="100px" />
-              <p>{s.name}</p>
-              <p>{s.password}</p>
-              <p>{s.role}</p>
-              <button>editar</button>
-              <button>eliminar</button>
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      {dashboardStatus === 'tickets' ? (
-        <div>
-          <h1>Tickets</h1>
-          {tickets?.map(t => (
-            <div className={style.containerTickets} key={t.id}>
-              <p>{t.clientName}</p>
-              <p>Mesa: {t.table}</p>
-              <p>staff: {t.staff}</p>
-              <p>{t.status}</p>
-              <p>${t.totalPrice}</p>
-              <button value={t.id}>editar</button>
-              <button value={t.id}>eliminar</button>
-            </div>
-          ))}
-        </div>
-      ) : null}
     </div>
   )
 }
