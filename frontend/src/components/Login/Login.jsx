@@ -1,9 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getStaffThunk } from '../../store/slices/staff.slice'
 import '../../styles/login.css'
 import Navbar from '../Navbar/Navbar.jsx'
+import adminIcon from '../../assets/icons/user-business.svg'
+import waitressIcon from '../../assets/icons/every-user.svg'
+import kitchenIcon from '../../assets/icons/staff-kitchen.svg'
+import arrowIcon from '../../assets/icons/fi_chevron-right.svg'
+import StaffNav from './StaffNav'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -15,23 +20,59 @@ const Login = () => {
   const staff = useSelector(state => state.staff)
 
   const navigate = useNavigate()
+  const [staffActually, setStaffActually] = useState('Admin')
 
   return (
     <div>
       <Navbar />
+
       <main className="login">
         <div className="nav-staff">
-          <div className="nav-staff-card"></div>
+          <StaffNav
+            staffIcon={adminIcon}
+            title={'Admin'}
+            role={'Admin'}
+            staffActually={staffActually}
+            setStaffActually={setStaffActually}
+          />
+          <StaffNav
+            staffIcon={waitressIcon}
+            title={'Waitress'}
+            role={'Waiter'}
+            staffActually={staffActually}
+            setStaffActually={setStaffActually}
+          />
+          <StaffNav
+            staffIcon={kitchenIcon}
+            title={'Kitchen'}
+            role={'Kitchen'}
+            staffActually={staffActually}
+            setStaffActually={setStaffActually}
+          />
         </div>
+
         <div className="profile">
-          {staff.length &&
-            staff.map(staff => (
-              <div className="card-login" key={staff.id} onClick={() => navigate(`/${staff.role}`)}>
-                <img src={staff.image} alt="" className="card-img-login" />
-                <h2>{staff.name}</h2>
-                <h2 className="card-title">{staff.role}</h2>
-              </div>
-            ))}
+          <div className="staff-actually">
+            <h2>Staff</h2>
+            <img src={arrowIcon} alt="" />
+            <h2>{staffActually}</h2>
+          </div>
+          {staff.length > 0 &&
+            staff.map(
+              staff =>
+                staff.role === staffActually && (
+                  <div
+                    className="card-login"
+                    key={staff.id}
+                    onClick={() => navigate(`/${staff.role}`)}
+                  >
+                    <div className="card-img-container">
+                      <img src={staff.image} alt="" className="card-img-login" />
+                    </div>
+                    <h2>{staff.name}</h2>
+                  </div>
+                )
+            )}
         </div>
       </main>
     </div>

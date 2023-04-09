@@ -8,46 +8,112 @@
 
 main.login {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
+  margin: 5rem 2rem;
+  gap: 2rem;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
 }
 
+img {
+  display: block;
+}
+
 .profile {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  gap: 30px;
   text-align: center;
+  border: 2px solid #ccd1ff;
+  background-color: #fff;
+  width: 100%;
+  min-height: 60vh;
+  padding: 1.5rem;
+}
+
+.staff-actually {
+  position: absolute;
+  top: -3.5rem;
+  left: 1rem;
+  display: flex;
+  gap: 15px;
+}
+
+.staff-actually h2 {
+  font-weight: 500;
+  color: #03314b;
 }
 
 .card-login {
   cursor: pointer;
-  margin: 20px;
+  /* margin: 20px; */
+
+  height: max-content;
+}
+
+.card-login h2 {
+  font-weight: 500;
+  color: #03314b;
+}
+
+.card-img-container {
+  border: solid 2px #ccd1ff9c;
+  border-radius: 6px;
+  transition: 0.3s;
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
 }
 
 .card-img-login {
-  width: 200px;
-  height: 200px;
+  border-radius: 8px;
+  background-color: #03314b;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
-  border: 2px solid rgba(128, 128, 128, 0.722);
-  border-radius: 20px;
-  padding: 1rem;
-  transition: 0.3s;
 }
 
-.card-img-login:hover {
+.card-img-container:hover {
   transform: translateY(-10px);
 }
 
 .card-title {
   font-weight: 400;
   margin-top: 1rem;
+}
+
+.nav-staff {
+  position: relative;
+  font-size: 1.2rem;
+  border: 2px solid #ccd1ff;
+  background-color: white;
+  width: 300px;
+  padding: 1rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-staff-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.nav-staff-card:hover {
+  background-color: #ccd1ff;
+}
+
+.nav-staff-info {
+  display: flex;
+  gap: 10px;
+}
+
+.white-icon {
+  filter: brightness(0) saturate(100%) invert(100%);
 }
