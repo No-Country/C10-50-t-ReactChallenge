@@ -20,7 +20,9 @@ const Navbar = () => {
       </div>
 
       <div>
-        <button onClick={back}>Back</button>
+        <button className={style.buttonNav} onClick={back}>
+          Back
+        </button>
       </div>
     </div>
   )

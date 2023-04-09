@@ -9,6 +9,7 @@ import waitressIcon from '../../assets/icons/every-user.svg'
 import kitchenIcon from '../../assets/icons/staff-kitchen.svg'
 import arrowIcon from '../../assets/icons/fi_chevron-right.svg'
 import StaffNav from './StaffNav'
+import Auth from './Auth'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -21,7 +22,8 @@ const Login = () => {
 
   const navigate = useNavigate()
   const [staffActually, setStaffActually] = useState('Admin')
-
+  const [staffSelected, setStaffSelected] = useState(null)
+  console.log(staffSelected)
   return (
     <div>
       <Navbar />
@@ -63,8 +65,8 @@ const Login = () => {
                 staff.role === staffActually && (
                   <div
                     className="card-login"
-                    key={staff.id}
-                    onClick={() => navigate(`/${staff.role}`)}
+                    key={staff._id}
+                    onClick={() => setStaffSelected(staff)}
                   >
                     <div className="card-img-container">
                       <img src={staff.image} alt="" className="card-img-login" />
@@ -75,6 +77,7 @@ const Login = () => {
             )}
         </div>
       </main>
+      {staffSelected && <Auth staffSelected={staffSelected} setStaffSelected={setStaffSelected} />}
     </div>
   )
 }
