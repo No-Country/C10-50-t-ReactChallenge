@@ -6,19 +6,18 @@ body {
   padding: 3rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 }
 
 .orders {
-  position: relative;
   text-align: center;
   background-color: #fff;
   height: calc(100vh - 6rem);
   max-height: calc(100vh - 6rem);
-  /* overflow-y: auto; */
+  overflow-y: auto;
   padding: 1rem 0.8rem;
   border-radius: 4px;
   border: 2px solid #ccd1ff;
-  z-index: 10;
 }
 
 .kitchen-title {
@@ -35,14 +34,11 @@ body {
 .card-container-kitchen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 25px;
+  justify-content: start;
   margin: 1.5rem 0;
-  z-index: 1;
 }
 
 .card-kitchen {
-  position: relative;
   background-color: #eff1f5;
   border: 1px solid rgba(0, 0, 0, 0.35);
   border-radius: 8px;
@@ -52,13 +48,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  position: relative;
-  cursor: grab;
-  z-index: 20;
+  margin-bottom: 1.2rem;
+  /* cursor: grab; */
 }
 
-.card-kitchen:active {
-  cursor: grabbing;
+.kitchen-more-btn button {
+  padding: 0.5rem;
 }
 
 .kitchen-buttons {
@@ -115,10 +110,33 @@ body {
 .cooking {
   grid-column: 2 / 5;
   text-align: center;
-  padding: 1rem 0.8rem;
-  border: 2px solid #ccd1ff;
-  margin: 0 1rem;
   background-color: #fff;
+  height: calc(100vh - 6rem);
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding: 1rem 0.8rem;
+  border-radius: 4px;
+  border: 2px solid #ccd1ff;
+}
+
+/* Personalizar el scrollbar para Chrome y Safari */
+.cooking::-webkit-scrollbar {
+  width: 10px;
+}
+
+.cooking::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+/* Personalizar el scrollbar para Firefox */
+.cooking::-moz-scrollbar {
+  width: 10px;
+}
+
+.cooking::-moz-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
 }
 
 .card-container-cooking {
