@@ -20,6 +20,9 @@ const Login = () => {
     <div>
       <Navbar />
       <main className="login">
+        <div className="nav-staff">
+          <div className="nav-staff-card"></div>
+        </div>
         <div className="profile">
           {staff.length &&
             staff.map(staff => (
