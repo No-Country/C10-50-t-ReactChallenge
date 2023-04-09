@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import '../../styles/kitchen.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTicketsThunk, setTickets } from '../../store/slices/tickets.slice'
@@ -12,45 +12,6 @@ import Navbar from '../Navbar/Navbar'
 const Kitchen = () => {
   const dispatch = useDispatch()
   const tickets = useSelector(state => state.tickets)
-
-  const [ticketsTest, setTicketsTest] = useState([
-    {
-      _id: '642db4e502c5d06f65cf2854',
-      clientName: 'Cesar',
-      staff: 'Monica',
-      table: 1,
-      totalPrice: 13.52,
-      paymentMethod: 'cash',
-      order: ['Pizza', 'Coca-cola'],
-      status: 'Delivered',
-      date: '2022-04-30T18:01:22.785Z',
-      __v: 0,
-    },
-    {
-      _id: '642db4e502c5d06f65csa854',
-      clientName: 'Samuel',
-      staff: 'John',
-      table: 2,
-      totalPrice: 20.32,
-      paymentMethod: 'cash',
-      order: ['Hamburger', 'Orange Juice'],
-      status: 'Delivered',
-      date: '2022-04-30T18:01:22.785Z',
-      __v: 0,
-    },
-    {
-      _id: '642db9f502c5d06f65cf2854',
-      clientName: 'Michael',
-      staff: 'Felix',
-      table: 3,
-      totalPrice: 25.0,
-      paymentMethod: 'cash',
-      order: ['Tacos', 'Pepsi'],
-      status: 'Delivered',
-      date: '2022-04-30T18:01:22.785Z',
-      __v: 0,
-    },
-  ])
 
   useEffect(() => {
     if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
