@@ -13,10 +13,10 @@ const StaffNav = ({ staffIcon, title, setStaffActually, staffActually, role }) =
       onClick={() => setStaffActually(role)}
     >
       <div className="nav-staff-info">
-        <img src={staffIcon} className={staffActually === role && 'white-icon'} />
+        <img src={staffIcon} className={staffActually === role ? 'white-icon' : ''} />
         <p>{title}</p>
       </div>
-      <img src={arrowIcon} className={staffActually === role && 'white-icon'} />
+      <img src={arrowIcon} className={staffActually === role ? 'white-icon' : ''} />
     </div>
   )
 }
