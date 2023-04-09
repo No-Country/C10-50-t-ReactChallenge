@@ -6,7 +6,7 @@ import style from './home.module.css'
 export const Home = () => {
   const navigate = useNavigate()
   const handleOpenStaff = () => {
-    navigate('/login')
+    navigate('/staff')
   }
   const handleOpenClient = () => {
     navigate('/client')
