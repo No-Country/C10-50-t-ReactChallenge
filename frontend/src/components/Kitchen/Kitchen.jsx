@@ -7,6 +7,7 @@ import cookingIcon from '../../assets/icons/cooking-pot.svg'
 import readyIcon from '../../assets/icons/fi_check-circle.svg'
 import ContainerKitchen from './ContainerKitchen'
 import { DragDropContext } from 'react-beautiful-dnd'
+import Navbar from '../Navbar/Navbar'
 
 const Kitchen = () => {
   const dispatch = useDispatch()
@@ -52,7 +53,9 @@ const Kitchen = () => {
   ])
 
   useEffect(() => {
-    dispatch(getTicketsThunk())
+    if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
+      dispatch(getTicketsThunk())
+    }
   }, [])
 
   const reorder = (list, startIndex, endIndex) => {
@@ -92,6 +95,7 @@ const Kitchen = () => {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
+      <Navbar />
       <main className="kitchen">
         {/* Orders */}
         <ContainerKitchen
