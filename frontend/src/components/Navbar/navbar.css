@@ -28,3 +28,36 @@
   background-color: #7179eb;
   cursor: pointer;
 }
+
+.navLogin {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navUserInfo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navUserBtn button {
+  background-color: #03314b;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.7rem 1.3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.navUserBtn button:hover {
+  background-color: #022b43;
+}

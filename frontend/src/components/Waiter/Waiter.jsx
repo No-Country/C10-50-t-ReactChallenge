@@ -20,7 +20,7 @@ export const Waiter = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar isShowed={true} />
       <AddProduct products={products} />
       <MultipleContainers />
     </>

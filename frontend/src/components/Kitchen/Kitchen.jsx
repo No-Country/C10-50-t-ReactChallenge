@@ -56,7 +56,7 @@ const Kitchen = () => {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Navbar />
+      <Navbar isShowed={true} />
       <main className="kitchen">
         {/* Orders */}
         <ContainerKitchen

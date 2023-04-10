@@ -28,7 +28,7 @@ const Admin = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar isShowed={true} />
       <div className={style.body}>
         <div className={style.navbar}>
           <h1>Admin</h1>
