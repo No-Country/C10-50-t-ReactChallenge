@@ -3,6 +3,8 @@ import loginIcon from '../../assets/icons/login.svg'
 import closeIcon from '../../assets/icons/close.svg'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Auth = ({ staffSelected, setStaffSelected }) => {
   const [inputValues, setInputValues] = useState(['', '', '', ''])
@@ -24,6 +26,23 @@ const Auth = ({ staffSelected, setStaffSelected }) => {
 
       return newInputValues
     })
+  }
+
+  const loginUser = () => {
+    const password = inputValues.join('')
+    const user = { name: staffSelected.name, password }
+
+    if (password.length === 4) {
+      axios
+        .post('http://localhost:3001/api/auth/login', user)
+        .then(res => {
+          localStorage.setItem('userInfo', JSON.stringify(res.data))
+          navigate(`/${staffSelected.role}`)
+        })
+        .catch(error => toast.error(error.response.data))
+    } else {
+      toast.error('Type a password')
+    }
   }
 
   return (
@@ -55,9 +74,10 @@ const Auth = ({ staffSelected, setStaffSelected }) => {
               />
             ))}
           </div>
-          <button onClick={() => navigate(`/${staffSelected.role}`)} className="auth-btn">
+          <button onClick={loginUser} className="auth-btn">
             Log in
           </button>
+          <Toaster position="top-center" reverseOrder={false} />
         </section>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Kitchen from '../components/Kitchen/Kitchen'
 import Login from '../components/Login/Login'
 import { Waiter } from '../components/Waiter/Waiter'
 import Client from '../components/Client/Client'
+import ProtectedRoute from './ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
@@ -21,14 +22,26 @@ export const router = createBrowserRouter([
   },
   {
     path: '/kitchen',
-    element: <Kitchen />,
+    element: (
+      <ProtectedRoute pathRole={'Kitchen'}>
+        <Kitchen />
+      </ProtectedRoute>
+    ),
   },
   {
     path: '/waiter',
-    element: <Waiter />,
+    element: (
+      <ProtectedRoute pathRole={'Waiter'}>
+        <Waiter />
+      </ProtectedRoute>
+    ),
   },
   {
     path: '/admin',
-    element: <Admin />,
+    element: (
+      <ProtectedRoute pathRole={'Admin'}>
+        <Admin />
+      </ProtectedRoute>
+    ),
   },
 ])

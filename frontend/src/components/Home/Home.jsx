@@ -6,7 +6,12 @@ import style from './home.module.css'
 export const Home = () => {
   const navigate = useNavigate()
   const handleOpenStaff = () => {
-    navigate('/staff')
+    const user = JSON.parse(localStorage.getItem('userInfo'))
+    if (user) {
+      navigate(`${user.role}`)
+    } else {
+      navigate('/staff')
+    }
   }
   const handleOpenClient = () => {
     navigate('/client')
