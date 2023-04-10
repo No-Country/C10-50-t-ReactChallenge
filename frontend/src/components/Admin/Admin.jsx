@@ -108,7 +108,7 @@ const Admin = () => {
         {dashboardStatus === 'tickets' ? (
           <div>
             <h1>Tickets</h1>
-            {tickets?.map(t => (
+            {tickets.orders?.map(t => (
               <div className={style.containerTickets} key={t.id}>
                 <p>{t.clientName}</p>
                 <p>Mesa: {t.table}</p>
