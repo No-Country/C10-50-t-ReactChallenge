@@ -20,7 +20,6 @@ const Login = () => {
 
   const staff = useSelector(state => state.staff)
 
-  const navigate = useNavigate()
   const [staffActually, setStaffActually] = useState('Admin')
   const [staffSelected, setStaffSelected] = useState(null)
   console.log(staffSelected)
