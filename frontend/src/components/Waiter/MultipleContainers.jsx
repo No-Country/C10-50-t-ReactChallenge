@@ -15,46 +15,21 @@ import cooking from '../../assets/icons/cooking-pot.svg'
 import ready from '../../assets/icons/fi_check-circle.svg'
 import intable from '../../assets/icons/bowl.svg'
 import wallet from '../../assets/icons/wallet.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { setItems } from '../../store/slices/tickets.slice'
 
 export const MultipleContainers = () => {
-  const [items, setItems] = useState({
-    orders: [
-      {
-        id: '1a',
-        table: '04',
-        client: 'Pedro',
-        products: [{ id: '1', name: 'Gaseosa', quantity: 3 }],
-        total: 45,
-      },
-      {
-        id: '2a',
-        table: '05',
-        client: 'Ana',
-        products: [{ id: '2', name: 'pizza', quantity: 3 }],
-        total: 45,
-      },
-
-      {
-        id: '3a',
-        table: '05',
-        client: 'Juan',
-        products: [{ id: '3', name: 'pizza', quantity: 3 }],
-        total: 45,
-      },
-      {
-        id: '4',
-        table: '05',
-        client: 'Pablo',
-        products: [{ id: '4', name: 'pizza', quantity: 3 }],
-        total: 45,
-      },
-    ],
-    kitchens: [],
-    readys: [],
-    inTable: [],
-    payables: [],
-  })
-
+  const dispatch = useDispatch()
+  const items = useSelector(
+    state =>
+      state.tickets ?? {
+        orders: [],
+        kitchens: [],
+        readys: [],
+        inTable: [],
+        payables: [],
+      }
+  )
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -88,45 +63,46 @@ export const MultipleContainers = () => {
     if (!activeContainer || !overContainer || activeContainer === overContainer) {
       return
     }
-    setItems(prev => {
-      const activeItems = prev[activeContainer]
-      const overItems = prev[overContainer]
-      // Find the indexes for the items
-      let activeIndex = -1
-      activeItems.forEach((activeItem, index) => {
-        if (activeItem?.id === id) {
-          activeIndex = index
-        }
-      })
-      let overIndex = -1
-      overItems.forEach((overItem, index) => {
-        if (overItem?.id === id) {
-          overIndex = index
-        }
-      })
 
-      let newIndex
-      if (overId in prev) {
-        // We're at the root droppable of a container
-        newIndex = overItems.length + 1
-      } else {
-        const isBelowLastItem =
-          over &&
-          overIndex === overItems.length - 1 &&
-          draggingRect?.offsetTop > over.rect.offsetTop + over.rect.height
-        const modifier = isBelowLastItem ? 1 : 0
-        newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1
-      }
-      return {
-        ...prev,
-        [activeContainer]: [...prev[activeContainer].filter(item => item.id !== active.id)],
-        [overContainer]: [
-          ...prev[overContainer].slice(0, newIndex),
-          items[activeContainer][activeIndex],
-          ...prev[overContainer].slice(newIndex, prev[overContainer].length),
-        ],
+    const activeItems = items[activeContainer]
+    const overItems = items[overContainer]
+    // Find the indexes for the items
+    let activeIndex = -1
+    activeItems.forEach((activeItem, index) => {
+      if (activeItem?.id === id) {
+        activeIndex = index
       }
     })
+    let overIndex = -1
+    overItems.forEach((overItem, index) => {
+      if (overItem?.id === id) {
+        overIndex = index
+      }
+    })
+
+    let newIndex
+    if (overId in items) {
+      // We're at the root droppable of a container
+      newIndex = overItems.length + 1
+    } else {
+      const isBelowLastItem =
+        over &&
+        overIndex === overItems.length - 1 &&
+        draggingRect?.offsetTop > over.rect.offsetTop + over.rect.height
+      const modifier = isBelowLastItem ? 1 : 0
+      newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1
+    }
+    dispatch(
+      setItems({
+        ...items,
+        [activeContainer]: [...items[activeContainer].filter(item => item.id !== active.id)],
+        [overContainer]: [
+          ...items[overContainer].slice(0, newIndex),
+          items[activeContainer][activeIndex],
+          ...items[overContainer].slice(newIndex, items[overContainer].length),
+        ],
+      })
+    )
   }
   function handleDragEnd(event) {
     const { active, over } = event
@@ -153,10 +129,12 @@ export const MultipleContainers = () => {
       }
     })
     if (activeIndex !== overIndex) {
-      setItems(items => ({
-        ...items,
-        [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex),
-      }))
+      dispatch(
+        setItems({
+          ...items,
+          [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex),
+        })
+      )
     }
   }
   return (
