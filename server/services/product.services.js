@@ -68,19 +68,6 @@ class ProductService {
     }
   }
 
-  static async deleteProduct(id) {
-    try {
-      const resp = await Product.findByIdAndDelete({ _id: id });
-      return {
-        error: false,
-        data: `${resp.name} has been deleted`,
-      };
-    } catch (error) {
-      console.log(error);
-      return { error: true, data: error };
-    }
-  }
-
 }
 
 module.exports = ProductService;

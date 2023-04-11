@@ -17,6 +17,14 @@ class TicketController {
     }
     res.status(200).send(data);
   }
+
+  static async putTicket(req, res) {
+    const { data, error } = await TicketService.putTicket(req.body);
+    if (error) {
+      return res.status(404).send(error._message);
+    }
+    res.status(200).send(data);
+  }
 }
 
 module.exports = TicketController;
