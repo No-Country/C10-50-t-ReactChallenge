@@ -2,9 +2,9 @@ import { Button, Form, Input } from 'antd'
 import PropTypes from 'prop-types'
 import { ProductItem } from './ProductItem'
 import { useDispatch } from 'react-redux'
-import { setItems, setOrder } from '../../store/slices/tickets.slice'
+import { setOrder } from '../../store/slices/tickets.slice'
 import uuid4 from 'uuid4'
-export const ProductsForm = ({ products }) => {
+export const ProductsForm = ({ products, setIsModalOpen }) => {
   const [antForm] = Form.useForm()
   const dispatch = useDispatch()
   const handleSubmit = values => {
@@ -23,12 +23,13 @@ export const ProductsForm = ({ products }) => {
         total: 45, // pendiente calcular total
       })
     )
+    setIsModalOpen(false)
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '5px' }}>
       <Form form={antForm} onFinish={handleSubmit}>
-        <Form.Item name="table" style={{ width: '50px' }}>
-          <Input required />
+        <Form.Item name="table" style={{ width: '100px' }}>
+          <Input placeholder="table" required />
         </Form.Item>
         <Form.Item name="client">
           <Input required placeholder="client" />
@@ -47,4 +48,5 @@ export const ProductsForm = ({ products }) => {
 
 ProductsForm.propTypes = {
   products: PropTypes.array.isRequired,
+  setIsModalOpen: PropTypes.func.isRequired,
 }

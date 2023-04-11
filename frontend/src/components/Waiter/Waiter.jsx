@@ -30,12 +30,17 @@ export const Waiter = () => {
   const handleOk = () => {
     setIsModalOpen(false)
   }
+
   return (
     <>
       <Navbar isShowed={true} />
+
       <Button onClick={handleOpenModal}> Create Order</Button>
-      <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk}>
-        <ProductsForm products={products.filter(product => product.category === 'food')} />
+      <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk} footer={null}>
+        <ProductsForm
+          products={products.filter(product => product.category === 'food')}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Modal>
       <MultipleContainers />
     </>
