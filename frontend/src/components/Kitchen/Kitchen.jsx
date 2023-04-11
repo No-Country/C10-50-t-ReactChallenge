@@ -8,14 +8,22 @@ import readyIcon from '../../assets/icons/fi_check-circle.svg'
 import ContainerKitchen from './ContainerKitchen'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Navbar from '../Navbar/Navbar'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Kitchen = () => {
   const dispatch = useDispatch()
   const tickets = useSelector(state => state.tickets)
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('userInfo'))
     if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
       dispatch(getTicketsThunk())
+    }
+
+    if (user) {
+      toast(`Welcome ${user.name}!`, {
+        icon: '🤗',
+      })
     }
   }, [])
 
@@ -57,6 +65,7 @@ const Kitchen = () => {
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Navbar isShowed={true} />
+      <Toaster position="top-center" reverseOrder={false} />
       <main className="kitchen">
         {/* Orders */}
         <ContainerKitchen
