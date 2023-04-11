@@ -4,6 +4,7 @@ import axios from 'axios'
 export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
+    tickets: [],
     orders: [],
     kitchens: [],
     readys: [],
@@ -20,13 +21,14 @@ export const ticketSlice = createSlice({
       state.inTable = action.payload.inTable
       state.kitchens = action.payload.kitchens
       state.payables = action.payload.payables
+      state.tickets = action.payload
     },
     setOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
     },
     setTickets: (state, action) => {
-      const newTickets = action.payload
-      return newTickets
+      const newTickets = action.payload.tickets
+      state.tickets = newTickets
     },
   },
 })
