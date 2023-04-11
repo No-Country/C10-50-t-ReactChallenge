@@ -67,36 +67,6 @@ class TicketService {
     }
   }
 
-  static async putTicketStatus(body) {
-    try {
-      const status = body.status;
-
-      const resp = await Ticket.findByIdAndUpdate(
-        body._id,
-        {
-          $set: {
-            clientName,
-            staff,
-            table,
-            totalPrice,
-            paymentMethod,
-            order,
-            status: status,
-          },
-        },
-        { new: true }
-      );
-
-      return {
-        error: false,
-        data: resp,
-      };
-    } catch (error) {
-      console.log(error);
-      return { data: error };
-    }
-  }
-
   static async deleteTicket(id) {
     try {
       const resp = await Ticket.findByIdAndDelete({ _id: id });
