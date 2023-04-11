@@ -24,12 +24,12 @@ const ticketSchema = new Schema({
   },
   order: {
     type: Array,
-    default: [{}],
+    default: [],
     ref: "Product"
   },
   status: {
     type: String,
-    enum: ["Requested", "Pending", "In progress", "Done", "Delivered"],
+    enum: ["Requested", "Pending", "Rejected", "In progress", "Done", "Delivered"],
   },
   date: {
     type: Date,
