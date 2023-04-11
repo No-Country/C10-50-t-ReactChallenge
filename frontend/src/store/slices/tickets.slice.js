@@ -5,15 +5,24 @@ export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
     orders: [],
-    cooking: [],
+    kitchens: [],
+    readys: [],
+    inTable: [],
+    payables: [],
     ready: [],
+    cooking: [],
   },
   reducers: {
     setItems: (state, action) => {
-      const ticketsList = action.payload
-      const prevState = state
-      prevState.orders = ticketsList
-      return prevState
+      state.orders = action.payload.orders
+      state.kitchens = action.payload.kitchens
+      state.readys = action.payload.readys
+      state.inTable = action.payload.inTable
+      state.kitchens = action.payload.kitchens
+      state.payables = action.payload.payables
+    },
+    setOrder: (state, action) => {
+      state.orders = [...state.orders, action.payload]
     },
     setTickets: (state, action) => {
       const newTickets = action.payload
@@ -29,6 +38,6 @@ export const getTicketsThunk = () => dispatch => {
     .catch(error => console.log(error))
 }
 
-export const { setItems, setTickets } = ticketSlice.actions
+export const { setItems, setTickets, setOrder } = ticketSlice.actions
 
 export default ticketSlice.reducer

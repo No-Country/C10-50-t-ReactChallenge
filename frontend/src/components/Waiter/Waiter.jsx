@@ -2,26 +2,41 @@ import { MultipleContainers } from './MultipleContainers'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getProductsThunk } from '../../store/slices/products.slice'
-import { AddProduct } from './AddProduct'
+import { ProductsForm } from './ProductsForm'
 import Navbar from '../Navbar/Navbar'
+import { Button, Modal } from 'antd'
 
 export const Waiter = () => {
   const dispatch = useDispatch()
   const [products, setproducts] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     dispatch(getProductsThunk())
   }, [])
+
   const productsState = useSelector(state => state.products)
 
   useEffect(() => {
-    setproducts(productsState.map(product => product.name))
+    setproducts(productsState.map(product => product))
   }, [productsState])
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+  const handleHideModal = () => {
+    setIsModalOpen(false)
+  }
+  const handleOk = () => {
+    setIsModalOpen(false)
+  }
   return (
     <>
       <Navbar isShowed={true} />
-      <AddProduct products={products} />
+      <Button onClick={handleOpenModal}> Create Order</Button>
+      <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk}>
+        <ProductsForm products={products.filter(product => product.category === 'food')} />
+      </Modal>
       <MultipleContainers />
     </>
   )
