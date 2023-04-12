@@ -43,11 +43,11 @@ export const getTicketsThunk = () => dispatch => {
   axios
     .get('http://localhost:3001/api/ticket/')
     .then(res => {
-      const ordersAll = res.data.map((orders, index) => {
+      const ordersAll = res.data.map(orders => {
         const ordersWithQuantity = getProducts(orders.order)
 
         return {
-          id: index.toString(),
+          id: orders._id,
           client: orders.clientName,
           ordersWithQuantity,
           total: orders.totalPrice,
