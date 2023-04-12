@@ -5,6 +5,7 @@ import { getProductsThunk } from '../../store/slices/products.slice'
 import { ProductsForm } from './ProductsForm'
 import Navbar from '../Navbar/Navbar'
 import { Button, Modal } from 'antd'
+import { getTicketsThunk } from '../../store/slices/tickets.slice'
 
 export const Waiter = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,7 @@ export const Waiter = () => {
 
   useEffect(() => {
     dispatch(getProductsThunk())
+    dispatch(getTicketsThunk())
   }, [])
 
   const productsState = useSelector(state => state.products)
