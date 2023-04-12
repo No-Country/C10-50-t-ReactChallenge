@@ -7,29 +7,28 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
-import { useState } from 'react'
-import { Container } from './Container'
-import add from '../../assets/icons/add.svg'
-import order from '../../assets/icons/order.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import intable from '../../assets/icons/bowl.svg'
 import cooking from '../../assets/icons/cooking-pot.svg'
 import ready from '../../assets/icons/fi_check-circle.svg'
-import intable from '../../assets/icons/bowl.svg'
+import order from '../../assets/icons/order.svg'
 import wallet from '../../assets/icons/wallet.svg'
-import { useDispatch, useSelector } from 'react-redux'
 import { setItems } from '../../store/slices/tickets.slice'
+import { Container } from './Container'
 
 export const MultipleContainers = () => {
   const dispatch = useDispatch()
   const items = useSelector(
     state =>
       state.tickets ?? {
-        orders: [],
-        kitchens: [],
+        tickets: [],
+        cooking: [],
         readys: [],
         inTable: [],
         payables: [],
       }
   )
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -146,8 +145,8 @@ export const MultipleContainers = () => {
         onDragOver={handleDragOver}
       >
         <div style={{ display: 'flex', flexFlow: 'wrap', justifyContent: 'space-between' }}>
-          <Container id="orders" title="Orders" icon={order} items={items.orders} />
-          <Container id="kitchens" title="Cooking" icon={cooking} items={items.kitchens} />
+          <Container id="tickets" title="Orders" icon={order} items={items.tickets} />
+          <Container id="cooking" title="Cooking" icon={cooking} items={items.cooking} />
           <Container id="readys" title="Ready" icon={ready} items={items.readys} />
           <Container id="inTable" title="In Table" icon={intable} items={items.inTable} />
           <Container id="payables" title="Payables" icon={wallet} items={items.payables} />

@@ -5,30 +5,33 @@ export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
     tickets: [],
+    cooking: [],
     orders: [],
-    kitchens: [],
     readys: [],
     inTable: [],
     payables: [],
     ready: [],
-    cooking: [],
   },
   reducers: {
     setItems: (state, action) => {
-      state.orders = action.payload.orders
-      state.kitchens = action.payload.kitchens
+      state.tickets = action.payload.tickets
+      state.cooking = action.payload.cooking
       state.readys = action.payload.readys
       state.inTable = action.payload.inTable
-      state.kitchens = action.payload.kitchens
       state.payables = action.payload.payables
-      state.tickets = action.payload
     },
     setOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
     },
+
     setTickets: (state, action) => {
-      const newTickets = action.payload.tickets
-      state.tickets = newTickets
+      const allTickets = action.payload
+
+      state.tickets = allTickets.filter(ticket => ticket.status === 'Requested')
+      state.cooking = allTickets.filter(ticket => ticket.status === 'cooking')
+      state.readys = allTickets.filter(ticket => ticket.status === 'ready')
+      state.inTable = allTickets.filter(ticket => ticket.status === 'Delivered')
+      state.payables = allTickets.filter(ticket => ticket.status === 'payable')
     },
   },
 })
@@ -36,10 +39,38 @@ export const ticketSlice = createSlice({
 export const getTicketsThunk = () => dispatch => {
   axios
     .get('http://localhost:3001/api/ticket/')
-    .then(res => dispatch(setItems(res.data)))
+    .then(res => {
+      const ordersAll = res.data.map((orders, index) => {
+        const products = getProducts(orders.order)
+
+        return {
+          id: index.toString(),
+          client: orders.clientName,
+          products,
+          total: orders.totalPrice,
+          table: orders.table,
+          status: orders.status,
+        }
+      })
+      dispatch(setTickets(ordersAll))
+    })
     .catch(error => console.log(error))
 }
 
 export const { setItems, setTickets, setOrder } = ticketSlice.actions
 
 export default ticketSlice.reducer
+
+const getProducts = productsDb => {
+  const busqueda = productsDb.reduce((acc, productDb) => {
+    acc[productDb.name] = ++acc[productDb.name] || 1
+    return acc
+  }, {})
+
+  const products = Object.entries(busqueda).map(([key, value], index) => ({
+    id: index,
+    name: key,
+    quantity: value,
+  }))
+  return products
+}

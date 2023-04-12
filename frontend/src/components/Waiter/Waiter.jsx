@@ -5,6 +5,7 @@ import { getProductsThunk } from '../../store/slices/products.slice'
 import { ProductsForm } from './ProductsForm'
 import Navbar from '../Navbar/Navbar'
 import { Button, Modal } from 'antd'
+import { getTicketsThunk } from '../../store/slices/tickets.slice'
 
 export const Waiter = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,7 @@ export const Waiter = () => {
 
   useEffect(() => {
     dispatch(getProductsThunk())
+    dispatch(getTicketsThunk())
   }, [])
 
   const productsState = useSelector(state => state.products)
@@ -30,12 +32,17 @@ export const Waiter = () => {
   const handleOk = () => {
     setIsModalOpen(false)
   }
+
   return (
     <>
       <Navbar isShowed={true} />
+
       <Button onClick={handleOpenModal}> Create Order</Button>
-      <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk}>
-        <ProductsForm products={products.filter(product => product.category === 'food')} />
+      <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk} footer={null}>
+        <ProductsForm
+          products={products.filter(product => product.category === 'food')}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Modal>
       <MultipleContainers />
     </>
