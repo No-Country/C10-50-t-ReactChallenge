@@ -19,7 +19,7 @@ const Kitchen = () => {
     if (
       tickets.tickets.length === 0 &&
       tickets.cooking.length === 0 &&
-      tickets.ready.length === 0
+      tickets.readys.length === 0
     ) {
       dispatch(getTicketsThunk())
     }
@@ -75,8 +75,8 @@ const Kitchen = () => {
         <ContainerKitchen
           title={'Orders'}
           icon={orderIcon}
-          items={tickets.orders}
-          dropId={'orders'}
+          items={tickets.tickets}
+          dropId={'tickets'}
           changeClass={null}
         />
 
@@ -94,8 +94,8 @@ const Kitchen = () => {
         <ContainerKitchen
           title={'Ready'}
           icon={readyIcon}
-          items={tickets.ready}
-          dropId={'ready'}
+          items={tickets.readys}
+          dropId={'readys'}
           changeClass={null}
         />
       </main>

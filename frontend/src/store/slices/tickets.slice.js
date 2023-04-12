@@ -5,16 +5,17 @@ export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
     tickets: [],
+    rejecteds: [],
     cooking: [],
     orders: [],
     readys: [],
     inTable: [],
     payables: [],
-    ready: [],
   },
   reducers: {
     setItems: (state, action) => {
       state.tickets = action.payload.tickets
+      state.rejecteds = action.payload.rejecteds
       state.cooking = action.payload.cooking
       state.readys = action.payload.readys
       state.inTable = action.payload.inTable
@@ -30,10 +31,11 @@ export const ticketSlice = createSlice({
     setTicketsWithFilters: (state, action) => {
       const allTickets = action.payload
 
-      state.tickets = allTickets.filter(ticket => ticket.status === 'Requested')
+      state.tickets = allTickets.filter(ticket => ticket.status === 'ordered')
+      state.rejecteds = allTickets.filter(ticket => ticket.status === 'rejected')
       state.cooking = allTickets.filter(ticket => ticket.status === 'cooking')
-      state.readys = allTickets.filter(ticket => ticket.status === 'ready')
-      state.inTable = allTickets.filter(ticket => ticket.status === 'Delivered')
+      state.readys = allTickets.filter(ticket => ticket.status === 'ready progress')
+      state.inTable = allTickets.filter(ticket => ticket.status === 'in table')
       state.payables = allTickets.filter(ticket => ticket.status === 'payable')
     },
   },
@@ -58,6 +60,15 @@ export const getTicketsThunk = () => dispatch => {
         }
       })
       dispatch(setTicketsWithFilters(ordersAll))
+    })
+    .catch(error => console.log(error))
+}
+
+export const postTicketThunk = body => dispatch => {
+  axios
+    .post('http://localhost:3001/api/ticket/', body)
+    .then(res => {
+      console.log('ticket creado')
     })
     .catch(error => console.log(error))
 }
