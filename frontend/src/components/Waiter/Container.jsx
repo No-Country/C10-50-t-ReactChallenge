@@ -29,7 +29,7 @@ export const Container = ({ items, title, icon, id }) => {
                   key={item.id}
                   id={item.id}
                   table={item.table}
-                  products={item.products}
+                  ordersWithQuantity={item.ordersWithQuantity}
                   client={item.client}
                   total={item.total}
                 />

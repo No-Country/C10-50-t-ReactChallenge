@@ -16,7 +16,11 @@ const Kitchen = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
-    if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
+    if (
+      tickets.tickets.length === 0 &&
+      tickets.cooking.length === 0 &&
+      tickets.ready.length === 0
+    ) {
       dispatch(getTicketsThunk())
     }
 

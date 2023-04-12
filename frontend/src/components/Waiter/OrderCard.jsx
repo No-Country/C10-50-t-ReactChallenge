@@ -2,7 +2,7 @@ import { Button, Card } from 'antd'
 import PropTypes from 'prop-types'
 import trash from '../../assets/icons/fi_trash-2.svg'
 
-export const OrderCard = ({ table, products, client, total }) => {
+export const OrderCard = ({ table, ordersWithQuantity = [], client, total }) => {
   const handleDeleteTicket = () => {
     console.log('ticket')
   }
@@ -25,9 +25,9 @@ export const OrderCard = ({ table, products, client, total }) => {
         </div>
         <div>
           <p style={{ fontWeight: 'bold' }}>{client}</p>
-          {products.map(product => (
-            <p key={product.id}>
-              x{product.quantity} {product.name}
+          {ordersWithQuantity.map(order => (
+            <p key={order.id}>
+              x{order.quantity} {order.name}
             </p>
           ))}
         </div>
@@ -49,7 +49,7 @@ export const OrderCard = ({ table, products, client, total }) => {
 
 OrderCard.propTypes = {
   table: PropTypes.string.isRequired,
-  products: PropTypes.array.isRequired,
+  ordersWithQuantity: PropTypes.array.isRequired,
   client: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
 }
