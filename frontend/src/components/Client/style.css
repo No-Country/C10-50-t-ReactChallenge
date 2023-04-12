@@ -1,14 +1,84 @@
 /* CSS CardMenu */
 .header {
-  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 900px;
   height: 68px;
   margin: 0px;
-  background-color: black;
-  color: white;
+  color: #03314b;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.body {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  background-color: #f5f6ff;
+}
+
+/* Css Menu */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 1px #ccd1ff;
+  margin-left: 50px;
+  padding: 30px;
+}
+
+.nav {
+  display: flex;
+  background-color: #f5f6ff;
+  border: solid 1px #ccd1ff;
+  border-radius: 4px;
+  width: 700px;
+  justify-content: space-around;
+}
+
+.nav_ul {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: start;
+}
+
+.nav_li {
+  width: fit-content;
+  text-align: center;
+  border: none;
+  margin: 5px;
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 20px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav_li:hover {
+  background-color: #ccd1ff;
+  color: #03314b;
+  cursor: pointer;
+}
+
+.hacer_pedido {
+  width: 342px;
+  border-radius: 20px;
+  height: 64px;
+  color: white;
+  background-color: #00b574;
+  margin-top: 10px;
+  border: none;
+  box-shadow: 0px 0px 5px 1px black;
+}
+
+/* CARD */
 
 .card {
   margin: 10px;
@@ -69,53 +139,14 @@
   background-color: #00b574;
 }
 
-/* Css Menu */
+/* css Cart */
 
-.nav {
-  width: 100vh;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.nav_ul {
-  list-style: none;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.nav_li {
-  width: fit-content;
-  margin: 30px;
-  border-radius: 50px;
-  border: 2px solid black;
-  padding: 10px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav_li:hover {
-  background-color: #000000;
-  color: white;
-  cursor: pointer;
-}
-
-.menu {
+.cart {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.hacer_pedido {
-  width: 342px;
-  border-radius: 20px;
-  height: 64px;
-  color: white;
-  background-color: #00b574;
-  margin-top: 10px;
-  border: none;
-  box-shadow: 0px 0px 5px 1px black;
+  background-color: #ccd1ff;
+  border: solid 1px #ffffff;
+  margin-right: 50px;
 }

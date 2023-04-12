@@ -29,7 +29,7 @@ const ticketSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Requested", "Pending", "Rejected", "In progress", "Done", "Delivered"],
+    enum: ["ordered", "rejected", "cooking", "ready progress", "in table", "payable"],
   },
   date: {
     type: Date,
