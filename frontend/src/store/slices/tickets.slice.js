@@ -23,8 +23,11 @@ export const ticketSlice = createSlice({
     setOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
     },
-
     setTickets: (state, action) => {
+      const newTickets = action.payload.tickets
+      state.tickets = newTickets
+    },
+    setTicketsWithFilters: (state, action) => {
       const allTickets = action.payload
 
       state.tickets = allTickets.filter(ticket => ticket.status === 'Requested')
@@ -41,23 +44,25 @@ export const getTicketsThunk = () => dispatch => {
     .get('http://localhost:3001/api/ticket/')
     .then(res => {
       const ordersAll = res.data.map((orders, index) => {
-        const products = getProducts(orders.order)
+        const ordersWithQuantity = getProducts(orders.order)
 
         return {
           id: index.toString(),
           client: orders.clientName,
-          products,
+          ordersWithQuantity,
           total: orders.totalPrice,
           table: orders.table,
           status: orders.status,
+          staff: orders.staff,
+          order: orders.order,
         }
       })
-      dispatch(setTickets(ordersAll))
+      dispatch(setTicketsWithFilters(ordersAll))
     })
     .catch(error => console.log(error))
 }
 
-export const { setItems, setTickets, setOrder } = ticketSlice.actions
+export const { setItems, setTickets, setTicketsWithFilters, setOrder } = ticketSlice.actions
 
 export default ticketSlice.reducer
 

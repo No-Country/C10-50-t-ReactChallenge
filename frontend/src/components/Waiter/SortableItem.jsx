@@ -4,7 +4,7 @@ import { CSS } from '@dnd-kit/utilities'
 import PropTypes from 'prop-types'
 import { OrderCard } from './OrderCard'
 
-export function SortableItem({ id, table, products, client, total }) {
+export function SortableItem({ id, table, ordersWithQuantity, client, total }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   })
@@ -16,7 +16,12 @@ export function SortableItem({ id, table, products, client, total }) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <OrderCard table={table} products={products} client={client} total={total} />
+      <OrderCard
+        table={table}
+        ordersWithQuantity={ordersWithQuantity}
+        client={client}
+        total={total}
+      />
     </div>
   )
 }
@@ -24,7 +29,7 @@ export function SortableItem({ id, table, products, client, total }) {
 SortableItem.propTypes = {
   id: PropTypes.string.isRequired,
   table: PropTypes.string.isRequired,
-  products: PropTypes.array.isRequired,
+  ordersWithQuantity: PropTypes.array.isRequired,
   client: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
 }
