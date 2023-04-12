@@ -5,33 +5,33 @@ export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
     tickets: [],
+    cooking: [],
     orders: [],
-    kitchens: [],
     readys: [],
     inTable: [],
     payables: [],
     ready: [],
-    cooking: [],
   },
   reducers: {
     setItems: (state, action) => {
-      state.orders = action.payload.orders
-      state.kitchens = action.payload.kitchens
+      state.tickets = action.payload.tickets
+      state.cooking = action.payload.cooking
       state.readys = action.payload.readys
       state.inTable = action.payload.inTable
-      state.kitchens = action.payload.kitchens
       state.payables = action.payload.payables
-      state.tickets = action.payload
     },
     setOrder: (state, action) => {
       state.orders = [...state.orders, action.payload]
     },
-    setOrders: (state, action) => {
-      state.orders = action.payload
-    },
+
     setTickets: (state, action) => {
-      const newTickets = action.payload.tickets
-      state.tickets = newTickets
+      const allTickets = action.payload
+
+      state.tickets = allTickets.filter(ticket => ticket.status === 'Requested')
+      state.cooking = allTickets.filter(ticket => ticket.status === 'cooking')
+      state.readys = allTickets.filter(ticket => ticket.status === 'ready')
+      state.inTable = allTickets.filter(ticket => ticket.status === 'Delivered')
+      state.payables = allTickets.filter(ticket => ticket.status === 'payable')
     },
   },
 })
@@ -49,14 +49,15 @@ export const getTicketsThunk = () => dispatch => {
           products,
           total: orders.totalPrice,
           table: orders.table,
+          status: orders.status,
         }
       })
-      dispatch(setOrders(ordersAll))
+      dispatch(setTickets(ordersAll))
     })
     .catch(error => console.log(error))
 }
 
-export const { setItems, setTickets, setOrder, setOrders } = ticketSlice.actions
+export const { setItems, setTickets, setOrder } = ticketSlice.actions
 
 export default ticketSlice.reducer
 
