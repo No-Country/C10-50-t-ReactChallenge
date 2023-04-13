@@ -1,9 +1,14 @@
+body {
+  background-image: url(../../assets//img/cocinero.jpg);
+  background-size: cover;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+}
 .container {
   position: absolute;
-  top: 191px;
-  left: 500px;
+  top: 229px;
+  left: 588px;
   padding: 20px;
-  text-align: center;
   justify-content: center;
   align-items: center;
 }
@@ -12,5 +17,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 400px;
+}
+
+.boton {
+  font-size: 55px;
+  border-radius: 4px;
+  border: none;
+  padding: 30px;
+  background-color: #ccd1ff;
+  color: #393e66;
+}
+
+.logo {
+  height: 300px;
+  width: 800px;
 }
