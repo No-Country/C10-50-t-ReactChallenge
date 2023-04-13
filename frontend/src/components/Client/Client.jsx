@@ -39,9 +39,11 @@ const Client = () => {
               </div>
             </ul>
           </nav>
-          {products?.map(product => {
-            return <CardMenu key={product.id} product={product}></CardMenu>
-          })}
+          <div className="cardContainer">
+            {products?.map(product => {
+              return <CardMenu key={product.id} product={product}></CardMenu>
+            })}
+          </div>
           <button className="hacer_pedido">Realizar Pedido</button>
         </div>
         <div className="cart">

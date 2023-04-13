@@ -30,13 +30,12 @@
   margin-left: 50px;
   padding: 30px;
 }
-
 .nav {
   display: flex;
   background-color: #f5f6ff;
   border: solid 1px #ccd1ff;
   border-radius: 4px;
-  width: 700px;
+  width: 750px;
   justify-content: space-around;
 }
 
@@ -44,9 +43,8 @@
   list-style: none;
   display: flex;
   width: 100%;
-  height: 10vh;
   justify-content: start;
-  overflow: scroll
+  height: fit-content;
 }
 
 .nav_li {
@@ -81,6 +79,21 @@
 }
 
 /* CARD */
+
+.cardContainer {
+  height: 500px;
+  width: 745px;
+  overflow-y: scroll;
+}
+
+.cardContainer::-webkit-scrollbar {
+  width: 9px;
+}
+
+.cardContainer::-webkit-scrollbar-thumb {
+  background-color: #ccd1ff;
+  border-radius: 4px;
+}
 
 .card {
   margin: 10px;
@@ -121,11 +134,11 @@
   height: 48px;
   width: 48px;
   margin: 10px;
-  color: white;
+  font-size: 22px;
+  color: #03314b;
   border: none;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 5px 1px black;
+  background-color: #ccd1ff;
 }
 
 .card_btn:hover {
@@ -136,9 +149,9 @@
   height: 48px;
   width: 48px;
   border: none;
-  color: white;
+  color: #03314b;
   border-radius: 10px;
-  background-color: #00b574;
+  background-color: #f5f6ff;
 }
 
 /* css Cart */
@@ -146,9 +159,10 @@
 .cart {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-color: #ccd1ff;
   border: solid 1px #ffffff;
   margin-right: 50px;
+  padding: 40px;
 }
