@@ -167,3 +167,59 @@
 .btndel:hover {
   cursor: pointer;
 }
+
+/* MODAL */
+
+.buttonNew {
+  position: absolute;
+  top: 90px;
+  right: 45px;
+  background-color: #03314b;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  border: solid 2px #000000;
+  border-radius: 4px;
+  padding: 10px;
+  align-items: center;
+}
+
+.modalContainer {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: #000000af;
+  display: grid;
+  place-items: center;
+}
+
+.modalBody {
+  background-color: #f5f6ff;
+  border-radius: 4px;
+  width: 50%;
+  min-width: 400px;
+  position: relative;
+  padding: 40px;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalClose {
+  position: absolute;
+  background-color: #f5f6ff;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #03314b;
+  border: none;
+  padding: 5px;
+}
+
+.modalClose:hover {
+  background-color: #f5f6ff;
+  color: #ff9898;
+}

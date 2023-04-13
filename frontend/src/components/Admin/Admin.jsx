@@ -5,24 +5,37 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from './admin.module.css'
 import { getProductsThunk } from '../../store/slices/products.slice'
 import { getStaffThunk } from '../../store/slices/staff.slice'
-import { getTicketsThunk } from '../../store/slices/tickets.slice'
+import { getAllTickets } from '../../store/slices/tickets.slice'
 import Navbar from '../Navbar/Navbar'
-import flechita from '../../assets/icons/fi_chevron-right.png'
+import flechita from '../../assets/icons/fi_chevron-right.svg'
 
 const Admin = () => {
   const [dashboardStatus, setDashboardStatus] = React.useState('products')
+  const [modal, setModal] = React.useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
+    setModal(!modal)
     dispatch(getProductsThunk())
     dispatch(getStaffThunk())
-    dispatch(getTicketsThunk())
+    dispatch(getAllTickets())
   }, [])
 
   const products = useSelector(state => state.products)
   const staff = useSelector(state => state.staff)
-  const tickets = useSelector(state => state.tickets)
+  const tickets = useSelector(state => state.tickets.allTickets)
+
   console.log(tickets)
+
+  const [productForm, setProductForm] = React.useState({
+    name: '',
+    image: '',
+    category: '',
+    price: '',
+    time: '',
+    description: '',
+    available: true,
+  })
 
   const setStatus = element => {
     setDashboardStatus(element.target.value)
@@ -69,6 +82,22 @@ const Admin = () => {
           <div>
             <img src={flechita} alt="" className={style.flechita} />
             <h2 className={style.h2}>Products</h2>
+            <button onClick={() => setModal(!modal)} className={style.buttonNew}>
+              New Product
+            </button>
+            {modal === true ? (
+              <div className={style.modalContainer}>
+                <div className={style.modalBody}>
+                  <div>
+                    <h1>Create new product</h1>
+                  </div>
+                  <button className={style.modalClose} onClick={() => setModal(!modal)}>
+                    X
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
             <div className={style.props}>
               <div className={style.containerTitle}>
                 <h3></h3>
@@ -103,6 +132,19 @@ const Admin = () => {
             <div>
               <img src={flechita} alt="" className={style.flechita} />
               <h2 className={style.h2}>Staff</h2>
+              <button onClick={() => setModal(!modal)} className={style.buttonNew}>
+                New Staff
+              </button>
+              {modal === true ? (
+                <div className={style.modalContainer}>
+                  <div className={style.modalBody}>
+                    Modal Staff
+                    <button className={style.modalClose} onClick={() => setModal(!modal)}>
+                      X
+                    </button>
+                  </div>
+                </div>
+              ) : null}
             </div>
             <div className={style.props}>
               <div className={style.containerTitle}>
@@ -137,6 +179,19 @@ const Admin = () => {
           <div>
             <img src={flechita} alt="" className={style.flechita} />
             <h2 className={style.h2}>Tickets</h2>
+            <button onClick={() => setModal(!modal)} className={style.buttonNew}>
+              New Ticket
+            </button>
+            {modal === true ? (
+              <div className={style.modalContainer}>
+                <div className={style.modalBody}>
+                  Modal Ticket
+                  <button className={style.modalClose} onClick={() => setModal(!modal)}>
+                    X
+                  </button>
+                </div>
+              </div>
+            ) : null}
             <div className={style.props}>
               <div className={style.containerTitle}>
                 <h3>Client Name</h3>
@@ -147,7 +202,7 @@ const Admin = () => {
                 <h3></h3>
                 <h3></h3>
               </div>
-              {tickets.tickets?.map(t => (
+              {tickets?.map(t => (
                 <div className={style.containerTickets} key={t.id}>
                   <p>{t.clientName}</p>
                   <p>{t.table}</p>

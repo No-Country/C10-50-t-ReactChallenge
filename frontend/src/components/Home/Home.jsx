@@ -1,4 +1,3 @@
-import { Button, Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/icons/LogoFoodTicket.svg'
 import style from './home.module.css'
