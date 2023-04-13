@@ -13,7 +13,7 @@ class TicketController {
     const newTicket = req.body;
     const { data, error } = await TicketService.postTicket(newTicket);
     if (error) {
-      res.status(400).send(error._message);
+      res.status(400).send(error);
     }
     res.status(200).send(data);
   }
