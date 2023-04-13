@@ -4,7 +4,7 @@ import axios from 'axios'
 export const kitchenSlice = createSlice({
   name: 'kitchen',
   initialState: {
-    orders: [],
+    ordered: [],
     cooking: [],
     ready: [],
   },
@@ -12,7 +12,10 @@ export const kitchenSlice = createSlice({
     setItems: (state, action) => {
       const ticketsList = action.payload
       const prevState = state
-      prevState.orders = ticketsList
+      prevState.ordered = ticketsList.filter(ticket => ticket.status === 'ordered')
+      prevState.cooking = ticketsList.filter(ticket => ticket.status === 'cooking')
+      prevState.ready = ticketsList.filter(ticket => ticket.status === 'ready progress')
+
       return prevState
     },
     setTickets: (state, action) => {
