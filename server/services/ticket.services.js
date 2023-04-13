@@ -30,14 +30,11 @@ class TicketService {
   static async putTicket(body) {
     try {
       const ticket = await Ticket.find({ _id: body._id });
-      const clientName =
-        body.clientName !== "" ? body.clientName : ticket.clientName;
+      const clientName = body.clientName !== "" ? body.clientName : ticket.clientName;
       const staff = body.staff !== "" ? body.staff : ticket.staff;
       const table = body.table !== "" ? body.table : ticket.table;
-      const totalPrice =
-        body.totalPrice !== "" ? body.totalPrice : ticket.totalPrice;
-      const paymentMethod =
-        body.paymentMethod !== "" ? body.paymentMethod : ticket.paymentMethod;
+      const totalPrice = body.totalPrice !== "" ? body.totalPrice : ticket.totalPrice;
+      const paymentMethod = body.paymentMethod !== "" ? body.paymentMethod : ticket.paymentMethod;
       const order = body.order !== "" ? body.order : ticket.order;
       const status = body.status !== "" ? body.status : ticket.order;
 

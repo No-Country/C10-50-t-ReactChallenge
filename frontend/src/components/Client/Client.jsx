@@ -10,6 +10,8 @@ const Client = () => {
   const [dashCategory, setdashCategory] = useState('entrada')
 
   const products = useSelector(state => state.products)
+  const tickets = useSelector(state => state.tickets)
+  console.log(tickets)
 
   useEffect(() => {
     dispatch(getProductsThunk())
@@ -44,6 +46,13 @@ const Client = () => {
         </div>
         <div className="cart">
           <h1>Cart</h1>
+          {tickets.cart?.map(product => {
+            return (
+              <div key={product.id}>
+                x{product.quantity} {product.name}
+              </div>
+            )
+          })}
           <button>Finish Order</button>
         </div>
       </div>
