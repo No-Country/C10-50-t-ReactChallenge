@@ -1,6 +1,6 @@
 import { Button, Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../assets/img/Logo.png'
+import logo from '../../assets/icons/LogoFoodTicket.svg'
 import style from './home.module.css'
 
 export const Home = () => {
@@ -19,18 +19,18 @@ export const Home = () => {
   return (
     <div className={style.container}>
       <div>
-        <img src={logo} alt="" />
+        <img src={logo} alt="" className={style.logo} />
       </div>
       <div className={style.botones}>
         <div>
-          <Button type="primary" onClick={handleOpenStaff} style={{ width: '150px' }}>
+          <button type="primary" onClick={handleOpenStaff} className={style.boton}>
             Staff
-          </Button>
+          </button>
         </div>
         <div>
-          <Button type="primary" onClick={handleOpenClient} style={{ width: '150px' }}>
+          <button type="primary" onClick={handleOpenClient} className={style.boton}>
             Client
-          </Button>
+          </button>
         </div>
       </div>
     </div>
