@@ -4,6 +4,7 @@ import axios from 'axios'
 export const ticketSlice = createSlice({
   name: 'tickets',
   initialState: {
+    allTickets: [],
     tickets: [],
     rejecteds: [],
     cooking: [],
@@ -15,6 +16,10 @@ export const ticketSlice = createSlice({
     cart: [],
   },
   reducers: {
+    setAllTickets: (state, action) => {
+      state.allTickets = action.payload
+    },
+
     setItems: (state, action) => {
       state.tickets = action.payload.tickets
       state.rejecteds = action.payload.rejecteds
@@ -58,6 +63,12 @@ export const ticketSlice = createSlice({
   },
 })
 
+export const getAllTickets = () => dispatch => {
+  axios.get('http://localhost:3001/api/ticket/').then(res => {
+    dispatch(setAllTickets(res.data)).catch(error => alert(error.message))
+  })
+}
+
 export const getTicketsThunk = () => dispatch => {
   axios
     .get('http://localhost:3001/api/ticket/')
@@ -88,8 +99,15 @@ export const deleteProductToCart = product => dispatch => {
   dispatch(deleteProduct(product))
 }
 
-export const { setItems, setTickets, setTicketsWithFilters, setOrder, setCart, deleteProduct } =
-  ticketSlice.actions
+export const {
+  setAllTickets,
+  setItems,
+  setTickets,
+  setTicketsWithFilters,
+  setOrder,
+  setCart,
+  deleteProduct,
+} = ticketSlice.actions
 
 export const postTicketThunk = body => dispatch => {
   axios
