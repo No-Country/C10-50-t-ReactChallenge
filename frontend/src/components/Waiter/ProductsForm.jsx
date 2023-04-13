@@ -1,29 +1,38 @@
 import { Button, Form, Input } from 'antd'
 import PropTypes from 'prop-types'
-import { ProductItem } from './ProductItem'
 import { useDispatch } from 'react-redux'
-import { setOrder } from '../../store/slices/tickets.slice'
-import uuid4 from 'uuid4'
+import { postTicketThunk } from '../../store/slices/tickets.slice'
+import { ProductItem } from './ProductItem'
 export const ProductsForm = ({ products, setIsModalOpen }) => {
   const [antForm] = Form.useForm()
   const dispatch = useDispatch()
   const handleSubmit = values => {
-    const productsForOrder = []
-    for (const [key, value] of Object.entries(values)) {
-      if (key !== 'table' && key !== 'client') {
-        productsForOrder.push({ id: key, name: key, quantity: value.toString() })
-      }
+    const body = {
+      clientName: values.client,
+      staff: 'Waiter',
+      paymentMethod: 'cash',
+      order: [],
+      status: 'ordered',
+      table: values.table,
+      totalPrice: 322, // pendiente por calcular
     }
-    dispatch(
-      setOrder({
-        id: uuid4(),
-        table: values.table,
-        client: values.client,
-        products: productsForOrder,
-        total: 45, // pendiente calcular total
-      })
-    )
-    setIsModalOpen(false)
+    dispatch(postTicketThunk(body))
+    // const productsForOrder = []
+    // for (const [key, value] of Object.entries(values)) {
+    //   if (key !== 'table' && key !== 'client') {
+    //     productsForOrder.push({ id: key, name: key, quantity: value.toString() })
+    //   }
+    // }
+    // dispatch(
+    //   setOrder({
+    //     id: uuid4(),
+    //     table: values.table,
+    //     client: values.client,
+    //     products: productsForOrder,
+    //     total: 45, // pendiente calcular total
+    //   })
+    // )
+    // setIsModalOpen(false)
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '5px' }}>

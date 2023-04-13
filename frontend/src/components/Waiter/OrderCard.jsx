@@ -7,7 +7,7 @@ export const OrderCard = ({ table, ordersWithQuantity = [], client, total }) => 
     console.log('ticket')
   }
   return (
-    <Card style={{ width: '175px' }} bodyStyle={{ padding: '5px' }}>
+    <Card style={{ width: '100%' }} bodyStyle={{ padding: '5px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div
           style={{
