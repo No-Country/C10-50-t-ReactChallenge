@@ -29,6 +29,7 @@
   border: solid 1px #ccd1ff;
   margin-left: 50px;
   padding: 30px;
+  border-radius: 4px;
 }
 .nav {
   display: flex;
@@ -148,6 +149,7 @@
 .card_btncount {
   height: 48px;
   width: 48px;
+  font-size: 22px;
   border: none;
   color: #03314b;
   border-radius: 10px;
@@ -161,8 +163,17 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background-color: #ccd1ff;
-  border: solid 1px #ffffff;
+  background-color: #f5f6ff;
+  border: solid 1px #ccd1ff;
   margin-right: 50px;
   padding: 40px;
+  border-radius: 4px;
+}
+
+.productsCartContainer {
+  width: 100%;
+  background-color: #ffffff;
+  font-size: 25px;
+  padding: 5px;
+  border: solid 1px #ccd1ff;
 }
