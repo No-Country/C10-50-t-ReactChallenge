@@ -15,7 +15,7 @@ const KitchenCard = ({ ticket, index }) => {
   }
 
   return (
-    <Draggable key={ticket.id} draggableId={ticket.id} index={index}>
+    <Draggable key={ticket._id} draggableId={ticket._id} index={index}>
       {draggableProvided => (
         <div
           className="card-kitchen"
@@ -29,13 +29,13 @@ const KitchenCard = ({ ticket, index }) => {
               <span className="kitchen-waiter">{ticket.staff}</span>
             </div>
             <div className="kitchen-more-btn">
-              <button onClick={() => handleShow(ticket.id)}>
-                {showMore === ticket.id ? '-' : '+'}
+              <button onClick={() => handleShow(ticket._id)}>
+                {showMore === ticket._id ? '-' : '+'}
               </button>
             </div>
           </div>
 
-          {showMore === ticket.id && (
+          {showMore === ticket._id && (
             <>
               <div className="order-list">
                 {ticket.ordersWithQuantity.map(order => (
