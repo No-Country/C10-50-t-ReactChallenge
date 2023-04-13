@@ -38,13 +38,14 @@ const KitchenCard = ({ ticket, index }) => {
           {showMore === ticket._id && (
             <>
               <div className="order-list">
-                {ticket.ordersWithQuantity.map(order => (
-                  <div key={order.id} className="order-info">
-                    <p>
-                      {order.quantity}x {order.name}
-                    </p>
-                  </div>
-                ))}
+                {ticket.order.map(
+                  order =>
+                    typeof order === 'string' && (
+                      <div key={order} className="order-info">
+                        <p>1 x {order}</p>
+                      </div>
+                    )
+                )}
               </div>
 
               <div className="ticket-info">

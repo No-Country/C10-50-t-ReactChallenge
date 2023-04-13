@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import '../../styles/kitchen.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTicketsThunk, setTickets } from '../../store/slices/kitchen.slice'
@@ -9,6 +9,7 @@ import ContainerKitchen from './ContainerKitchen'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Navbar from '../Navbar/Navbar'
 import toast, { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 
 const Kitchen = () => {
   const dispatch = useDispatch()
@@ -16,9 +17,8 @@ const Kitchen = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
-    if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
-      dispatch(getTicketsThunk())
-    }
+
+    dispatch(getTicketsThunk())
 
     if (user) {
       toast(`Welcome ${user.name}!`, {
@@ -36,7 +36,8 @@ const Kitchen = () => {
   }
 
   const handleDragEnd = event => {
-    const { source, destination } = event
+    console.log(event)
+    const { source, destination, draggableId } = event
     if (!destination) return
     if (source.index === destination.index && source.droppableId === destination.droppableId) return
 
@@ -59,9 +60,21 @@ const Kitchen = () => {
         [destination.droppableId]: destinationClone,
       }
       dispatch(setTickets(newTickets))
-    }
+      console.log(event)
 
-    console.log(event)
+      if (destination.droppableId === 'ready') {
+        axios
+          .put('http://localhost:3001/api/ticket', { _id: draggableId, status: 'ready progress' })
+          .catch(error => console.log(error))
+      } else {
+        axios
+          .put('http://localhost:3001/api/ticket', {
+            _id: draggableId,
+            status: destination.droppableId,
+          })
+          .catch(error => console.log(error))
+      }
+    }
   }
 
   return (
@@ -73,8 +86,8 @@ const Kitchen = () => {
         <ContainerKitchen
           title={'Orders'}
           icon={orderIcon}
-          items={tickets.orders}
-          dropId={'orders'}
+          items={tickets.ordered}
+          dropId={'ordered'}
           changeClass={null}
         />
 
