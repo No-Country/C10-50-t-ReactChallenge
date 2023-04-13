@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMenu from './CardMenu.jsx'
@@ -10,8 +11,14 @@ const Client = () => {
   const [dashCategory, setdashCategory] = useState('entrada')
 
   const products = useSelector(state => state.products)
+  const entradas = products.filter(p => p.category === 'Appetizers')
+  const fuerte = products.filter(p => p.category === 'MainDishes')
+  const bebidas = products.filter(p => p.category === 'Drinks')
+  const postres = products.filter(p => p.category === 'Desserts')
+
   const tickets = useSelector(state => state.tickets)
   console.log(tickets)
+  console.log(products)
 
   useEffect(() => {
     dispatch(getProductsThunk())
@@ -26,23 +33,48 @@ const Client = () => {
           <nav className="nav">
             <ul className="nav_ul">
               <div>
-                <li className="nav_li">Entrada</li>
+                <li className="nav_li" onClick={() => setdashCategory('entrada')}>
+                  Entrada
+                </li>
               </div>
               <div>
-                <li className="nav_li">Plato Fuerte</li>
+                <li className="nav_li" onClick={() => setdashCategory('fuerte')}>
+                  Plato Fuerte
+                </li>
               </div>
               <div>
-                <li className="nav_li">Bebidas</li>
+                <li className="nav_li" onClick={() => setdashCategory('bebidas')}>
+                  Bebidas
+                </li>
               </div>
               <div>
-                <li className="nav_li">Postres</li>
+                <li className="nav_li" onClick={() => setdashCategory('postres')}>
+                  Postres
+                </li>
               </div>
             </ul>
           </nav>
           <div className="cardContainer">
-            {products?.map(product => {
-              return <CardMenu key={product.id} product={product}></CardMenu>
-            })}
+            {dashCategory === 'entrada'
+              ? entradas?.map(product => {
+                  return <CardMenu key={product.id} product={product}></CardMenu>
+                })
+              : null}
+            {dashCategory === 'fuerte'
+              ? fuerte?.map(product => {
+                  return <CardMenu key={product.id} product={product}></CardMenu>
+                })
+              : null}
+            {dashCategory === 'bebidas'
+              ? bebidas?.map(product => {
+                  return <CardMenu key={product.id} product={product}></CardMenu>
+                })
+              : null}
+            {dashCategory === 'postres'
+              ? postres?.map(product => {
+                  return <CardMenu key={product.id} product={product}></CardMenu>
+                })
+              : null}
           </div>
           <button className="hacer_pedido">Realizar Pedido</button>
         </div>
@@ -50,7 +82,7 @@ const Client = () => {
           <h1>Cart</h1>
           {tickets.cart?.map(product => {
             return (
-              <div key={product.id}>
+              <div key={product.id} className="productsCartContainer">
                 x{product.quantity} {product.name}
               </div>
             )
