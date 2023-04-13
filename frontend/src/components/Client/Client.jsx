@@ -5,6 +5,7 @@ import CardMenu from './CardMenu.jsx'
 import { getProductsThunk } from '../../store/slices/products.slice'
 import Navbar from '../Navbar/Navbar.jsx'
 import './style.css'
+import cart from '../../assets/icons/cart.svg'
 
 const Client = () => {
   const dispatch = useDispatch()
@@ -76,18 +77,24 @@ const Client = () => {
                 })
               : null}
           </div>
-          <button className="hacer_pedido">Realizar Pedido</button>
+          {/* <button className="hacer_pedido">Realizar Pedido</button> */}
         </div>
         <div className="cart">
-          <h1>Cart</h1>
+          <div className="tittleGroup">
+            <img src={cart}></img>
+            <h1 className="titleOrder">Add Order</h1>
+          </div>
           {tickets.cart?.map(product => {
             return (
               <div key={product.id} className="productsCartContainer">
-                x{product.quantity} {product.name}
+                <div className="quantity">{product.quantity}</div>
+                <div className="productName">{product.name}</div>
+                <button></button>
+                <button></button>
               </div>
             )
           })}
-          <button>Finish Order</button>
+          <button className="btnFinishOrder">Create Ticket</button>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ class TicketService {
       return { data: saveTicket };
     } catch (error) {
       console.log(error);
-      return { error: true };
+      return { error };
     }
   }
 
@@ -60,7 +60,7 @@ class TicketService {
       };
     } catch (error) {
       console.log(error);
-      return { data: error };
+      return { error };
     }
   }
 

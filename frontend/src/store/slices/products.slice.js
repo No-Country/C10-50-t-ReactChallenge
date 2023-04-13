@@ -19,7 +19,10 @@ export const getProductsThunk = () => dispatch => {
   dispatch(setIsLoading(true))
   axios
     .get('/menu')
-    .then(res => dispatch(setProducts(res.data)))
+    .then(res => {
+      dispatch(setProducts(res.data))
+      console.log(res.data)
+    })
     .finally(() => dispatch(setIsLoading(false)))
 }
 
