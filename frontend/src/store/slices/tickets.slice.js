@@ -11,6 +11,7 @@ export const ticketSlice = createSlice({
     inTable: [],
     payables: [],
     ready: [],
+    cart: [],
   },
   reducers: {
     setItems: (state, action) => {
@@ -35,6 +36,21 @@ export const ticketSlice = createSlice({
       state.readys = allTickets.filter(ticket => ticket.status === 'ready')
       state.inTable = allTickets.filter(ticket => ticket.status === 'Delivered')
       state.payables = allTickets.filter(ticket => ticket.status === 'payable')
+    },
+    setCart: (state, action) => {
+      const duplicate = state.cart.find(p => p.id === action.payload.id)
+      if (duplicate) {
+        state.cart = [...state.cart.filter(p => p.id !== duplicate.id), action.payload]
+      } else {
+        state.cart = [...state.cart, action.payload]
+      }
+    },
+    deleteProduct: (state, action) => {
+      if (action.payload.quantity === 0) {
+        state.cart = [...state.cart.filter(p => p.id !== action.payload.id)]
+      } else {
+        state.cart = [...state.cart.filter(p => p.id !== action.payload.id), action.payload]
+      }
     },
   },
 })
@@ -62,7 +78,15 @@ export const getTicketsThunk = () => dispatch => {
     .catch(error => console.log(error))
 }
 
-export const { setItems, setTickets, setTicketsWithFilters, setOrder } = ticketSlice.actions
+export const addProductToCart = product => dispatch => {
+  dispatch(setCart(product))
+}
+export const deleteProductToCart = product => dispatch => {
+  dispatch(deleteProduct(product))
+}
+
+export const { setItems, setTickets, setTicketsWithFilters, setOrder, setCart, deleteProduct } =
+  ticketSlice.actions
 
 export default ticketSlice.reducer
 
