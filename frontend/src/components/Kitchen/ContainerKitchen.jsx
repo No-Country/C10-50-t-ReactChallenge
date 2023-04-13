@@ -17,7 +17,7 @@ const ContainerKitchen = ({ title, icon, items, changeClass, dropId }) => {
           </div>
           <div className="card-container-kitchen">
             {items.map(
-              (item, index) => item && <KitchenCard key={item.id} ticket={item} index={index} />
+              (item, index) => item && <KitchenCard key={item._id} ticket={item} index={index} />
             )}
           </div>
           {droppableProvided.placeholder}

@@ -13,7 +13,6 @@ export const ticketSlice = createSlice({
     payables: [],
     ready: [],
     cart: [],
-
   },
   reducers: {
     setItems: (state, action) => {
@@ -82,7 +81,6 @@ export const getTicketsThunk = () => dispatch => {
     .catch(error => console.log(error))
 }
 
-
 export const addProductToCart = product => dispatch => {
   dispatch(setCart(product))
 }
@@ -101,9 +99,6 @@ export const postTicketThunk = body => dispatch => {
     })
     .catch(error => console.log(error))
 }
-
-export const { setItems, setTickets, setTicketsWithFilters, setOrder } = ticketSlice.actions
-
 
 export default ticketSlice.reducer
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import '../../styles/kitchen.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTicketsThunk, setTickets } from '../../store/slices/tickets.slice'
+import { getTicketsThunk, setTickets } from '../../store/slices/kitchen.slice'
 import orderIcon from '../../assets/icons/order.svg'
 import cookingIcon from '../../assets/icons/cooking-pot.svg'
 import readyIcon from '../../assets/icons/fi_check-circle.svg'
@@ -12,15 +12,11 @@ import toast, { Toaster } from 'react-hot-toast'
 
 const Kitchen = () => {
   const dispatch = useDispatch()
-  const tickets = useSelector(state => state.tickets)
+  const tickets = useSelector(state => state.kitchen)
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
-    if (
-      tickets.tickets.length === 0 &&
-      tickets.cooking.length === 0 &&
-      tickets.readys.length === 0
-    ) {
+    if (tickets.orders.length === 0 && tickets.cooking.length === 0 && tickets.ready.length === 0) {
       dispatch(getTicketsThunk())
     }
 
@@ -64,6 +60,8 @@ const Kitchen = () => {
       }
       dispatch(setTickets(newTickets))
     }
+
+    console.log(event)
   }
 
   return (
@@ -75,8 +73,8 @@ const Kitchen = () => {
         <ContainerKitchen
           title={'Orders'}
           icon={orderIcon}
-          items={tickets.tickets}
-          dropId={'tickets'}
+          items={tickets.orders}
+          dropId={'orders'}
           changeClass={null}
         />
 
@@ -94,8 +92,8 @@ const Kitchen = () => {
         <ContainerKitchen
           title={'Ready'}
           icon={readyIcon}
-          items={tickets.readys}
-          dropId={'readys'}
+          items={tickets.ready}
+          dropId={'ready'}
           changeClass={null}
         />
       </main>
