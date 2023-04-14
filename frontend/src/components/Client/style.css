@@ -250,3 +250,19 @@
   background: #03314b;
   border-radius: 4px;
 }
+
+.accionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  gap: 8px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  left: 558px;
+  top: -59px;
+  background: #ccd1ff;
+  border-radius: 4px;
+}
