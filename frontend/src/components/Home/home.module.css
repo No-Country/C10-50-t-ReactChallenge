@@ -1,22 +1,26 @@
+
 body {
-  background-image: url(../../assets//img/cocinero.jpg);
-  background-size: cover;
+  /* background-image: url(../../assets//img/cocinero.jpg); */
+    background-size: cover;
   background-attachment: scroll;
   background-repeat: no-repeat;
 }
+
+
 .container {
-  position: absolute;
-  top: 229px;
-  left: 588px;
-  padding: 20px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url(../../assets//img/cocinero.jpg);
 }
 
 .botones {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  gap: 100px;
 }
 
 .boton {
