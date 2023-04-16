@@ -30,6 +30,7 @@
   margin-left: 50px;
   padding: 30px;
   border-radius: 4px;
+  height: 646px;
 }
 
 .tittleMenuGroup {
@@ -44,14 +45,15 @@
   height: 32px;
   margin-left: 5px;
   top: -8px;
-  right: 251px;
+  margin-bottom: 24px;
+  right: 232px;
 }
 .nav {
   display: flex;
   background-color: #f5f6ff;
   border: solid 1px #ccd1ff;
   border-radius: 4px;
-  width: 750px;
+  width: 600px;
   justify-content: space-around;
 }
 
@@ -98,7 +100,7 @@
 
 .cardContainer {
   height: 500px;
-  width: 745px;
+  width: 641px;
   overflow-y: scroll;
 }
 
@@ -112,11 +114,13 @@
 }
 
 .card {
-  margin: 10px;
-  width: 700px;
+  margin-top: 10px;
+  margin-left: 19px;
+  width: 603px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 10px 10px -6px black;
+  border: solid #ccd1ff;
+  border-radius: 6px;
 }
 
 .card_head {
@@ -124,17 +128,19 @@
 }
 
 .card_conten {
-  padding: 10px;
+  padding-bottom: 18px;
+  margin-left: 15px;
+  height: 112px;
 }
 
 .card_tittle {
-  margin: 0;
+  margin-top: 2px;
 }
 
 .card_img {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 179px;
+  height: 108px;
   left: 8px;
   top: 6px;
   background: url(.png);
@@ -144,6 +150,7 @@
 .card_line {
   width: 100%;
   background-color: #d9d9d9;
+  margin-top: 14px;
 }
 
 .card_foot {
@@ -153,19 +160,19 @@
 
 .card_price {
   position: relative;
-  right: 105px;
+  right: 72px;
   top: 25px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 17px;
   color: #03314b;
 }
 
 .card_btn {
   position: relative;
-  left: 109px;
+  left: 85px;
   height: 48px;
   width: 48px;
   margin: 10px;
@@ -182,7 +189,7 @@
 
 .card_btncount {
   position: relative;
-  left: 109px;
+  left: 85px;
   height: 48px;
   width: 48px;
   font-size: 22px;
@@ -203,6 +210,27 @@
   border: solid 1px #ccd1ff;
   margin-right: 50px;
   padding: 30px;
+  border-radius: 4px;
+}
+
+/* .containerCart {
+  overflow-y: scroll;
+  height: 390px;
+  width: 750px;
+} */
+.containerCart {
+  overflow-y: scroll;
+  height: 390px;
+  width: 710px;
+  position: relative;
+  right: 24px;
+}
+.containerCart::-webkit-scrollbar {
+  width: 9px;
+}
+
+.containerCart::-webkit-scrollbar-thumb {
+  background-color: #ccd1ff;
   border-radius: 4px;
 }
 
@@ -238,9 +266,9 @@
 .productsCartContainer {
   box-sizing: border-box;
   position: relative;
-  width: 632px;
+  width: 602px;
   height: 50px;
-  left: -4px;
+  left: 58px;
   top: 18px;
   background: #ffffff;
   border: 1px solid #ccd1ff;
@@ -254,6 +282,7 @@
   left: 43px;
   top: -28px;
   font-size: 25px;
+  white-space: nowrap;
 }
 
 .quantity {
@@ -281,8 +310,8 @@
   position: absolute;
   width: 144px;
   height: 40px;
-  left: 1019px;
-  top: 651px;
+  left: 1293px;
+  top: 648px;
   background: #03314b;
   border-radius: 4px;
 }
@@ -303,6 +332,27 @@
   border-radius: 8px;
 }
 
+.imgButton:hover {
+  cursor: pointer;
+}
+
+.form {
+}
+
+.inputForm {
+  display: flex;
+  position: absolute;
+  width: 630px;
+  height: 89px;
+  left: 808px;
+  top: 534px;
+  background: #ffffff;
+  border: 1px solid #ccd1ff;
+  border-radius: 4px;
+  text-align: start;
+  align-items: flex-start;
+}
+
 @media only screen and (max-width: 1024px) {
   .body {
     display: grid;
@@ -315,6 +365,7 @@
   .menu {
     margin-left: 10px;
     padding: 10px;
+    height: 884px;
   }
 
   .tittleMenuGroup {
@@ -357,9 +408,7 @@
     margin: 0px;
     width: 340px;
     height: 213px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 10px 10px -6px black;
+    margin-top: 7px;
   }
 
   .card_conten {
@@ -373,7 +422,7 @@
   }
 
   .card_tittle {
-    margin-top: 2px;
+    margin-top: 15px;
     margin-left: -1px;
   }
 
@@ -404,10 +453,6 @@
     background-color: #ccd1ff;
   }
 
-  .card_btn:hover {
-    cursor: pointer;
-  }
-
   .card_btncount {
     position: relative;
     left: 41px;
@@ -419,6 +464,7 @@
     border-radius: 10px;
     background-color: #f5f6ff;
   }
+
   /* CART */
 
   .cart {
@@ -452,7 +498,6 @@
 
   .actionButtons {
     left: 279px;
-    cursor: pointer;
     border-radius: 8px;
     width: 32px;
   }
