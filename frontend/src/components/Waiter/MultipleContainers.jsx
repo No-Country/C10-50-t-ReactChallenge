@@ -1,12 +1,5 @@
-import {
-  closestCorners,
-  DndContext,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import axios from 'axios'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
 import intable from '../../assets/icons/bowl.svg'
 import cooking from '../../assets/icons/cooking-pot.svg'
@@ -29,129 +22,118 @@ export const MultipleContainers = () => {
       }
   )
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  )
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list]
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
 
-  function findContainer(id) {
-    if (id in items) {
-      return id
-    }
-    let containerId
-    Object.keys(items).forEach(key =>
-      // eslint-disable-next-line array-callback-return
-      items[key].map(item => {
-        if (item.id === id) {
-          containerId = key
-        }
-      })
-    )
-
-    return containerId
+    return result
   }
-  function handleDragOver(event) {
-    const { active, over, draggingRect } = event
-    const { id } = active
-    const { id: overId } = over ?? undefined
-    // Find the containers
-    const activeContainer = findContainer(id)
-    const overContainer = findContainer(overId)
-    if (!activeContainer || !overContainer || activeContainer === overContainer) {
+
+  const handleDeleteTicket = (containerId, item) => {
+    const updateContainer = items[containerId].reduce((acc, itemContainer) => {
+      if (itemContainer.id !== item.id) {
+        return [...acc, itemContainer]
+      }
+      return acc
+    }, [])
+    const newItems = { ...items, [containerId]: updateContainer }
+    dispatch(setItems(newItems))
+    axios
+      .put('http://localhost:3001/api/ticket', { _id: item.id, status: 'rejected' })
+      .catch(error => console.log(error))
+  }
+
+  const getStatus = containerId => {
+    switch (containerId) {
+      case 'tickets':
+        return 'ordered'
+      case 'cooking':
+        return 'cooking'
+      case 'readys':
+        return 'ready progress'
+      case 'inTable':
+        return 'in table'
+      case 'payables':
+        return 'payable'
+      default:
+        return 'rejected'
+    }
+  }
+  const handleDragEnd = event => {
+    const { source, destination, draggableId } = event
+    if (!destination) return
+    if (source.index === destination.index && source.droppableId === destination.droppableId) {
       return
     }
 
-    const activeItems = items[activeContainer]
-    const overItems = items[overContainer]
-    // Find the indexes for the items
-    let activeIndex = -1
-    activeItems.forEach((activeItem, index) => {
-      if (activeItem?.id === id) {
-        activeIndex = index
-      }
-    })
-    let overIndex = -1
-    overItems.forEach((overItem, index) => {
-      if (overItem?.id === id) {
-        overIndex = index
-      }
-    })
+    // Almecenarlos a otro contenedor
+    const sourceList = items[source.droppableId]
+    const destinationList = items[destination.droppableId]
 
-    let newIndex
-    if (overId in items) {
-      // We're at the root droppable of a container
-      newIndex = overItems.length + 1
+    if (sourceList === destinationList) {
+      const reorderedList = reorder(sourceList, source.index, destination.index)
+      const newItems = { ...items, [source.droppableId]: reorderedList }
+      dispatch(setItems(newItems))
     } else {
-      const isBelowLastItem =
-        over &&
-        overIndex === overItems.length - 1 &&
-        draggingRect?.offsetTop > over.rect.offsetTop + over.rect.height
-      const modifier = isBelowLastItem ? 1 : 0
-      newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1
-    }
-    dispatch(
-      setItems({
+      const sourceClone = Array.from(sourceList)
+      const [draggedItem] = sourceClone.splice(source.index, 1)
+      const destinationClone = Array.from(destinationList)
+      destinationClone.splice(destination.index, 0, draggedItem)
+      const newItems = {
         ...items,
-        [activeContainer]: [...items[activeContainer].filter(item => item.id !== active.id)],
-        [overContainer]: [
-          ...items[overContainer].slice(0, newIndex),
-          items[activeContainer][activeIndex],
-          ...items[overContainer].slice(newIndex, items[overContainer].length),
-        ],
-      })
-    )
-  }
-  function handleDragEnd(event) {
-    const { active, over } = event
-    const { id } = active
-    const { id: overId } = over
-
-    const activeContainer = findContainer(id)
-    const overContainer = findContainer(overId)
-
-    if (!activeContainer || !overContainer || activeContainer !== overContainer) {
-      return
-    }
-    // Find the indexes for the items
-    let activeIndex = -1
-    items[activeContainer].forEach((activeItem, index) => {
-      if (activeItem.id === id) {
-        activeIndex = index
+        [source.droppableId]: sourceClone,
+        [destination.droppableId]: destinationClone,
       }
-    })
-    let overIndex = -1
-    items[overContainer].forEach((overItem, index) => {
-      if (overItem.id === overId) {
-        overIndex = index
-      }
-    })
-    if (activeIndex !== overIndex) {
-      dispatch(
-        setItems({
-          ...items,
-          [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex),
-        })
-      )
+      dispatch(setItems(newItems))
+      const status = getStatus(destination.droppableId)
+
+      axios
+        .put('http://localhost:3001/api/ticket', { _id: draggableId, status })
+        .catch(error => console.log(error))
     }
   }
   return (
     <div style={{ marginTop: '15px' }}>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragEnd={handleDragEnd}
-        onDragOver={handleDragOver}
-      >
+      <DragDropContext onDragEnd={handleDragEnd}>
         <div style={{ display: 'flex', flexFlow: 'wrap', justifyContent: 'space-between' }}>
-          <Container id="tickets" title="Orders" icon={order} items={items.tickets} />
-          <Container id="cooking" title="Cooking" icon={cooking} items={items.cooking} />
-          <Container id="readys" title="Ready" icon={ready} items={items.readys} />
-          <Container id="inTable" title="In Table" icon={intable} items={items.inTable} />
-          <Container id="payables" title="Payables" icon={wallet} items={items.payables} />
+          <Container
+            dropId="tickets"
+            title="Orders"
+            icon={order}
+            items={items.tickets}
+            handleDeleteTicket={handleDeleteTicket}
+          />
+          <Container
+            dropId="cooking"
+            title="Cooking"
+            icon={cooking}
+            items={items.cooking}
+            handleDeleteTicket={handleDeleteTicket}
+          />
+          <Container
+            dropId="readys"
+            title="Ready"
+            icon={ready}
+            items={items.readys}
+            handleDeleteTicket={handleDeleteTicket}
+          />
+          <Container
+            dropId="inTable"
+            title="In Table"
+            icon={intable}
+            items={items.inTable}
+            handleDeleteTicket={handleDeleteTicket}
+          />
+          <Container
+            dropId="payables"
+            title="Payables"
+            icon={wallet}
+            items={items.payables}
+            handleDeleteTicket={handleDeleteTicket}
+          />
         </div>
-      </DndContext>
+      </DragDropContext>
     </div>
   )
 }

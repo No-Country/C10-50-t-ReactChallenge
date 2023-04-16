@@ -1,11 +1,8 @@
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { Card } from 'antd'
-import { SortableItem } from './sortableItem'
 import PropTypes from 'prop-types'
-import { useDroppable } from '@dnd-kit/core'
-export const Container = ({ items, title, icon, id }) => {
-  const { setNodeRef } = useDroppable({ id })
-
+import { Droppable } from 'react-beautiful-dnd'
+import { OrderCard } from './OrderCard'
+export const Container = ({ items, title, icon, dropId, handleDeleteTicket }) => {
   return (
     <Card style={{ width: '19%' }} bodyStyle={{ padding: '8px' }}>
       <div
@@ -20,25 +17,28 @@ export const Container = ({ items, title, icon, id }) => {
         <img src={icon}></img>
         <h3>{title}</h3>
       </div>
-      <SortableContext strategy={verticalListSortingStrategy} items={items} id={id}>
-        <div ref={setNodeRef}>
-          {items.map((item, index) => {
-            if (item?.id) {
-              return (
-                <SortableItem
-                  key={item.id}
-                  id={item.id}
-                  table={item.table}
-                  ordersWithQuantity={item.ordersWithQuantity}
-                  client={item.client}
-                  total={item.total}
-                />
-              )
-            }
-            return <div key={index}>error</div>
-          })}
-        </div>
-      </SortableContext>
+      <Droppable droppableId={dropId}>
+        {droppableProvided => (
+          <div {...droppableProvided.droppableProps} ref={droppableProvided.innerRef}>
+            {items.map((item, index) => {
+              if (item?.id) {
+                return (
+                  <OrderCard
+                    item={item}
+                    key={item.id}
+                    id={item.id}
+                    index={index}
+                    handleDeleteTicket={handleDeleteTicket}
+                    containerId={dropId}
+                  />
+                )
+              }
+              return <div key={index}>error</div>
+            })}
+            {droppableProvided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </Card>
   )
 }
@@ -47,5 +47,6 @@ Container.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  dropId: PropTypes.string.isRequired,
+  handleDeleteTicket: PropTypes.func.isRequired,
 }
