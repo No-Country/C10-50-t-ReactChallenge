@@ -21,7 +21,6 @@ export const getProductsThunk = () => dispatch => {
     .get('/menu')
     .then(res => {
       dispatch(setProducts(res.data))
-      console.log(res.data)
     })
     .finally(() => dispatch(setIsLoading(false)))
 }
