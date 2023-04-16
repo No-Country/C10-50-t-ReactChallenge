@@ -6,6 +6,9 @@ import { getProductsThunk } from '../../store/slices/products.slice'
 import Navbar from '../Navbar/Navbar.jsx'
 import './style.css'
 import cart from '../../assets/icons/cart.svg'
+import bowl from '../../assets/icons/bowl.svg'
+import trash from '../../assets/icons/fi_trash-2.svg'
+import edit from '../../assets/icons/edit.svg'
 
 const Client = () => {
   const dispatch = useDispatch()
@@ -35,22 +38,22 @@ const Client = () => {
             <ul className="nav_ul">
               <div>
                 <li className="nav_li" onClick={() => setdashCategory('entrada')}>
-                  Entrada
+                  Appetizzers
                 </li>
               </div>
               <div>
                 <li className="nav_li" onClick={() => setdashCategory('fuerte')}>
-                  Plato Fuerte
+                  Main Dishes
                 </li>
               </div>
               <div>
                 <li className="nav_li" onClick={() => setdashCategory('bebidas')}>
-                  Bebidas
+                  Drinks
                 </li>
               </div>
               <div>
                 <li className="nav_li" onClick={() => setdashCategory('postres')}>
-                  Postres
+                  Desserts
                 </li>
               </div>
             </ul>
@@ -89,8 +92,10 @@ const Client = () => {
               <div key={product.id} className="productsCartContainer">
                 <div className="quantity">{product.quantity}</div>
                 <div className="productName">{product.name}</div>
-                <button></button>
-                <button></button>
+                <div className="accionButtons">
+                  <button>{/* <img src={edit} alt="" width="33px" /> */}</button>
+                  <button>{/* <img src={trash} alt="" /> */}</button>
+                </div>
               </div>
             )
           })}

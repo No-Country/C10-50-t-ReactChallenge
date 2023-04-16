@@ -31,6 +31,21 @@
   padding: 30px;
   border-radius: 4px;
 }
+
+.tittleMenuGroup {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  white-space: nowrap;
+  width: 140px;
+  height: 32px;
+  margin-left: 5px;
+  top: -8px;
+  right: 251px;
+}
 .nav {
   display: flex;
   background-color: #f5f6ff;
@@ -117,8 +132,13 @@
 }
 
 .card_img {
-  max-height: 150px;
-  border-radius: 15px 0px 0px 0px;
+  position: relative;
+  width: 96px;
+  height: 96px;
+  left: 8px;
+  top: 6px;
+  background: url(.png);
+  border-radius: 4px;
 }
 
 .card_line {
@@ -131,7 +151,21 @@
   justify-content: space-around;
 }
 
+.card_price {
+  position: relative;
+  right: 105px;
+  top: 25px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #03314b;
+}
+
 .card_btn {
+  position: relative;
+  left: 109px;
   height: 48px;
   width: 48px;
   margin: 10px;
@@ -147,6 +181,8 @@
 }
 
 .card_btncount {
+  position: relative;
+  left: 109px;
   height: 48px;
   width: 48px;
   font-size: 22px;
@@ -166,11 +202,11 @@
   background-color: #f5f6ff;
   border: solid 1px #ccd1ff;
   margin-right: 50px;
-  padding: 40px;
+  padding: 30px;
   border-radius: 4px;
 }
 
-.tittleGroup {
+.tittleCartGroup {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -249,4 +285,175 @@
   top: 651px;
   background: #03314b;
   border-radius: 4px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  gap: 8px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  left: 558px;
+  top: -59px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    background-color: #f5f6ff;
+    margin: auto;
+  }
+
+  .menu {
+    margin-left: 10px;
+    padding: 10px;
+  }
+
+  .tittleMenuGroup {
+    width: 140px;
+    height: 32px;
+    top: -8px;
+    right: 100px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .nav {
+    border-radius: 4px;
+    width: 336px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 11px;
+  }
+
+  .nav_ul {
+    width: 100%;
+  }
+
+  .nav_li {
+    margin: 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  /* CARD */
+
+  .cardContainer {
+    height: 751px;
+    width: 359px;
+    overflow-y: scroll;
+  }
+
+  .card {
+    margin: 0px;
+    width: 340px;
+    height: 213px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 10px 10px -6px black;
+  }
+
+  .card_conten {
+    padding-bottom: 18px;
+    margin-left: 15px;
+    height: 157px;
+  }
+
+  .card_line {
+    margin-top: -6px;
+  }
+
+  .card_tittle {
+    margin-top: 2px;
+    margin-left: -1px;
+  }
+
+  .card_img {
+    position: relative;
+    width: 120px;
+    height: 106px;
+    left: 8px;
+    top: 20px;
+  }
+
+  .card_price {
+    position: relative;
+    right: 29px;
+    top: 19px;
+  }
+
+  .card_btn {
+    position: relative;
+    left: 42px;
+    height: 36px;
+    width: 31px;
+    margin: 10px;
+    font-size: 22px;
+    color: #03314b;
+    border: none;
+    border-radius: 10px;
+    background-color: #ccd1ff;
+  }
+
+  .card_btn:hover {
+    cursor: pointer;
+  }
+
+  .card_btncount {
+    position: relative;
+    left: 41px;
+    height: 36px;
+    width: 31px;
+    font-size: 22px;
+    border: none;
+    color: #03314b;
+    border-radius: 10px;
+    background-color: #f5f6ff;
+  }
+  /* CART */
+
+  .cart {
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .tittleCartGroup {
+    top: 5px;
+    right: 102px;
+  }
+
+  .productsCartContainer {
+    width: 311px;
+    left: -15px;
+    top: 19px;
+  }
+
+  .productName {
+    left: 43px;
+    top: -28px;
+    font-size: 25px;
+  }
+
+  .btnFinishOrder {
+    padding: 14px 24px;
+    left: 599px;
+    top: 888px;
+  }
+
+  .actionButtons {
+    left: 279px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 32px;
+  }
 }
