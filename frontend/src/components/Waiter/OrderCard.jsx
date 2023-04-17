@@ -8,8 +8,20 @@ export const OrderCard = ({ item, index, containerId, handleDeleteTicket }) => {
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {draggableProvided => (
         <Card
-          style={{ width: '100%' }}
-          bodyStyle={{ padding: '5px' }}
+          style={{
+            width: '100%',
+            border: '0',
+          }}
+          bodyStyle={{
+            border: '1px solid rgba(0, 0, 0, 0.35)',
+            backgroundColor: '#eff1f5',
+            borderRadius: '8px',
+            margin: '0 auto',
+            padding: '1rem',
+            flexDirection: 'column',
+            gap: '10px',
+            marginBottom: '1.2rem',
+          }}
           {...draggableProvided.draggableProps}
           ref={draggableProvided.innerRef}
           {...draggableProvided.dragHandleProps}
@@ -17,14 +29,15 @@ export const OrderCard = ({ item, index, containerId, handleDeleteTicket }) => {
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div
               style={{
-                width: '65px',
-                height: '65px',
-                background: '#FFFFFF',
-                border: '6px solid #7CA6F9',
+                width: '40px',
+                height: '40px',
+                backgroundColor: '#03314b',
                 borderRadius: '11px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                fontWeight: '600',
+                color: 'white',
               }}
             >
               {item.table}

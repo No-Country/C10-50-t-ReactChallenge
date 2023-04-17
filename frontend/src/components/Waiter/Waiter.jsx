@@ -104,7 +104,16 @@ export const Waiter = () => {
       <Navbar isShowed={true} />
       <Toaster position="top-center" reverseOrder={false} />
 
-      <Button onClick={handleOpenModal} style={{ marginTop: '5px', marginLeft: '5px' }}>
+      <Button
+        onClick={handleOpenModal}
+        style={{
+          marginTop: '5px',
+          marginLeft: '5px',
+          border: '1px solid rgba(0, 0, 0, 0.35)',
+          backgroundColor: '#03314b',
+          color: 'white',
+        }}
+      >
         {' '}
         Create Order
       </Button>

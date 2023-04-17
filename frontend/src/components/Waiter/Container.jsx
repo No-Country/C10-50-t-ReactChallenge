@@ -4,13 +4,22 @@ import { Droppable } from 'react-beautiful-dnd'
 import { OrderCard } from './OrderCard'
 export const Container = ({ items, title, icon, dropId, handleDeleteTicket }) => {
   return (
-    <Card style={{ width: '19%' }} bodyStyle={{ padding: '8px' }}>
+    <Card
+      style={{
+        width: '19%',
+        padding: '1rem 0.8rem',
+        borderRadius: '4px',
+        border: '2px solid #ccd1ff',
+      }}
+      bodyStyle={{ padding: '8px' }}
+    >
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
           backgroundColor: '#ffcd33',
           padding: '5px',
+          marginBottom: '10px',
           borderRadius: '5px',
         }}
       >
