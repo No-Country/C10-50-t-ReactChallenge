@@ -1,8 +1,11 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="fi:trash-2">
-<path id="Vector" d="M4 8H6.66667H28" stroke="#03314B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M10.6667 8.00002V5.33335C10.6667 4.62611 10.9476 3.94783 11.4477 3.44774C11.9478 2.94764 12.6261 2.66669 13.3333 2.66669H18.6667C19.3739 2.66669 20.0522 2.94764 20.5523 3.44774C21.0524 3.94783 21.3333 4.62611 21.3333 5.33335V8.00002M25.3333 8.00002V26.6667C25.3333 27.3739 25.0524 28.0522 24.5523 28.5523C24.0522 29.0524 23.3739 29.3334 22.6667 29.3334H9.33332C8.62608 29.3334 7.9478 29.0524 7.4477 28.5523C6.94761 28.0522 6.66666 27.3739 6.66666 26.6667V8.00002H25.3333Z" stroke="#03314B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_3" d="M18.6667 14.6667V22.6667" stroke="#03314B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_4" d="M13.3333 14.6667V22.6667" stroke="#03314B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g clip-path="url(#clip0_32_110)">
+<path d="M28 0H4C1.79086 0 0 1.79086 0 4V28C0 30.2091 1.79086 32 4 32H28C30.2091 32 32 30.2091 32 28V4C32 1.79086 30.2091 0 28 0Z" fill="#CCD1FF"/>
+<path d="M7 10H9M9 10H25M9 10V24C9 24.5304 9.21071 25.0391 9.58579 25.4142C9.96086 25.7893 10.4696 26 11 26H21C21.5304 26 22.0391 25.7893 22.4142 25.4142C22.7893 25.0391 23 24.5304 23 24V10H9ZM12 10V8C12 7.46957 12.2107 6.96086 12.5858 6.58579C12.9609 6.21071 13.4696 6 14 6H18C18.5304 6 19.0391 6.21071 19.4142 6.58579C19.7893 6.96086 20 7.46957 20 8V10M18 15V21M14 15V21" stroke="#5C5E80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
+<defs>
+<clipPath id="clip0_32_110">
+<rect width="32" height="32" rx="4" fill="white"/>
+</clipPath>
+</defs>
 </svg>
