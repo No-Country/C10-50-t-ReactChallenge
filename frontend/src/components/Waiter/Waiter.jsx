@@ -1,17 +1,19 @@
-import { MultipleContainers } from './MultipleContainers'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { getProductsThunk } from '../../store/slices/products.slice'
-import { ProductsForm } from './ProductsForm'
-import Navbar from '../Navbar/Navbar'
 import { Button, Modal } from 'antd'
-import { getTicketsThunk } from '../../store/slices/tickets.slice'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductsThunk } from '../../store/slices/products.slice'
+import { getProducts, getTicketsThunk, setItems } from '../../store/slices/tickets.slice'
+import Navbar from '../Navbar/Navbar'
+import { ProductsForm } from './CreateTicket/ProductsForm'
+import { MultipleContainers } from './MultipleContainers'
 
 export const Waiter = () => {
   const dispatch = useDispatch()
   const [products, setproducts] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const items = useSelector(state => state.tickets)
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -40,19 +42,74 @@ export const Waiter = () => {
   const handleOk = () => {
     setIsModalOpen(false)
   }
+  // crea productos dependiendo su cantidad en un array
+  const getOrders = values => {
+    const orders = []
+    Object.entries(values).forEach(([key, value]) => {
+      if (key !== 'table' && key !== 'client') {
+        const indexProductId = key.indexOf('__') + 2
+        const productId = key.slice(indexProductId)
+        const productFound = productsState.find(productState => productState._id === productId)
 
+        for (let i = 0; i < value; i++) {
+          orders.push(productFound)
+        }
+      }
+    })
+    return orders
+  }
+
+  const handleAddTicket = async values => {
+    const user = JSON.parse(localStorage.getItem('userInfo'))
+    const orders = getOrders(values)
+    const body = {
+      clientName: values.client,
+      staff: user.name,
+      paymentMethod: 'cash',
+      order: orders,
+      status: 'ordered',
+      table: values.table,
+      totalPrice: 322, // pendiente por calcular
+    }
+    try {
+      const { data } = await axios.post('http://localhost:3001/api/ticket/', body)
+      const ordersWithQuantity = data.order.length > 0 ? getProducts(data.order) : []
+
+      const newItems = {
+        ...items,
+        tickets: [
+          ...items.tickets,
+          {
+            id: data._id,
+            client: data.clientName,
+            total: data.totalPrice,
+            ordersWithQuantity,
+            table: data.table,
+            status: data.status,
+            staff: data.staff,
+            order: data.order,
+          },
+        ],
+      }
+      dispatch(setItems(newItems))
+      console.log('ticket creado')
+    } catch (error) {
+      console.log(error)
+    }
+
+    setIsModalOpen(false)
+  }
   return (
     <>
       <Navbar isShowed={true} />
       <Toaster position="top-center" reverseOrder={false} />
 
-      <Button onClick={handleOpenModal}> Create Order</Button>
+      <Button onClick={handleOpenModal} style={{ marginTop: '5px', marginLeft: '5px' }}>
+        {' '}
+        Create Order
+      </Button>
       <Modal open={isModalOpen} onCancel={handleHideModal} onOk={handleOk} footer={null}>
-        <ProductsForm
-          products={products.filter(product => product.category === 'food')}
-          setIsModalOpen={setIsModalOpen}
-          isModalOpen={isModalOpen}
-        />
+        <ProductsForm products={products} handleAddTicket={handleAddTicket} />
       </Modal>
       <MultipleContainers />
     </>

@@ -74,7 +74,7 @@ export const getTicketsThunk = () => dispatch => {
     .get('http://localhost:3001/api/ticket/')
     .then(res => {
       const ordersAll = res.data.map(orders => {
-        const ordersWithQuantity = getProducts(orders.order)
+        const ordersWithQuantity = orders.order.length > 0 ? getProducts(orders.order) : []
 
         return {
           id: orders._id,
@@ -120,7 +120,7 @@ export const postTicketThunk = body => dispatch => {
 
 export default ticketSlice.reducer
 
-const getProducts = productsDb => {
+export const getProducts = productsDb => {
   const busqueda = productsDb.reduce((acc, productDb) => {
     acc[productDb.name] = ++acc[productDb.name] || 1
     return acc
