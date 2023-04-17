@@ -35,7 +35,17 @@ export const ProductsForm = ({ products, handleAddTicket }) => {
       >
         <Tabs defaultActiveKey="1" items={items}></Tabs>
 
-        <Button type="primary" style={{ width: '150px', marginTop: '5px' }} htmlType="submit">
+        <Button
+          type="primary"
+          style={{
+            width: '150px',
+            marginTop: '5px',
+            border: '1px solid rgba(0, 0, 0, 0.35)',
+            backgroundColor: '#03314b',
+            color: 'white',
+          }}
+          htmlType="submit"
+        >
           Create Ticket
         </Button>
       </Form>
