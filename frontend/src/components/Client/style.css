@@ -266,9 +266,9 @@
 .productsCartContainer {
   box-sizing: border-box;
   position: relative;
-  width: 602px;
+  width: 630px;
   height: 50px;
-  left: 58px;
+  left: 60px;
   top: 18px;
   background: #ffffff;
   border: 1px solid #ccd1ff;
@@ -283,6 +283,7 @@
   top: -28px;
   font-size: 25px;
   white-space: nowrap;
+  width: 10px;
 }
 
 .quantity {
@@ -300,22 +301,6 @@
   border-radius: 4px;
 }
 
-.btnFinishOrder {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 24px;
-  color: #ffffff;
-  position: absolute;
-  width: 144px;
-  height: 40px;
-  left: 1293px;
-  top: 648px;
-  background: #03314b;
-  border-radius: 4px;
-}
-
 .actionButtons {
   display: flex;
   flex-direction: row;
@@ -330,6 +315,22 @@
   top: -59px;
   cursor: pointer;
   border-radius: 8px;
+}
+
+.btnFinishOrder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 24px;
+  color: #ffffff;
+  position: absolute;
+  width: 144px;
+  height: 40px;
+  left: 1293px;
+  top: 648px;
+  background: #03314b;
+  border-radius: 4px;
 }
 
 .imgButton:hover {
@@ -351,6 +352,20 @@
   border-radius: 4px;
   text-align: start;
   align-items: flex-start;
+}
+
+.total {
+  position: absolute;
+  width: 245px;
+  height: 24px;
+  left: 809px;
+  top: 659px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 24px;
+  color: #03314b;
 }
 
 @media only screen and (max-width: 1024px) {

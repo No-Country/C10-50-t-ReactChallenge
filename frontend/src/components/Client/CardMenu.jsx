@@ -9,7 +9,6 @@ export default function CardMenu({ product }) {
 
   const addProduct = async () => {
     await setCount(count + 1)
-    console.log(count)
     await dispatch(
       addProductToCart({
         id: product._id,
@@ -24,7 +23,6 @@ export default function CardMenu({ product }) {
 
   const deleteProduct = async () => {
     await setCount(count - 1)
-    console.log(count)
     await dispatch(
       deleteProductToCart({
         id: product._id,

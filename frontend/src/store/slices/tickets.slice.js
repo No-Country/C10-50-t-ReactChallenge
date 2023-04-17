@@ -60,6 +60,11 @@ export const ticketSlice = createSlice({
         state.cart = [...state.cart.filter(p => p.id !== action.payload.id), action.payload]
       }
     },
+    deleteAllSelectProduct: (state, action) => {
+      if (action.payload.quantity === 0) {
+        state.cart = [...state.cart.filter(p => p.id === action.payload.id)]
+      }
+    },
   },
 })
 
@@ -99,6 +104,10 @@ export const deleteProductToCart = product => dispatch => {
   dispatch(deleteProduct(product))
 }
 
+export const deleteAllSelectProductToCart = product => dispatch => {
+  dispatch(deleteAllSelectProduct(product))
+}
+
 export const {
   setAllTickets,
   setItems,
@@ -107,6 +116,7 @@ export const {
   setOrder,
   setCart,
   deleteProduct,
+  deleteAllSelectProduct,
 } = ticketSlice.actions
 
 export const postTicketThunk = body => dispatch => {
