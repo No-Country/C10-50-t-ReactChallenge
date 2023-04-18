@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const Product = require("./Product")
+const Product = require("./Product");
 
 const ticketSchema = new Schema({
   clientName: {
@@ -20,16 +20,24 @@ const ticketSchema = new Schema({
   paymentMethod: {
     type: String,
     enum: ["cash", "card"],
-    default: "cash"
+    default: "cash",
   },
   order: {
     type: Array,
     default: [],
-    ref: "Product"
+    ref: "Product",
   },
   status: {
     type: String,
-    enum: ["ordered", "rejected", "cooking", "ready progress", "in table", "payable"],
+    default: "ordered",
+    enum: [
+      "ordered",
+      "rejected",
+      "cooking",
+      "ready progress",
+      "in table",
+      "payable",
+    ],
   },
   date: {
     type: Date,

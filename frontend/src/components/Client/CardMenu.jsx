@@ -1,11 +1,30 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { addProductToCart, deleteProductToCart } from '../../store/slices/tickets.slice'
+import {
+  addProductToCart,
+  deleteProductToCart,
+  deleteAllSelectProductToCart,
+} from '../../store/slices/tickets.slice'
 
-export default function CardMenu({ product }) {
+// export default function CardMenu({ product, setZeroSon }) {
+export default function CardMenu(props) {
+  console.log(props)
+  const product = props.product
+
   const [count, setCount] = useState(0)
+
   const dispatch = useDispatch()
+
+  const setZero = async () => {
+    console.log('soy setzero')
+    setCount(0)
+    await dispatch(
+      deleteAllSelectProductToCart({
+        id: product._id,
+      })
+    )
+  }
 
   const addProduct = async () => {
     await setCount(count + 1)
@@ -63,6 +82,7 @@ export default function CardMenu({ product }) {
 CardMenu.propTypes = {
   product: PropTypes.object.isRequired,
   key: PropTypes.string.isRequired,
+  setZero: PropTypes.object.isRequired,
 }
 
 /* import React from "react";

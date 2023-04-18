@@ -60,9 +60,10 @@ export const ticketSlice = createSlice({
         state.cart = [...state.cart.filter(p => p.id !== action.payload.id), action.payload]
       }
     },
+
     deleteAllSelectProduct: (state, action) => {
-      if (action.payload.quantity === 0) {
-        state.cart = [...state.cart.filter(p => p.id === action.payload.id)]
+      if (action.payload.id) {
+        state.cart = [...state.cart.filter(p => p.id !== action.payload.id)]
       }
     },
   },
@@ -103,7 +104,9 @@ export const addProductToCart = product => dispatch => {
 export const deleteProductToCart = product => dispatch => {
   dispatch(deleteProduct(product))
 }
-
+export const editSelectProductInCart = product => dispatch => {
+  dispatch(editSelectProduct(product))
+}
 export const deleteAllSelectProductToCart = product => dispatch => {
   dispatch(deleteAllSelectProduct(product))
 }
@@ -116,6 +119,7 @@ export const {
   setOrder,
   setCart,
   deleteProduct,
+  editSelectProduct,
   deleteAllSelectProduct,
 } = ticketSlice.actions
 

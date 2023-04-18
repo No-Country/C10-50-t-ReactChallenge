@@ -30,7 +30,7 @@
   margin-left: 50px;
   padding: 30px;
   border-radius: 4px;
-  height: 646px;
+  height: 581px;
 }
 
 .tittleMenuGroup {
@@ -61,7 +61,7 @@
   list-style: none;
   display: flex;
   width: 100%;
-  justify-content: start;
+  justify-content: space-around;
   height: fit-content;
 }
 
@@ -213,17 +213,13 @@
   border-radius: 4px;
 }
 
-/* .containerCart {
-  overflow-y: scroll;
-  height: 390px;
-  width: 750px;
-} */
 .containerCart {
   overflow-y: scroll;
-  height: 390px;
+  height: 317px;
   width: 710px;
   position: relative;
   right: 24px;
+  top: 19px;
 }
 .containerCart::-webkit-scrollbar {
   width: 9px;
@@ -328,25 +324,44 @@
   width: 144px;
   height: 40px;
   left: 1293px;
-  top: 648px;
+  top: 584px;
   background: #03314b;
   border-radius: 4px;
 }
+.iconButton {
+  position: relative;
+  margin-right: -42px;
+  height: 37px;
+  padding-inline: 14px;
+  left: -40px;
+  background: none;
+  border: none;
+}
 
-.imgButton:hover {
+.iconButton:hover {
   cursor: pointer;
 }
 
-.form {
+.inputName {
+  box-sizing: border-box;
+  position: absolute;
+  width: 144px;
+  height: 40px;
+  left: 1289px;
+  top: 87px;
+  background: #ffffff;
+  border: 1px solid #ccd1ff;
+  border-radius: 4px;
+  font-size: 20px;
 }
 
-.inputForm {
+.inputNotes {
   display: flex;
   position: absolute;
   width: 630px;
   height: 89px;
   left: 808px;
-  top: 534px;
+  top: 474px;
   background: #ffffff;
   border: 1px solid #ccd1ff;
   border-radius: 4px;
@@ -356,10 +371,10 @@
 
 .total {
   position: absolute;
-  width: 245px;
+  width: 271px;
   height: 24px;
   left: 809px;
-  top: 659px;
+  top: 592px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -488,21 +503,31 @@
     border-radius: 4px;
   }
 
+  .containerCart {
+    height: 484px;
+    width: 345px;
+    left: -3px;
+    top: 14px;
+    align-items: start;
+  }
+
   .tittleCartGroup {
     top: 5px;
     right: 102px;
   }
 
   .productsCartContainer {
-    width: 311px;
-    left: -15px;
-    top: 19px;
+    width: 329px;
+    left: 0px;
+    top: 89px;
+    height: 50px;
   }
 
   .productName {
     left: 43px;
     top: -28px;
     font-size: 25px;
+    width: 10px;
   }
 
   .btnFinishOrder {
@@ -512,8 +537,29 @@
   }
 
   .actionButtons {
-    left: 279px;
+    left: 270px;
     border-radius: 8px;
-    width: 32px;
+    width: 1px;
+  }
+
+  .inputName {
+    width: 158px;
+    height: 50px;
+    left: 397px;
+    top: 135px;
+  }
+
+  .inputNotes {
+    width: 330px;
+    height: 131px;
+    left: 395px;
+    top: 624px;
+  }
+
+  .total {
+    width: 271px;
+    height: 24px;
+    left: 397px;
+    top: 789px;
   }
 }
