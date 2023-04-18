@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMenu from './CardMenu.jsx'
 import { getProductsThunk } from '../../store/slices/products.slice'
@@ -13,42 +13,44 @@ import edit from '../../assets/icons/edit.svg'
 
 const Client = () => {
   const [dashCategory, setdashCategory] = useState('entrada')
-  const [count, setCount] = useState(0)
   const dispatch = useDispatch()
+  const [form, setForm] = useState({
+    clientName: '',
+    staff: '',
+    table: '',
+    totalPrice: 0,
+    paymentMethod: 'cash',
+    order: [],
+  })
 
+  const hijo = useRef(null)
   const products = useSelector(state => state.products)
   const entradas = products.filter(p => p.category === 'Appetizers')
   const fuerte = products.filter(p => p.category === 'MainDishes')
   const bebidas = products.filter(p => p.category === 'Drinks')
   const postres = products.filter(p => p.category === 'Desserts')
-
   const tickets = useSelector(state => state.tickets)
-  console.log(tickets.cart.map(c => c))
+  const cart = useSelector(state => state.cart)
+  const staff = useSelector(state => state.staff)
 
-  // const deleteProduct = async () => {
-  //   if (products.id === id) await setCount(0)
-  //   await dispatch(
-  //     deleteAllSelectProductToCart({
-  //       id: products._id,
-  //       quantity: 0,
-  //       name: products.name,
-  //       price: products.price,
-  //       category: products.category,
-  //       time: products.time,
-  //     })
-  //   )
-  // }
+  useEffect(() => {
+    dispatch(getProductsThunk())
+  }, [])
+
+  const deleteProduct = async e => {
+    e.preventDefault()
+    await dispatch(
+      deleteAllSelectProductToCart({
+        id: e.target.value,
+      })
+    )
+  }
+
   const initialValue = 0
   const totalPayable = tickets.cart
     .map(p => p.price * p.quantity)
     .reduce((acc, curr) => acc + curr, initialValue)
     .toFixed(2)
-
-  console.log(totalPayable)
-
-  useEffect(() => {
-    dispatch(getProductsThunk())
-  }, [])
 
   return (
     <div>
@@ -86,22 +88,22 @@ const Client = () => {
           <div className="cardContainer">
             {dashCategory === 'entrada'
               ? entradas?.map(product => {
-                  return <CardMenu key={product.id} product={product}></CardMenu>
+                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
                 })
               : null}
             {dashCategory === 'fuerte'
               ? fuerte?.map(product => {
-                  return <CardMenu key={product.id} product={product}></CardMenu>
+                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
                 })
               : null}
             {dashCategory === 'bebidas'
               ? bebidas?.map(product => {
-                  return <CardMenu key={product.id} product={product}></CardMenu>
+                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
                 })
               : null}
             {dashCategory === 'postres'
               ? postres?.map(product => {
-                  return <CardMenu key={product.id} product={product}></CardMenu>
+                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
                 })
               : null}
           </div>
@@ -118,34 +120,31 @@ const Client = () => {
                   <div className="quantity">{product.quantity}</div>
                   <div className="productName">{product.name}</div>
                   <div className="actionButtons">
-                    <button>
-                      <img className="imgButton" src={edit} alt="edit icon" width="30px" />
-                    </button>
-
+                    <img src={edit} alt="edit icon" width="30px" />
+                    <button className="iconButton"></button>
+                    <img src={trash} alt="trash icon" />
                     <button
-                      onClick={() => {
-                        console.log(product.id)
-                        dispatch(
-                          deleteAllSelectProductToCart({
-                            id: product._id,
-                            // quantity: 0,
-                            name: product.name,
-                            price: product.price,
-                            category: product.category,
-                            time: product.time,
-                          })
-                        )
-                      }}
-                    >
-                      <img className="imgButton" src={trash} alt="trash icon" />
-                    </button>
+                      className="iconButton"
+                      key="eliminar boton"
+                      value={product.id}
+                      onClick={deleteProduct}
+                    ></button>
                   </div>
                 </div>
               )
             })}
           </div>
-          <form className="form" id="editForm">
-            <input className="inputForm" type="text" placeholder="Notes about my food" />
+          <form id="editForm">
+            <input
+              /* onChange={} */ className="inputName"
+              type="text"
+              placeholder="Set your name"
+            />
+            <input
+              /* onChange={} */ className="inputNotes"
+              type="text"
+              placeholder="Notes about my food"
+            />
           </form>
           <h2 className="total">Total payable: ${totalPayable}</h2>
           <button className="btnFinishOrder" form="editForm">
