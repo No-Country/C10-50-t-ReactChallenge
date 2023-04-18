@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMenu from './CardMenu.jsx'
 import { getProductsThunk } from '../../store/slices/products.slice'
-import { deleteAllSelectProductToCart } from '../../store/slices/tickets.slice'
+import { getStaffThunk } from '../../store/slices/staff.slice'
+import { deleteAllSelectProductToCart, postTicket } from '../../store/slices/tickets.slice'
 import Navbar from '../Navbar/Navbar.jsx'
 import './style.css'
 import cart from '../../assets/icons/cart.svg'
@@ -14,16 +15,7 @@ import edit from '../../assets/icons/edit.svg'
 const Client = () => {
   const [dashCategory, setdashCategory] = useState('entrada')
   const dispatch = useDispatch()
-  const [form, setForm] = useState({
-    clientName: '',
-    staff: '',
-    table: '',
-    totalPrice: 0,
-    paymentMethod: 'cash',
-    order: [],
-  })
 
-  const hijo = useRef(null)
   const products = useSelector(state => state.products)
   const entradas = products.filter(p => p.category === 'Appetizers')
   const fuerte = products.filter(p => p.category === 'MainDishes')
@@ -35,7 +27,25 @@ const Client = () => {
 
   useEffect(() => {
     dispatch(getProductsThunk())
+    dispatch(getStaffThunk())
   }, [])
+
+  const [form, setForm] = useState({
+    clientName: '',
+    staff: '',
+    table: '',
+    totalPrice: '',
+    paymentMethod: 'cash',
+    order: [],
+  })
+
+  const handleTicket = e => {
+    e.preventDefault()
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   const deleteProduct = async e => {
     e.preventDefault()
@@ -52,6 +62,24 @@ const Client = () => {
     .reduce((acc, curr) => acc + curr, initialValue)
     .toFixed(2)
 
+  const handleSubmit = () => {
+    if (form.clientName && form.table && cart.length) {
+      const waiters = staff?.filter(s => s.role === 'Waiter')
+      const currentWaiter = waiters?.filter(waiter => waiter.table === form.table)
+      const newTicket = {
+        clientName: form.clientName,
+        staff: currentWaiter,
+        table: form.table,
+        totalPrice: totalPayable,
+        paymentMethod: 'cash',
+        order: cart,
+      }
+      dispatch(postTicket(newTicket))
+      alert('Your order is in process')
+    }
+    alert('Please add the table´s number')
+  }
+
   return (
     <div>
       <Navbar></Navbar>
@@ -64,6 +92,11 @@ const Client = () => {
           <nav className="nav">
             <ul className="nav_ul">
               <div>
+                <li className="nav_li" onClick={() => setdashCategory('bebidas')}>
+                  Drinks
+                </li>
+              </div>
+              <div>
                 <li className="nav_li" onClick={() => setdashCategory('entrada')}>
                   Appetizzers
                 </li>
@@ -74,11 +107,6 @@ const Client = () => {
                 </li>
               </div>
               <div>
-                <li className="nav_li" onClick={() => setdashCategory('bebidas')}>
-                  Drinks
-                </li>
-              </div>
-              <div>
                 <li className="nav_li" onClick={() => setdashCategory('postres')}>
                   Desserts
                 </li>
@@ -86,24 +114,24 @@ const Client = () => {
             </ul>
           </nav>
           <div className="cardContainer">
+            {dashCategory === 'bebidas'
+              ? bebidas?.map(product => {
+                  return <CardMenu key={product.id} product={product}></CardMenu>
+                })
+              : null}
             {dashCategory === 'entrada'
               ? entradas?.map(product => {
-                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
+                  return <CardMenu key={product.id} product={product}></CardMenu>
                 })
               : null}
             {dashCategory === 'fuerte'
               ? fuerte?.map(product => {
-                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
-                })
-              : null}
-            {dashCategory === 'bebidas'
-              ? bebidas?.map(product => {
-                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
+                  return <CardMenu key={product.id} product={product}></CardMenu>
                 })
               : null}
             {dashCategory === 'postres'
               ? postres?.map(product => {
-                  return <CardMenu key={product.id} product={product} ref={hijo}></CardMenu>
+                  return <CardMenu key={product.id} product={product}></CardMenu>
                 })
               : null}
           </div>
@@ -136,18 +164,39 @@ const Client = () => {
           </div>
           <form id="editForm">
             <input
-              /* onChange={} */ className="inputName"
+              name="clientName"
+              onChange={handleTicket}
+              className="inputName"
               type="text"
               placeholder="Set your name"
             />
-            <input
-              /* onChange={} */ className="inputNotes"
+            <select
+              name="table"
+              onChange={handleTicket}
+              className="inputTable"
+              type="text"
+              placeholder="Set your table"
+            >
+              {/* <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option> */}
+              <option value="">Select your table</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+            </select>
+            {/* <input
+              onChange={} className="inputNotes"
               type="text"
               placeholder="Notes about my food"
-            />
+            /> */}
           </form>
           <h2 className="total">Total payable: ${totalPayable}</h2>
-          <button className="btnFinishOrder" form="editForm">
+          <button className="btnFinishOrder" form="editForm" onClick={handleSubmit}>
             Create Ticket
           </button>
         </div>

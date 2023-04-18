@@ -111,6 +111,13 @@ export const deleteAllSelectProductToCart = product => dispatch => {
   dispatch(deleteAllSelectProduct(product))
 }
 
+export const postTicket = ticket => {
+  axios
+    .post('http://localhost:3001/api/ticket/', ticket)
+    .then(res => alert('Your order is in process'))
+    .catch(error => alert('Something goes wrong. Wait for the waiter', error))
+}
+
 export const {
   setAllTickets,
   setItems,
