@@ -62,6 +62,7 @@ export const Waiter = () => {
   const handleAddTicket = async values => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const orders = getOrders(values)
+    const totalPrice = orders.reduce((acc, order) => (acc = acc + order.price), 0)
     const body = {
       clientName: values.client,
       staff: user.name,
@@ -69,7 +70,7 @@ export const Waiter = () => {
       order: orders,
       status: 'ordered',
       table: values.table,
-      totalPrice: 322, // pendiente por calcular
+      totalPrice,
     }
     try {
       const { data } = await axios.post('http://localhost:3001/api/ticket/', body)

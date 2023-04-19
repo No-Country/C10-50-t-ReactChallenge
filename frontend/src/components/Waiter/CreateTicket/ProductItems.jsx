@@ -30,7 +30,7 @@ export const ProductItems = ({ products, category }) => {
             >
               {product.name}
               <Form.Item name={`${product.name}__${product._id}`}>
-                <InputNumber style={{ width: '50px' }} />
+                <InputNumber style={{ width: '50px' }} min={1} />
               </Form.Item>
             </div>
           )
