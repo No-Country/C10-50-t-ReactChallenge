@@ -70,14 +70,14 @@ export const ticketSlice = createSlice({
 })
 
 export const getAllTickets = () => dispatch => {
-  axios.get('http://localhost:3001/api/ticket/').then(res => {
+  axios.get('/ticket').then(res => {
     dispatch(setAllTickets(res.data)).catch(error => alert(error.message))
   })
 }
 
 export const getTicketsThunk = () => dispatch => {
   axios
-    .get('http://localhost:3001/api/ticket/')
+    .get('/ticket')
     .then(res => {
       const ordersAll = res.data.map(orders => {
         const ordersWithQuantity = orders.order.length > 0 ? getProducts(orders.order) : []
@@ -109,7 +109,7 @@ export const deleteAllSelectProductToCart = product => dispatch => {
 }
 
 export const postTicketThunk = createAsyncThunk('tickets/postTicketThunk', async ticket => {
-  const response = axios.post('http://localhost:3001/api/ticket/', ticket)
+  const response = axios.post('/ticket', ticket)
   return response.data
 })
 
