@@ -1,7 +1,7 @@
 import { Button, Form, Tabs } from 'antd'
 import PropTypes from 'prop-types'
 import { ProductItems } from './ProductItems'
-
+import { ShoppingCartOutlined } from '@ant-design/icons'
 export const ProductsForm = ({ products, handleAddTicket }) => {
   const [antForm] = Form.useForm()
 
@@ -25,6 +25,15 @@ export const ProductsForm = ({ products, handleAddTicket }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '5px' }}>
+      <p style={{ display: 'flex' }}>
+        <ShoppingCartOutlined
+          style={{
+            textAlign: 'left',
+            fontSize: '22px',
+          }}
+        />
+        Add Order
+      </p>
       <Form
         form={antForm}
         onFinish={values => {
