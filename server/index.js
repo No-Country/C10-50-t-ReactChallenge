@@ -15,6 +15,7 @@ app.use(
       "http://localhost:5173",
       "http://127.0.0.1:5173",
       "https://foodticket.vercel.app/",
+      "https://c10-50-t-reactchallenge-production.up.railway.app/",
     ],
     methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
     credentials: true,
