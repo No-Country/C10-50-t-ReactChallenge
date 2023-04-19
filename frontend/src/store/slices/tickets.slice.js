@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const ticketSlice = createSlice({
@@ -104,19 +104,14 @@ export const addProductToCart = product => dispatch => {
 export const deleteProductToCart = product => dispatch => {
   dispatch(deleteProduct(product))
 }
-export const editSelectProductInCart = product => dispatch => {
-  dispatch(editSelectProduct(product))
-}
 export const deleteAllSelectProductToCart = product => dispatch => {
   dispatch(deleteAllSelectProduct(product))
 }
 
-export const postTicket = ticket => {
-  axios
-    .post('http://localhost:3001/api/ticket/', ticket)
-    .then(res => alert('Your order is in process'))
-    .catch(error => alert('Something goes wrong. Wait for the waiter', error))
-}
+export const postTicketThunk = createAsyncThunk('tickets/postTicketThunk', async ticket => {
+  const response = axios.post('http://localhost:3001/api/ticket/', ticket)
+  return response.data
+})
 
 export const {
   setAllTickets,
@@ -129,15 +124,6 @@ export const {
   editSelectProduct,
   deleteAllSelectProduct,
 } = ticketSlice.actions
-
-export const postTicketThunk = body => dispatch => {
-  axios
-    .post('http://localhost:3001/api/ticket/', body)
-    .then(res => {
-      console.log('ticket creado')
-    })
-    .catch(error => console.log(error))
-}
 
 export default ticketSlice.reducer
 
