@@ -1,4 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
 import productsSlice from './slices/products.slice'
 import ticketSlice from './slices/tickets.slice'
 import staffSlice from './slices/staff.slice'
@@ -13,4 +14,5 @@ export default configureStore({
     isLoading: isLoadingSlice,
     kitchen: kitchenSlice,
   },
+  middleware: [thunk],
 })

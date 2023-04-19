@@ -25,8 +25,6 @@ const Admin = () => {
   const staff = useSelector(state => state.staff)
   const tickets = useSelector(state => state.tickets.allTickets)
 
-  console.log(tickets)
-
   const [productForm, setProductForm] = React.useState({
     name: '',
     image: '',
