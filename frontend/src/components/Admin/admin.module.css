@@ -202,7 +202,7 @@
   min-width: 400px;
   position: relative;
   padding: 40px;
-  z-index: 2;
+  z-index: 20;
   justify-content: center;
   align-items: center;
 }
@@ -222,4 +222,17 @@
 .modalClose:hover {
   background-color: #f5f6ff;
   color: #ff9898;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 50vh;
+  grid-gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f6ff;
+  border-radius: 4px;
+  padding: 40px;
+  border: 1px solid #f5f6ff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.253);
 }

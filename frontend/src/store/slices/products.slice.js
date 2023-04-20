@@ -25,6 +25,13 @@ export const getProductsThunk = () => dispatch => {
     .finally(() => dispatch(setIsLoading(false)))
 }
 
+export const postProductsThunk = product => dispatch => {
+  axios
+    .post('/menu', product)
+    .then(res => res.data)
+    .catch(error => console.log(error))
+}
+
 export const { setProducts } = productsSlice.actions
 
 export default productsSlice.reducer
