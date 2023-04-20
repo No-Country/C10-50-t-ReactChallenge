@@ -39,6 +39,20 @@ const Admin = () => {
     window.location.reload()
   }
 
+  const validateProduct = values => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = 'Name is required'
+    }
+    if (!values.price) {
+      errors.price = 'Price is required'
+    }
+    if (!values.description) {
+      errors.description = 'Description is required'
+    }
+    return errors
+  }
+
   return (
     <div>
       <Navbar isShowed={true} />
@@ -99,6 +113,7 @@ const Admin = () => {
                         available: true,
                       }}
                       onSubmit={createProduct}
+                      validate={validateProduct}
                     >
                       <Form className={style.form}>
                         <p>Name:</p>
