@@ -1,12 +1,11 @@
-
 const LoginForm = () => {
   return (
     <form>
       <div className="input-container">
-        <input type="number" placeholder="2" />
-        <input type="number" placeholder="2" />
-        <input type="number" placeholder="1" />
-        <input type="number" placeholder="0" />
+        <input type="password" placeholder="2" />
+        <input type="password" placeholder="2" />
+        <input type="password" placeholder="1" />
+        <input type="password" placeholder="0" />
       </div>
       <button>Iniciar sesion</button>
     </form>
