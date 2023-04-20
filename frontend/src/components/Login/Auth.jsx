@@ -34,7 +34,7 @@ const Auth = ({ staffSelected, setStaffSelected }) => {
 
     if (password.length === 4) {
       axios
-        .post('http://localhost:3001/api/auth/login', user)
+        .post('/auth/login', user)
         .then(res => {
           localStorage.setItem('userInfo', JSON.stringify(res.data))
           navigate(`/${staffSelected.role}`)
