@@ -9,7 +9,11 @@ require("./config/db");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors({
+    origin: ["https://foodticket.vercel.app"],
+    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    credentials: true,
+  ));
 
 app.use("/api", routes);
 
