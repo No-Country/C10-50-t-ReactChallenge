@@ -216,3 +216,15 @@ body {
   border: 1px solid #ccd1ff;
   padding: 1rem;
 }
+
+.trash-icon {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 0.5rem;
+}
+
+.trash-icon img {
+  width: 32px;
+  cursor: pointer;
+}

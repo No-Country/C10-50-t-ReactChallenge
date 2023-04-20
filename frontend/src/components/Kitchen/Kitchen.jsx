@@ -10,10 +10,12 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Navbar from '../Navbar/Navbar'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import DeleteOrder from './DeleteOrder'
 
 const Kitchen = () => {
   const dispatch = useDispatch()
   const tickets = useSelector(state => state.kitchen)
+  const [showAlert, setShowAlert] = useState(null)
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -60,7 +62,6 @@ const Kitchen = () => {
         [destination.droppableId]: destinationClone,
       }
       dispatch(setTickets(newTickets))
-      console.log(event)
 
       if (destination.droppableId === 'ready') {
         axios
@@ -81,6 +82,7 @@ const Kitchen = () => {
     <DragDropContext onDragEnd={handleDragEnd}>
       <Navbar isShowed={true} />
       <Toaster position="top-center" reverseOrder={false} />
+      {showAlert && <DeleteOrder showAlert={showAlert} setShowAlert={setShowAlert} />}
       <main className="kitchen">
         {/* Orders */}
         <ContainerKitchen
@@ -89,6 +91,8 @@ const Kitchen = () => {
           items={tickets.ordered}
           dropId={'ordered'}
           changeClass={null}
+          showAlert={showAlert}
+          setShowAlert={setShowAlert}
         />
 
         {/* COOKING */}
@@ -99,6 +103,8 @@ const Kitchen = () => {
           items={tickets.cooking}
           dropId={'cooking'}
           changeClass={'cooking'}
+          showAlert={showAlert}
+          setShowAlert={setShowAlert}
         />
 
         {/* READY */}
@@ -108,6 +114,8 @@ const Kitchen = () => {
           items={tickets.ready}
           dropId={'ready'}
           changeClass={null}
+          showAlert={showAlert}
+          setShowAlert={setShowAlert}
         />
       </main>
     </DragDropContext>
