@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: ["https://foodticket.vercel.app/"],
+    origin: ["https://foodticket.vercel.app"],
     methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
     credentials: true,
   })
