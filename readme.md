@@ -26,9 +26,6 @@ FoodTicket fue desarrollada utilizando tecnologías de vanguardia para ofrecer u
 
 <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>    <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a>
 
-- **Comunicación en tiempo real:**
-
-<a href="https://socket.io/" target="_blank" rel="noreferrer"> <img src="https://res.cloudinary.com/axiever/image/upload/v1677639160/Socket-io.svg_ormrdv.png" alt="socket" width="40" height="40"/> </a>
 
 ## Instalación y uso 📲
 
