@@ -39,9 +39,7 @@ export const MultipleContainers = () => {
     }, [])
     const newItems = { ...items, [containerId]: updateContainer }
     dispatch(setItems(newItems))
-    axios
-      .put('/api/ticket', { _id: item.id, status: 'rejected' })
-      .catch(error => console.log(error))
+    axios.put('/ticket', { _id: item.id, status: 'rejected' }).catch(error => console.log(error))
   }
 
   const getStatus = containerId => {
@@ -88,7 +86,7 @@ export const MultipleContainers = () => {
       dispatch(setItems(newItems))
       const status = getStatus(destination.droppableId)
 
-      axios.put('/api/ticket', { _id: draggableId, status }).catch(error => console.log(error))
+      axios.put('/ticket', { _id: draggableId, status }).catch(error => console.log(error))
     }
   }
   return (
