@@ -3,19 +3,22 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './admin.module.css'
-import { getProductsThunk } from '../../store/slices/products.slice'
+import { getProductsThunk, postProductsThunk } from '../../store/slices/products.slice'
 import { getStaffThunk } from '../../store/slices/staff.slice'
 import { getAllTickets } from '../../store/slices/tickets.slice'
 import Navbar from '../Navbar/Navbar'
 import flechita from '../../assets/icons/fi_chevron-right.svg'
+import { Form, Formik, Field } from 'formik'
 
 const Admin = () => {
   const [dashboardStatus, setDashboardStatus] = React.useState('products')
   const [modal, setModal] = React.useState(true)
+  const [editModal, setEditModal] = React.useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setModal(!modal)
+    setModal(false)
+    setEditModal(false)
     dispatch(getProductsThunk())
     dispatch(getStaffThunk())
     dispatch(getAllTickets())
@@ -25,18 +28,29 @@ const Admin = () => {
   const staff = useSelector(state => state.staff)
   const tickets = useSelector(state => state.tickets.allTickets)
 
-  const [productForm, setProductForm] = React.useState({
-    name: '',
-    image: '',
-    category: '',
-    price: '',
-    time: '',
-    description: '',
-    available: true,
-  })
-
   const setStatus = element => {
     setDashboardStatus(element.target.value)
+  }
+
+  const createProduct = product => {
+    setModal(false)
+    dispatch(postProductsThunk(product))
+    alert('Product created successfully')
+    window.location.reload()
+  }
+
+  const validateProduct = values => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = 'Name is required'
+    }
+    if (!values.price) {
+      errors.price = 'Price is required'
+    }
+    if (!values.description) {
+      errors.description = 'Description is required'
+    }
+    return errors
   }
 
   return (
@@ -88,6 +102,51 @@ const Admin = () => {
                 <div className={style.modalBody}>
                   <div>
                     <h1>Create new product</h1>
+                    <Formik
+                      initialValues={{
+                        name: '',
+                        image: '',
+                        category: '',
+                        price: 0,
+                        time: '',
+                        description: '',
+                        available: true,
+                      }}
+                      onSubmit={createProduct}
+                      validate={validateProduct}
+                    >
+                      <Form className={style.form}>
+                        <p>Name:</p>
+                        <Field name="name" type="text"></Field>
+
+                        <p>Image url:</p>
+                        <Field name="image" type="url"></Field>
+
+                        <p>Category:</p>
+                        <Field name="category">
+                          {({ field }) => (
+                            <select {...field}>
+                              <option value="Drinks">Drinks</option>
+                              <option value="Appetizers">Appetizers</option>
+                              <option value="MainDishes">MainDishes</option>
+                              <option value="Desserts">Desserts</option>
+                            </select>
+                          )}
+                        </Field>
+
+                        <p>Price:</p>
+                        <Field name="price" type="number"></Field>
+
+                        <p>Time:</p>
+                        <Field name="time" type="text" placeholder="Product cooking time "></Field>
+
+                        <p>Description:</p>
+
+                        <Field name="description" type="text"></Field>
+
+                        <button type="submit">Create</button>
+                      </Form>
+                    </Formik>
                   </div>
                   <button className={style.modalClose} onClick={() => setModal(!modal)}>
                     X
@@ -113,9 +172,76 @@ const Admin = () => {
                   <p>{p.category}</p>
                   <p>${p.price}</p>
                   <p>{p.description}</p>
-                  <button value={p.id} className={style.btnedit}>
+                  <button
+                    onClick={() => setEditModal(!editModal)}
+                    value={p.id}
+                    className={style.btnedit}
+                  >
                     Edit
                   </button>
+                  {editModal === true ? (
+                    <div className={style.modalContainer}>
+                      <div className={style.modalBody}>
+                        <div>
+                          <h1>Edit Product</h1>
+                          <Formik
+                            initialValues={{
+                              name: p.name,
+                              image: p.image,
+                              category: p.category,
+                              price: p.price,
+                              time: p.time,
+                              description: p.description,
+                              available: p.available,
+                            }}
+                            onSubmit={createProduct}
+                          >
+                            <Form className={style.form}>
+                              <Field name="name" type="text" placeholder="Product Name"></Field>
+                              <Field name="image" type="url" placeholder="Product image"></Field>
+                              <Field name="category">
+                                {({ field }) => (
+                                  <select {...field}>
+                                    <option value="">Category</option>
+                                    <option value="Drinks">Drinks</option>
+                                    <option value="Appetizers">Appetizers</option>
+                                    <option value="MainDishes">MainDishes</option>
+                                    <option value="Desserts">Desserts</option>
+                                  </select>
+                                )}
+                              </Field>
+
+                              <Field name="price" type="number" placeholder="Product price"></Field>
+                              <Field
+                                name="time"
+                                type="text"
+                                placeholder="Product cooking time "
+                              ></Field>
+                              <Field
+                                name="description"
+                                type="text"
+                                placeholder="Product description"
+                              ></Field>
+
+                              <Field
+                                name="available"
+                                type="checkbox"
+                                placeholder="Available"
+                              ></Field>
+                              <button type="submit">Create</button>
+                            </Form>
+                          </Formik>
+                        </div>
+                        <button
+                          className={style.modalClose}
+                          onClick={() => setEditModal(!editModal)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
+
                   <button value={p.id} className={style.btndel}>
                     Delete
                   </button>
