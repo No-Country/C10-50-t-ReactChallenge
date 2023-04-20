@@ -85,6 +85,22 @@
   cursor: pointer;
 }
 
+.btnActive {
+  background-color: #03314b;
+  color: #ffffff;
+  width: fit-content;
+  text-align: center;
+  border: none;
+  margin: 5px;
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 20px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  align-items: center;
+  justify-content: center;
+}
+
 .hacer_pedido {
   width: 342px;
   border-radius: 20px;

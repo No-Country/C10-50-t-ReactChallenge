@@ -10,6 +10,7 @@ import './style.css'
 import cartImg from '../../assets/icons/cart.svg'
 import bowl from '../../assets/icons/bowl.svg'
 import trash from '../../assets/icons/fi_trash-2.svg'
+import { Toaster, toast } from 'react-hot-toast'
 
 const Client = () => {
   const dispatch = useDispatch()
@@ -71,16 +72,21 @@ const Client = () => {
       }
       console.log(newTicket)
       dispatch(postTicketThunk(newTicket)).then(() => {
-        alert('Your order is in process')
+        toast('Your order is in process', {
+          icon: '🍳',
+        })
       })
     } else {
-      alert('You must complete all fields')
+      toast('You must complete all fields', {
+        icon: '⛔',
+      })
     }
   }
 
   return (
     <div>
       <Navbar></Navbar>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="body">
         <div className="menu">
           <div className="tittleMenuGroup">
@@ -90,22 +96,34 @@ const Client = () => {
           <nav className="nav">
             <ul className="nav_ul">
               <div>
-                <li className="nav_li" onClick={() => setdashCategory('bebidas')}>
+                <li
+                  className={dashCategory === 'bebidas' ? 'btnActive' : 'nav_li'}
+                  onClick={() => setdashCategory('bebidas')}
+                >
                   Drinks
                 </li>
               </div>
               <div>
-                <li className="nav_li" onClick={() => setdashCategory('entrada')}>
+                <li
+                  className={dashCategory === 'entrada' ? 'btnActive' : 'nav_li'}
+                  onClick={() => setdashCategory('entrada')}
+                >
                   Appetizzers
                 </li>
               </div>
               <div>
-                <li className="nav_li" onClick={() => setdashCategory('fuerte')}>
+                <li
+                  className={dashCategory === 'fuerte' ? 'btnActive' : 'nav_li'}
+                  onClick={() => setdashCategory('fuerte')}
+                >
                   Main Dishes
                 </li>
               </div>
               <div>
-                <li className="nav_li" onClick={() => setdashCategory('postres')}>
+                <li
+                  className={dashCategory === 'postres' ? 'btnActive' : 'nav_li'}
+                  onClick={() => setdashCategory('postres')}
+                >
                   Desserts
                 </li>
               </div>
