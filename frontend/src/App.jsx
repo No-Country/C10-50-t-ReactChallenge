@@ -3,7 +3,7 @@ import { router } from './routes'
 import { GlobalStyles } from './styles/global'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://c10-50-t-reactchallenge-production.up.railway.app'
+axios.defaults.baseURL = 'https://c10-50-t-reactchallenge-production.up.railway.app/api'
 
 function App() {
   return (
