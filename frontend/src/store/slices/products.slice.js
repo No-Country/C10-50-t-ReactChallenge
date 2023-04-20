@@ -32,6 +32,20 @@ export const postProductsThunk = product => dispatch => {
     .catch(error => console.log(error))
 }
 
+export const updateProductsThunk = product => dispatch => {
+  axios
+    .put('/menu', product)
+    .then(res => res.data)
+    .catch(error => console.log(error))
+}
+
+export const deleteProductsThunk = id => dispatch => {
+  axios
+    .delete(`/menu/${id}`)
+    .then(res => res.data)
+    .catch(error => console.log(error), console.log(id))
+}
+
 export const { setProducts } = productsSlice.actions
 
 export default productsSlice.reducer

@@ -109,7 +109,7 @@ export const deleteAllSelectProductToCart = product => dispatch => {
 }
 
 export const postTicketThunk = createAsyncThunk('tickets/postTicketThunk', async ticket => {
-  const response = axios.post('http://localhost:3001/api/ticket/', ticket)
+  const response = axios.post('/ticket/', ticket)
   return response.data
 })
 

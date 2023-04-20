@@ -3,12 +3,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './admin.module.css'
-import { getProductsThunk, postProductsThunk } from '../../store/slices/products.slice'
+import {
+  getProductsThunk,
+  postProductsThunk,
+  updateProductsThunk,
+  deleteProductsThunk,
+} from '../../store/slices/products.slice'
 import { getStaffThunk } from '../../store/slices/staff.slice'
 import { getAllTickets } from '../../store/slices/tickets.slice'
 import Navbar from '../Navbar/Navbar'
 import flechita from '../../assets/icons/fi_chevron-right.svg'
-import { Form, Formik, Field } from 'formik'
+import { Form, Formik, Field, ErrorMessage } from 'formik'
 
 const Admin = () => {
   const [dashboardStatus, setDashboardStatus] = React.useState('products')
@@ -39,17 +44,37 @@ const Admin = () => {
     window.location.reload()
   }
 
+  const updateProduct = product => {
+    setEditModal(false)
+    dispatch(updateProductsThunk(product))
+    alert('Product updated successfully')
+    window.location.reload()
+  }
+
+  const deleteProduct = event => {
+    console.log(event.target.value)
+    event.preventDefault()
+    setEditModal(false)
+    dispatch(deleteProductsThunk(event.target.value))
+    alert('Product deleted successfully')
+    window.location.reload()
+  }
+
   const validateProduct = values => {
     const errors = {}
     if (!values.name) {
-      errors.name = 'Name is required'
+      errors.name = 'Name is required*'
     }
     if (!values.price) {
-      errors.price = 'Price is required'
+      errors.price = 'Price is required*'
     }
     if (!values.description) {
-      errors.description = 'Description is required'
+      errors.description = 'Description is required*'
     }
+    if (!values.category) {
+      errors.category = 'Category is required*'
+    }
+
     return errors
   }
 
@@ -107,7 +132,7 @@ const Admin = () => {
                         name: '',
                         image: '',
                         category: '',
-                        price: 0,
+                        price: '',
                         time: '',
                         description: '',
                         available: true,
@@ -117,12 +142,22 @@ const Admin = () => {
                     >
                       <Form className={style.form}>
                         <p>Name:</p>
+                        <span style={{ color: 'red' }}>
+                          <ErrorMessage name="name" />
+                        </span>
+
                         <Field name="name" type="text"></Field>
 
                         <p>Image url:</p>
+                        <span style={{ color: 'red' }}>
+                          <ErrorMessage name="image" />
+                        </span>
                         <Field name="image" type="url"></Field>
 
                         <p>Category:</p>
+                        <span style={{ color: 'red' }}>
+                          <ErrorMessage name="category" />
+                        </span>
                         <Field name="category">
                           {({ field }) => (
                             <select {...field}>
@@ -135,13 +170,18 @@ const Admin = () => {
                         </Field>
 
                         <p>Price:</p>
+                        <span style={{ color: 'red' }}>
+                          <ErrorMessage name="price" />
+                        </span>
                         <Field name="price" type="number"></Field>
 
                         <p>Time:</p>
-                        <Field name="time" type="text" placeholder="Product cooking time "></Field>
+                        <Field name="time" type="text"></Field>
 
                         <p>Description:</p>
-
+                        <span style={{ color: 'red' }}>
+                          <ErrorMessage name="description" />
+                        </span>
                         <Field name="description" type="text"></Field>
 
                         <button type="submit">Create</button>
@@ -174,7 +214,7 @@ const Admin = () => {
                   <p>{p.description}</p>
                   <button
                     onClick={() => setEditModal(!editModal)}
-                    value={p.id}
+                    value={p._id}
                     className={style.btnedit}
                   >
                     Edit
@@ -186,15 +226,15 @@ const Admin = () => {
                           <h1>Edit Product</h1>
                           <Formik
                             initialValues={{
+                              _id: p._id,
                               name: p.name,
                               image: p.image,
                               category: p.category,
                               price: p.price,
                               time: p.time,
                               description: p.description,
-                              available: p.available,
                             }}
-                            onSubmit={createProduct}
+                            onSubmit={updateProduct}
                           >
                             <Form className={style.form}>
                               <Field name="name" type="text" placeholder="Product Name"></Field>
@@ -211,7 +251,7 @@ const Admin = () => {
                                 )}
                               </Field>
 
-                              <Field name="price" type="number" placeholder="Product price"></Field>
+                              <Field name="price" type="number"></Field>
                               <Field
                                 name="time"
                                 type="text"
@@ -242,7 +282,7 @@ const Admin = () => {
                     </div>
                   ) : null}
 
-                  <button value={p.id} className={style.btndel}>
+                  <button value={p._id} className={style.btndel} onClick={deleteProduct}>
                     Delete
                   </button>
                 </div>
