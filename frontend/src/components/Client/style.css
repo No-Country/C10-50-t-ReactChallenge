@@ -81,19 +81,23 @@
 
 .nav_li:hover {
   background-color: #ccd1ff;
-  /* color: #03314b; */
   cursor: pointer;
 }
 
-.hacer_pedido {
-  width: 342px;
-  border-radius: 20px;
-  height: 64px;
-  color: white;
-  background-color: #00b574;
-  margin-top: 10px;
+.btnActive {
+  background-color: #03314b;
+  color: #ffffff;
+  width: fit-content;
+  text-align: center;
   border: none;
-  box-shadow: 0px 0px 5px 1px black;
+  margin: 5px;
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 20px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  align-items: center;
+  justify-content: center;
 }
 
 /* CARD */
@@ -436,6 +440,11 @@
     padding: 10px;
   }
 
+  .btnActive {
+    font-size: 12px;
+    padding: 10px;
+  }
+
   /* CARD */
 
   .cardContainer {
@@ -574,5 +583,126 @@
     height: 24px;
     left: 397px;
     top: 789px;
+  }
+}
+
+@media only screen and (min-width: 1903px) {
+  /* Css Menu */
+
+  .menu {
+    height: 728px;
+  }
+
+  .tittleMenuGroup {
+    margin-left: 5px;
+    top: -4px;
+    right: 325px;
+  }
+  .nav {
+    width: 791px;
+  }
+
+  .nav_li {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+
+  .nav_li:hover {
+    background-color: #ccd1ff;
+    cursor: pointer;
+  }
+
+  .btnActive {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+
+  /* CARD */
+
+  .cardContainer {
+    width: 826px;
+  }
+
+  .card {
+    width: 790px;
+  }
+
+  .card_conten {
+    margin-left: 20px;
+  }
+
+  .card_tittle {
+    margin-top: 6px;
+  }
+
+  .card_price {
+    right: 119px;
+    font-size: 22px;
+  }
+
+  .card_btn {
+    left: 131px;
+  }
+
+  .card_btn:hover {
+    cursor: pointer;
+  }
+
+  .card_btncount {
+    left: 131px;
+  }
+
+  /* css Cart */
+
+  .containerCart {
+    width: 900px;
+    right: 24px;
+    top: 19px;
+  }
+
+  .tittleCartGroup {
+    top: 12px;
+    right: 345px;
+  }
+
+  .productsCartContainer {
+    width: 825px;
+    left: 60px;
+    top: 18px;
+  }
+
+  .actionButtons {
+    left: 779px;
+    width: 10px;
+  }
+
+  .btnFinishOrder {
+    width: 161px;
+    left: 1653px;
+    top: 729px;
+  }
+
+  .inputName {
+    width: 184px;
+    height: 49px;
+    left: 1628px;
+    top: 96px;
+  }
+
+  .containerTable {
+    width: 140px;
+    height: 35px;
+    top: 64px;
+    right: 337px;
+    font-size: 22px;
+  }
+
+  .inputTable {
+    height: 32px;
+  }
+
+  .total {
+    left: 998px;
+    top: 735px;
   }
 }
