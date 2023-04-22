@@ -63,16 +63,16 @@ const Admin = () => {
   const validateProduct = values => {
     const errors = {}
     if (!values.name) {
-      errors.name = 'Name is required*'
+      errors.name = 'required*'
     }
     if (!values.price) {
-      errors.price = 'Price is required*'
+      errors.price = 'required*'
     }
     if (!values.description) {
-      errors.description = 'Description is required*'
+      errors.description = 'required*'
     }
     if (!values.category) {
-      errors.category = 'Category is required*'
+      errors.category = 'required*'
     }
 
     return errors
@@ -141,26 +141,53 @@ const Admin = () => {
                       validate={validateProduct}
                     >
                       <Form className={style.form}>
-                        <p>Name:</p>
-                        <span style={{ color: 'red' }}>
-                          <ErrorMessage name="name" />
-                        </span>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Name:</h3>
+                          <span style={{ color: 'red' }}>
+                            <ErrorMessage name="name" />
+                          </span>
+                        </div>
+                        <Field name="name" type="text" className={style.inputs}></Field>
 
-                        <Field name="name" type="text"></Field>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Image url:</h3>
+                          <span style={{ color: 'red' }}>
+                            <ErrorMessage name="image" />
+                          </span>
+                        </div>
+                        <Field name="image" type="url" className={style.inputs}></Field>
 
-                        <p>Image url:</p>
-                        <span style={{ color: 'red' }}>
-                          <ErrorMessage name="image" />
-                        </span>
-                        <Field name="image" type="url"></Field>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Category:</h3>
+                          <span style={{ color: 'red' }}>
+                            <ErrorMessage name="category" />
+                          </span>
+                        </div>
 
-                        <p>Category:</p>
-                        <span style={{ color: 'red' }}>
-                          <ErrorMessage name="category" />
-                        </span>
                         <Field name="category">
                           {({ field }) => (
-                            <select {...field}>
+                            <select {...field} className={style.inputs}>
+                              <option value="" disabled>
+                                -select-
+                              </option>
                               <option value="Drinks">Drinks</option>
                               <option value="Appetizers">Appetizers</option>
                               <option value="MainDishes">MainDishes</option>
@@ -169,22 +196,48 @@ const Admin = () => {
                           )}
                         </Field>
 
-                        <p>Price:</p>
-                        <span style={{ color: 'red' }}>
-                          <ErrorMessage name="price" />
-                        </span>
-                        <Field name="price" type="number"></Field>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Price:</h3>
+                          <span style={{ color: 'red' }}>
+                            <ErrorMessage name="price" />
+                          </span>
+                        </div>
+                        <Field name="price" type="number" className={style.inputs}></Field>
 
-                        <p>Time:</p>
-                        <Field name="time" type="text"></Field>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Time:</h3>
+                        </div>
+                        <Field name="time" type="text" className={style.inputs}></Field>
 
-                        <p>Description:</p>
-                        <span style={{ color: 'red' }}>
-                          <ErrorMessage name="description" />
-                        </span>
-                        <Field name="description" type="text"></Field>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <h3>Description:</h3>
+                          <span style={{ color: 'red' }}>
+                            <ErrorMessage name="description" />
+                          </span>
+                        </div>
+                        <Field name="description" type="textarea" className={style.inputs}></Field>
 
-                        <button type="submit">Create</button>
+                        <button type="submit" className={style.buttonCreate}>
+                          Create
+                        </button>
                       </Form>
                     </Formik>
                   </div>
