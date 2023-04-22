@@ -50,10 +50,6 @@ const KitchenCard = ({ ticket, index, showAlert, setShowAlert }) => {
                 ))}
               </div>
 
-              <div className="ticket-info">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, ducimus!</p>
-              </div>
-
               <div className="trash-icon">
                 <img onClick={() => setShowAlert(ticket._id)} src={trash} className="" />
               </div>
