@@ -27,7 +27,7 @@ export const kitchenSlice = createSlice({
 
 export const getTicketsThunk = () => dispatch => {
   axios
-    .get('/ticket/')
+    .get('/ticket')
     .then(res => dispatch(setItems(res.data)))
     .catch(error => console.log(error))
 }

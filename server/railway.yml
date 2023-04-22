@@ -1,0 +1,7 @@
+# Archivo de configuración de Railway
+name: <Backend FoodTicket>
+env: node
+build:
+  - npm install --omit=dev
+start:
+  - node app.js

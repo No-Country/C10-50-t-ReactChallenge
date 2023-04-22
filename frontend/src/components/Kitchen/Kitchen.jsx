@@ -65,11 +65,11 @@ const Kitchen = () => {
 
       if (destination.droppableId === 'ready') {
         axios
-          .put('http://localhost:3001/api/ticket', { _id: draggableId, status: 'ready progress' })
+          .put('/ticket', { _id: draggableId, status: 'ready progress' })
           .catch(error => console.log(error))
       } else {
         axios
-          .put('http://localhost:3001/api/ticket', {
+          .put('/ticket', {
             _id: draggableId,
             status: destination.droppableId,
           })

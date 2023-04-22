@@ -73,7 +73,7 @@ export const Waiter = () => {
       totalPrice,
     }
     try {
-      const { data } = await axios.post('http://localhost:3001/api/ticket/', body)
+      const { data } = await axios.post('/ticket/', body)
       const ordersWithQuantity = data.order.length > 0 ? getProducts(data.order) : []
 
       const newItems = {
