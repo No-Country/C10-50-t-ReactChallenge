@@ -68,7 +68,7 @@ const Auth = ({ staffSelected, setStaffSelected }) => {
             {inputValues.map((value, index) => (
               <input
                 key={index}
-                type="number"
+                type="password"
                 value={value.slice(0, 1)}
                 onChange={e => handleInputChange(index, e)}
               />

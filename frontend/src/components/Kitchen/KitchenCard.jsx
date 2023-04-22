@@ -2,9 +2,14 @@
 
 import { useState } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
+import trash from '../../assets/icons/fi_trash-2.svg'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { getTicketsThunk } from '../../store/slices/kitchen.slice'
 
-const KitchenCard = ({ ticket, index }) => {
+const KitchenCard = ({ ticket, index, showAlert, setShowAlert }) => {
   const [showMore, setShowMore] = useState(null)
+  const dispatch = useDispatch()
 
   const handleShow = id => {
     if (showMore === id) {
@@ -38,18 +43,19 @@ const KitchenCard = ({ ticket, index }) => {
           {showMore === ticket._id && (
             <>
               <div className="order-list">
-                {ticket.order.map(
-                  order =>
-                    typeof order === 'string' && (
-                      <div key={order} className="order-info">
-                        <p>1 x {order}</p>
-                      </div>
-                    )
-                )}
+                {ticket.order.map(order => (
+                  <div key={order.id} className="order-info">
+                    <p>1 x {order.name}</p>
+                  </div>
+                ))}
               </div>
 
               <div className="ticket-info">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, ducimus!</p>
+              </div>
+
+              <div className="trash-icon">
+                <img onClick={() => setShowAlert(ticket._id)} src={trash} className="" />
               </div>
             </>
           )}

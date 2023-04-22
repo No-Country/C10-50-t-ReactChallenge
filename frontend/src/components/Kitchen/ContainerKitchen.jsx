@@ -2,7 +2,7 @@
 import { Droppable } from 'react-beautiful-dnd'
 import KitchenCard from './KitchenCard'
 
-const ContainerKitchen = ({ title, icon, items, changeClass, dropId }) => {
+const ContainerKitchen = ({ title, icon, items, changeClass, dropId, showAlert, setShowAlert }) => {
   return (
     <Droppable droppableId={dropId}>
       {droppableProvided => (
@@ -17,7 +17,16 @@ const ContainerKitchen = ({ title, icon, items, changeClass, dropId }) => {
           </div>
           <div className="card-container-kitchen">
             {items.map(
-              (item, index) => item && <KitchenCard key={item._id} ticket={item} index={index} />
+              (item, index) =>
+                item && (
+                  <KitchenCard
+                    key={item._id}
+                    ticket={item}
+                    index={index}
+                    showAlert={showAlert}
+                    setShowAlert={setShowAlert}
+                  />
+                )
             )}
           </div>
           {droppableProvided.placeholder}

@@ -6,6 +6,8 @@ const productSchema = new Schema({
   },
   image: {
     type: String,
+    default:
+      "https://www.yanaya.co.zw/wp-content/uploads/2020/08/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.jpg",
   },
   category: {
     type: String,
