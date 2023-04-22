@@ -184,6 +184,10 @@
   align-items: center;
 }
 
+.buttonNew:hover {
+  cursor: pointer;
+}
+
 .modalContainer {
   position: fixed;
   left: 0px;
@@ -198,7 +202,7 @@
 .modalBody {
   background-color: #f5f6ff;
   border-radius: 4px;
-  width: 50%;
+  width: 40%;
   min-width: 400px;
   position: relative;
   padding: 40px;
@@ -210,10 +214,10 @@
 .modalClose {
   position: absolute;
   background-color: #f5f6ff;
-  top: 5px;
-  right: 10px;
-  font-size: 18px;
-  font-weight: 900;
+  top: 35px;
+  right: 40px;
+  font-size: 30px;
+  font-weight: 600;
   color: #03314b;
   border: none;
   padding: 5px;
@@ -226,13 +230,41 @@
 
 .form {
   display: grid;
-  grid-template-columns: 50vh;
+  grid-template-columns: 65vh;
   grid-gap: 10px;
   align-items: center;
   justify-content: center;
-  background-color: #f5f6ff;
+  padding: 50px;
+}
+
+.inputs {
+  border: #ccd1ff 1px solid;
   border-radius: 4px;
-  padding: 40px;
-  border: 1px solid #f5f6ff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.253);
+  height: 40px;
+  font-size: 20px;
+}
+
+.inputs:focus {
+  border: #5c5e80 1px solid;
+  border-radius: 4px;
+  height: 40px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.buttonCreate {
+  color: #ecf0f1;
+  font-size: 17px;
+  background-color: #03466d;
+  border: 1px solid #055c8e;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 6px 0px #03314b;
+  transition: all 0.1s;
+}
+
+.buttonCreate:active {
+  box-shadow: 0px 2px 0px #03314b;
+  position: relative;
+  top: 2px;
 }
