@@ -1,3 +1,5 @@
+#### **FOODTICKET** 
+
 Foodticket es una aplicación web diseñada para facilitar la gestión de pedidos en un restaurante tanto para el personal de servicio como para el personal de cocina. La aplicación ofrece una interfaz fácil de usar para los mozos, lo que les permite ingresar pedidos y enviarlos a la cocina con facilidad. Además, el personal de cocina puede ver una lista clara de los pedidos entrantes y su estado de preparación, lo que les ayuda a asegurarse de que los platos se preparen en el momento adecuado.
 
 Foodticket también cuenta con una herramienta de gestión de inventarios que ayuda a los chefs a controlar los niveles de existencias de los ingredientes y notificar cuando un artículo necesita ser reabastecido. Esto asegura que la cocina tenga los ingredientes necesarios para preparar los platos y evita retrasos y problemas en la preparación de los pedidos.
@@ -17,7 +19,6 @@ En resumen, Foodticket es una aplicación web completa y eficiente que no solo o
 FoodTicket fue desarrollada utilizando tecnologías de vanguardia para ofrecer una experiencia de usuario excepcional:
 
 - **Front-end:**
-
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" height="40"/> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://redux.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="40" height="40"/> </a> <img src="https://res.cloudinary.com/axiever/image/upload/v1678117833/descargar_1_m83ocn.svg" alt="react-router" width="40" height="40"/> <img src="https://res.cloudinary.com/axiever/image/upload/v1678118395/descargar_2_uymmsz.svg" alt="axios" width="40" height="40"/> <img src="https://res.cloudinary.com/axiever/image/upload/v1678118577/descargar_3_f8bdyd.svg" alt="vite" width="40" height="40"/> <img src="https://res.cloudinary.com/axiever/image/upload/v1678118769/descargar_4_lfn6sa.svg" alt="react-hook-form" width="40" height="40"/> <img src="https://res.cloudinary.com/axiever/image/upload/v1678119234/descargar_5_vknrwc.svg" alt="pretier" width="40" height="40"/>
 
