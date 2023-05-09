@@ -58,4 +58,6 @@ El equipo detrás de FoodTicket está conformado por talentosos profesionales de
 | <img src="https://ca.slack-edge.com/T02KS88FB0E-U04NJCD6U8Y-fd14b90ffc77-512" width="40" height="40"/> | Soraya Sánchez | <a href="https://www.linkedin.com/in/soraya-yenile-sanchez/">LinkedIn</a> |
 | <img src="https://ca.slack-edge.com/T02KS88FB0E-U04NDAJPYB0-99790f39d135-512" width="40" height="40"/> | Noé Hernández | <a href="https://www.linkedin.com/in/noe-hdz-dev/">LinkedIn</a> |
 
+## Deploy
 
+https://foodticket.vercel.app/
